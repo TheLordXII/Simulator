@@ -13,6 +13,10 @@ namespace Simulator
         public String[] matches = new String[1024];
         public int counter = 0;
 
+        public void setCounter(int counter)
+        {
+            this.counter = counter;
+        }
 
         public void Main(String Pfad)
         {
