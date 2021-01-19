@@ -5736,11 +5736,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Ted\\Source\\Repos\\Simulator\\UnitTests\\UnitTests.csproj",
+      "projectUniqueName": "C:\\Users\\Ted\\source\\repos\\Simulator\\UnitTests\\UnitTests.csproj",
       "projectName": "UnitTests",
-      "projectPath": "C:\\Users\\Ted\\Source\\Repos\\Simulator\\UnitTests\\UnitTests.csproj",
+      "projectPath": "C:\\Users\\Ted\\source\\repos\\Simulator\\UnitTests\\UnitTests.csproj",
       "packagesPath": "C:\\Users\\Ted\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Ted\\Source\\Repos\\Simulator\\UnitTests\\obj\\",
+      "outputPath": "C:\\Users\\Ted\\source\\repos\\Simulator\\UnitTests\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Ted\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -5757,8 +5757,8 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "C:\\Users\\Ted\\Source\\Repos\\Simulator\\Simulator\\Simulator.csproj": {
-              "projectPath": "C:\\Users\\Ted\\Source\\Repos\\Simulator\\Simulator\\Simulator.csproj"
+            "C:\\Users\\Ted\\source\\repos\\Simulator\\Simulator\\Simulator.csproj": {
+              "projectPath": "C:\\Users\\Ted\\source\\repos\\Simulator\\Simulator\\Simulator.csproj"
             }
           }
         }
