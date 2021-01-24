@@ -273,7 +273,7 @@ namespace Simulator
                     if (cbPinB6.Checked == true) { portB += 64; };
                     if (cbPinB7.Checked == true) { portB += 128; };
 
-                    umwandlung.Global.programmcounter = umwandlung.operation.Pinbelegung(portA, portB, umwandlung.Global.programmcounter);
+                    umwandlung.programmcounter = umwandlung.operation.Pinbelegung(portA, portB, umwandlung.programmcounter);
 
                 }
 

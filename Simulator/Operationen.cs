@@ -16,48 +16,93 @@ namespace Simulator
 {
     public class Operationen
     {
-        Global Global = new Global();
+        public Operationen()
+        {
+            w = 0;
+            watchdog = 0;
+            prescaler = 1;
+            stackindex = -1;
+
+        }
+
+        public byte w { get; set; } //Work Register
+
+        //Bänke
+        private byte[] Bank1 = new byte[256];
+        
+        //Watchdog
+        public float watchdog { get; set; }
+        public int prescaler { get; set; }
+        public int counter { get; set; }
+
+        public int[] stack = new int[8];
+        public int stackindex { get; set; }
+
+
+
+        public void push(int element)
+        {
+            if (stackindex <= 7)
+            {
+                stackindex++;
+                stack[stackindex] = element;
+            }
+            else
+            {
+                Console.WriteLine("Stack is Full!");
+            }
+        }
+
+        public int pop()
+        {
+            int element = stack[stackindex];
+            stack[stackindex] = 0;
+            stackindex--;
+            return element;
+        }
+
+
         public void InitialisierungBaenke()
         {
-            for (int i = 0; i < Global.Bank1.Length; i++)
+            for (int i = 0; i < Bank1.Length; i++)
             {
-                Global.Bank1[i] = 0b0000_0000;
+                Bank1[i] = 0b0000_0000;
             }
 
-            Global.Bank1[0] = 0b0000_0000; //INDF
-            Global.Bank1[1] = 0b0000_0000; //TMR0
-            Global.Bank1[2] = 0b0000_0000; //PCL
-            Global.Bank1[3] = 0b0001_1000; //STATUS
-            Global.Bank1[4] = 0b0000_0000; //FSR
-            Global.Bank1[5] = 0b0000_0000; //PORTA
-            Global.Bank1[6] = 0b0000_0000; //PORTB
-            Global.Bank1[8] = 0b0000_0000; //EEDATA
-            Global.Bank1[9] = 0b0000_0000; //EEADR
-            Global.Bank1[10] = 0b0000_0000; //PCLATH
-            Global.Bank1[11] = 0b0000_0000; //INTCON
+            Bank1[0] = 0b0000_0000; //INDF
+            Bank1[1] = 0b0000_0000; //TMR0
+            Bank1[2] = 0b0000_0000; //PCL
+            Bank1[3] = 0b0001_1000; //STATUS
+            Bank1[4] = 0b0000_0000; //FSR
+            Bank1[5] = 0b0000_0000; //PORTA
+            Bank1[6] = 0b0000_0000; //PORTB
+            Bank1[8] = 0b0000_0000; //EEDATA
+            Bank1[9] = 0b0000_0000; //EEADR
+            Bank1[10] = 0b0000_0000; //PCLATH
+            Bank1[11] = 0b0000_0000; //INTCON
 
-            Global.Bank1[128] = 0b0000_0000; //INDF
-            Global.Bank1[129] = 0b1111_1111; //OPTION_REG
-            Global.Bank1[130] = 0b0000_0000; //PCL
-            Global.Bank1[131] = 0b0001_1000; //STATUS
-            Global.Bank1[132] = 0b0000_0000; //FSR
-            Global.Bank1[133] = 0b1111_1111; //TRISA
-            Global.Bank1[134] = 0b1111_1111; //TRISB
-            Global.Bank1[136] = 0b0000_0000; //EECON1
-            Global.Bank1[137] = 0b0000_0000; //EECON2
-            Global.Bank1[138] = 0b0000_0000; //PCLATH
-            Global.Bank1[139] = 0b0000_0000; //INTCON
+            Bank1[128] = 0b0000_0000; //INDF
+            Bank1[129] = 0b1111_1111; //OPTION_REG
+            Bank1[130] = 0b0000_0000; //PCL
+            Bank1[131] = 0b0001_1000; //STATUS
+            Bank1[132] = 0b0000_0000; //FSR
+            Bank1[133] = 0b1111_1111; //TRISA
+            Bank1[134] = 0b1111_1111; //TRISB
+            Bank1[136] = 0b0000_0000; //EECON1
+            Bank1[137] = 0b0000_0000; //EECON2
+            Bank1[138] = 0b0000_0000; //PCLATH
+            Bank1[139] = 0b0000_0000; //INTCON
 
         }
 
         public void clearW()
         {
-            Global.w = 0;
+            w = 0;
         }
 
         public int ExtractRP0()
         {
-            int flag = Global.Bank1[3] & 0b0001_0000;
+            int flag = Bank1[3] & 0b0001_0000;
             return flag;
         }
 
@@ -65,13 +110,13 @@ namespace Simulator
         {
             if (result == 0)
             {
-                Global.Bank1[3] |= 0b0000_0100;
-                Global.Bank1[131] |= 0b0000_0100;
+                Bank1[3] |= 0b0000_0100;
+                Bank1[131] |= 0b0000_0100;
             }
             else
             {
-                Global.Bank1[3] &= 0b1111_1011;
-                Global.Bank1[131] &= 0b1111_1011;
+                Bank1[3] &= 0b1111_1011;
+                Bank1[131] &= 0b1111_1011;
             }
         }
 
@@ -79,13 +124,13 @@ namespace Simulator
         {
             if (result > 255)
             {
-                Global.Bank1[3] |= 0b0000_0001;
-                Global.Bank1[131] |= 0b0000_0001;
+                Bank1[3] |= 0b0000_0001;
+                Bank1[131] |= 0b0000_0001;
             }
             else
             {
-                Global.Bank1[3] &= 0b1111_1110;
-                Global.Bank1[131] &= 0b1111_1110;
+                Bank1[3] &= 0b1111_1110;
+                Bank1[131] &= 0b1111_1110;
             }
         }
 
@@ -93,13 +138,13 @@ namespace Simulator
         {
             if(result >= 0)
             {
-                Global.Bank1[3] |= 0b0000_0001;
-                Global.Bank1[131] |= 0b0000_0001;
+                Bank1[3] |= 0b0000_0001;
+                Bank1[131] |= 0b0000_0001;
             }
             else
             {
-                Global.Bank1[3] &= 0b1111_1110;
-                Global.Bank1[131] &= 0b1111_1110;
+                Bank1[3] &= 0b1111_1110;
+                Bank1[131] &= 0b1111_1110;
             }
         }
 
@@ -111,13 +156,13 @@ namespace Simulator
             int hilfe = w + data;
             if (hilfe > 15)
             {
-                Global.Bank1[3] |= 0b0000_0010;
-                Global.Bank1[131] |= 0b0000_0010;
+                Bank1[3] |= 0b0000_0010;
+                Bank1[131] |= 0b0000_0010;
             }
             else
             {
-                Global.Bank1[3] &= 0b1111_1101;
-                Global.Bank1[131] |= 0b1111_1101;
+                Bank1[3] &= 0b1111_1101;
+                Bank1[131] |= 0b1111_1101;
             }
         }
 
@@ -129,13 +174,13 @@ namespace Simulator
             int hilfe = data - w;
             if (hilfe >= 0)
             {
-                Global.Bank1[3] |= 0b0000_0010;
-                Global.Bank1[131] |= 0b0000_0010;
+                Bank1[3] |= 0b0000_0010;
+                Bank1[131] |= 0b0000_0010;
             }
             else
             {
-                Global.Bank1[3] &= 0b1111_1101;
-                Global.Bank1[131] |= 0b1111_1101;
+                Bank1[3] &= 0b1111_1101;
+                Bank1[131] |= 0b1111_1101;
             }
         }
 
@@ -145,7 +190,7 @@ namespace Simulator
             if (cutvalue == 0 || cutvalue == 128)
             {
                 Console.WriteLine("Indirekt");
-                return Global.Bank1[4];
+                return Bank1[4];
             }
             else
             {
@@ -156,7 +201,7 @@ namespace Simulator
 
         public void syncFSR()
         {
-            Global.Bank1[132] = Global.Bank1[4];
+            Bank1[132] = Bank1[4];
         }
 
         public bool DestinationSet(int cutvalue)
@@ -212,34 +257,34 @@ namespace Simulator
                 switch (prescaler)
                 {
                     case 0:
-                        Global.prescaler = 2;
+                        prescaler = 2;
                         break;
                     case 1:
-                        Global.prescaler = 4;
+                        prescaler = 4;
                         break;
                     case 2:
-                        Global.prescaler = 8;
+                        prescaler = 8;
                         break;
                     case 3:
-                        Global.prescaler = 16;
+                        prescaler = 16;
                         break;
                     case 4:
-                        Global.prescaler = 32;
+                        prescaler = 32;
                         break;
                     case 5:
-                        Global.prescaler = 64;
+                        prescaler = 64;
                         break;
                     case 6:
-                        Global.prescaler = 128;
+                        prescaler = 128;
                         break;
                     case 7:
-                        Global.prescaler = 256;
+                        prescaler = 256;
                         break;
                     default:
                         break;
                 }
 
-                return Global.prescaler;
+                return prescaler;
             }
             else
             {
@@ -247,34 +292,34 @@ namespace Simulator
                 switch (prescaler)
                 {
                     case 0:
-                        Global.prescaler = 1;
+                        prescaler = 1;
                         break;
                     case 1:
-                        Global.prescaler = 2;
+                        prescaler = 2;
                         break;
                     case 2:
-                        Global.prescaler = 4;
+                        prescaler = 4;
                         break;
                     case 3:
-                        Global.prescaler = 8;
+                        prescaler = 8;
                         break;
                     case 4:
-                        Global.prescaler = 16;
+                        prescaler = 16;
                         break;
                     case 5:
-                        Global.prescaler = 32;
+                        prescaler = 32;
                         break;
                     case 6:
-                        Global.prescaler = 64;
+                        prescaler = 64;
                         break;
                     case 7:
-                        Global.prescaler = 128;
+                        prescaler = 128;
                         break;
                     default:
                         break;
                 }
 
-                return Global.prescaler;
+                return prescaler;
             }
 
 
@@ -296,46 +341,46 @@ namespace Simulator
 
         public int calcTMR(int programmcounter)
         {
-            if (Global.Bank1[1] == 1 && Global.counter >= getPrescaler())
+            if (Bank1[1] == 1 && counter >= getPrescaler())
             {
                 
-                Global.counter = getPrescaler()-1;
+                counter = getPrescaler()-1;
                 //Console.WriteLine("Counter set");
                 return 0;
             }
 
-            if (Global.counter == 0)
+            if (counter == 0)
             {
                 
-                Global.counter = getPrescaler()-1;
-                Global.Bank1[1]++;
-                if (Global.Bank1[1] >= 255)
+                counter = getPrescaler()-1;
+                Bank1[1]++;
+                if (Bank1[1] >= 255)
                 {
                     //TimerInterrupt
-                    Global.Bank1[11] |= 0b0000_0100;
-                    Global.Bank1[139] |=  0b0000_0100;
+                    Bank1[11] |= 0b0000_0100;
+                    Bank1[139] |=  0b0000_0100;
                     
                     
                     
-                    Global.Bank1[1] = 0;
-                    Global.push(programmcounter);
+                    Bank1[1] = 0;
+                    push(programmcounter);
                     
                     //wenn GIE dann pc-> adresse 4
                     if (getGIE() == 1)
                     {
-                        Global.Bank1[11] &= 0b0111_1111;
-                        Global.Bank1[139] &= 0b0111_1111;
+                        Bank1[11] &= 0b0111_1111;
+                        Bank1[139] &= 0b0111_1111;
                         return 4;
                     }
                     
                 }
-                //Console.WriteLine("Counter: " + Global.counter);
+                //Console.WriteLine("Counter: " + counter);
                 return 0;
             }
             else
             {
-                Global.counter--;
-                //Console.WriteLine("Counter: " + Global.counter);
+                counter--;
+                //Console.WriteLine("Counter: " + counter);
                 return 0;
             }
         }
@@ -348,35 +393,35 @@ namespace Simulator
             {
                 case 1:
                     Thread.Sleep(18);
-                    Global.watchdog++;
+                    watchdog++;
                     break;
                 case 2:
                     Thread.Sleep(36);
-                    Global.watchdog++;
+                    watchdog++;
                     break;
                 case 4:
                     Thread.Sleep(72);
-                    Global.watchdog++;
+                    watchdog++;
                     break;
                 case 8:
                     Thread.Sleep(144);
-                    Global.watchdog++;
+                    watchdog++;
                     break;
                 case 16:
                     Thread.Sleep(288);
-                    Global.watchdog++;
+                    watchdog++;
                     break;
                 case 32:
                     Thread.Sleep(576);
-                    Global.watchdog++;
+                    watchdog++;
                     break;
                 case 64:
                     Thread.Sleep(1100);
-                    Global.watchdog++;
+                    watchdog++;
                     break;
                 case 128:
                     Thread.Sleep(2300);
-                    Global.watchdog++;
+                    watchdog++;
                     break;
                 default:
                     break;
@@ -391,7 +436,7 @@ namespace Simulator
             switch (stelle)
             {
                 case 0:
-                    zwischenwert = Global.Bank1[cutvalue] & 0b0000_0001;
+                    zwischenwert = Bank1[cutvalue] & 0b0000_0001;
                     if (zwischenwert == 1)
                     {
                         return true;
@@ -402,7 +447,7 @@ namespace Simulator
                     }
 
                 case 1:
-                    zwischenwert = Global.Bank1[cutvalue] & 0b0000_0010;
+                    zwischenwert = Bank1[cutvalue] & 0b0000_0010;
                     if (zwischenwert == 2)
                     {
                         return true;
@@ -414,7 +459,7 @@ namespace Simulator
 
 
                 case 2:
-                    zwischenwert = Global.Bank1[cutvalue] & 0b0000_0100;
+                    zwischenwert = Bank1[cutvalue] & 0b0000_0100;
                     if (zwischenwert == 4)
                     {
                         return true;
@@ -425,7 +470,7 @@ namespace Simulator
                     }
 
                 case 3:
-                    zwischenwert = Global.Bank1[cutvalue] & 0b0000_1000;
+                    zwischenwert = Bank1[cutvalue] & 0b0000_1000;
                     if (zwischenwert == 8)
                     {
                         return true;
@@ -436,7 +481,7 @@ namespace Simulator
                     }
 
                 case 4:
-                    zwischenwert = Global.Bank1[cutvalue] & 0b0001_0000;
+                    zwischenwert = Bank1[cutvalue] & 0b0001_0000;
                     if (zwischenwert == 16)
                     {
                         return true;
@@ -447,7 +492,7 @@ namespace Simulator
                     }
 
                 case 5:
-                    zwischenwert = Global.Bank1[cutvalue] & 0b0010_0000;
+                    zwischenwert = Bank1[cutvalue] & 0b0010_0000;
                     if (zwischenwert == 32)
                     {
                         return true;
@@ -457,7 +502,7 @@ namespace Simulator
                         return false;
                     }
                 case 6:
-                    zwischenwert = Global.Bank1[cutvalue] & 0b0100_0000;
+                    zwischenwert = Bank1[cutvalue] & 0b0100_0000;
                     if (zwischenwert == 64)
                     {
                         return true;
@@ -467,7 +512,7 @@ namespace Simulator
                         return false;
                     }
                 case 7:
-                    zwischenwert = Global.Bank1[cutvalue] & 0b1000_0000;
+                    zwischenwert = Bank1[cutvalue] & 0b1000_0000;
                     if (zwischenwert == 128)
                     {
                         return true;
@@ -595,50 +640,50 @@ namespace Simulator
 
             if (destination)
             {
-                erg = Global.Bank1[cutvalue] + Global.w;
+                erg = Bank1[cutvalue] + w;
                 ChangeC(erg);
-                ChangeDCADD(Global.w, Global.Bank1[cutvalue]);
+                ChangeDCADD(w, Bank1[cutvalue]);
 
                 if(erg >= 255)
                 {
-                    Global.Bank1[cutvalue] = (byte) (erg - 256);
-                    ChangeZ(Global.Bank1[cutvalue]);
+                    Bank1[cutvalue] = (byte) (erg - 256);
+                    ChangeZ(Bank1[cutvalue]);
                 }
                 else
                 {
-                    Global.Bank1[cutvalue] = (byte) erg;
-                    ChangeZ(Global.Bank1[cutvalue]);
+                    Bank1[cutvalue] = (byte) erg;
+                    ChangeZ(Bank1[cutvalue]);
                 }
                 
                 if (calcTMR(programmcounter) == 4)
                 {
                     return 3;
                 }
-                Console.WriteLine("Speicherstelle: " + (cutvalue) + "Speicherinhalt: " + Global.Bank1[cutvalue]);
+                Console.WriteLine("Speicherstelle: " + (cutvalue) + "Speicherinhalt: " + Bank1[cutvalue]);
                 return programmcounter;
             }
             else
             {
 
-                erg = Global.Bank1[cutvalue] + Global.w;
+                erg = Bank1[cutvalue] + w;
                 ChangeC(erg);
-                ChangeDCADD(Global.w, Global.Bank1[cutvalue]);
+                ChangeDCADD(w, Bank1[cutvalue]);
 
                 if (erg >= 256)
                 {
-                    Global.w = (byte)(erg - 256);
-                    ChangeZ(Global.w);
+                    w = (byte)(erg - 256);
+                    ChangeZ(w);
                 }
                 else
                 {
-                    Global.w = (byte)erg;
-                    ChangeZ(Global.w);
+                    w = (byte)erg;
+                    ChangeZ(w);
                 }
                 if (calcTMR(programmcounter) == 4)
                 {
                     return 3;
                 }
-                Console.WriteLine("Speicherstelle: W" + "Speicherinhalt: " + Global.w);
+                Console.WriteLine("Speicherstelle: W" + "Speicherinhalt: " + w);
                 return programmcounter;
             }
         }
@@ -652,27 +697,27 @@ namespace Simulator
 
             if (destination)
             {
-                Global.Bank1[cutvalue] = (byte) (Global.Bank1[cutvalue] & Global.w);
-                ChangeZ(Global.Bank1[cutvalue]);
+                Bank1[cutvalue] = (byte) (Bank1[cutvalue] & w);
+                ChangeZ(Bank1[cutvalue]);
                 
                 if (calcTMR(programmcounter) == 4)
                 {
                     return 3;
                 }
-                Console.WriteLine("Speicherstelle: " + (cutvalue) + "Speicherinhalt: " + Global.Bank1[cutvalue]);
+                Console.WriteLine("Speicherstelle: " + (cutvalue) + "Speicherinhalt: " + Bank1[cutvalue]);
                 return programmcounter;
             }
             else
             {
 
-                Global.w = (byte)(Global.Bank1[cutvalue] & Global.w);
-                ChangeZ(Global.w);
+                w = (byte)(Bank1[cutvalue] & w);
+                ChangeZ(w);
                 
                 if (calcTMR(programmcounter) == 4)
                 {
                     return 3;
                 }
-                Console.WriteLine("Speicherstelle: W" + "Speicherinhalt: " + Global.w);
+                Console.WriteLine("Speicherstelle: W" + "Speicherinhalt: " + w);
                 return programmcounter;
             }
         }
@@ -683,28 +728,28 @@ namespace Simulator
             cutvalue = isIndirect(cutvalue);
             cutvalue = Bank(cutvalue);
 
-            Global.Bank1[cutvalue] = 0b0000_0000;
+            Bank1[cutvalue] = 0b0000_0000;
 
-            ChangeZ(Global.Bank1[cutvalue]);
+            ChangeZ(Bank1[cutvalue]);
 
             if (calcTMR(programmcounter) == 4)
             {
                 return 3;
             }
-            Console.WriteLine("Speicherstelle: " + cutvalue + "Speicherinhalt: " + Global.Bank1[cutvalue]);
+            Console.WriteLine("Speicherstelle: " + cutvalue + "Speicherinhalt: " + Bank1[cutvalue]);
             return programmcounter;
         }
 
         public int clrw(int programminhalt, int programmcounter)
         {
-            Global.w = 0b0000_0000;
+            w = 0b0000_0000;
 
-            ChangeZ(Global.w);
+            ChangeZ(w);
             if (calcTMR(programmcounter) == 4)
             {
                 return 3;
             }
-            Console.WriteLine("W-Register: " + Global.w);
+            Console.WriteLine("W-Register: " + w);
             return programmcounter;
         }
 
@@ -717,30 +762,30 @@ namespace Simulator
 
             if (destination)
             {
-                int Zwischenergebnis = ~Global.Bank1[cutvalue];
+                int Zwischenergebnis = ~Bank1[cutvalue];
                 Zwischenergebnis &= 0b1111_1111;
                 //Console.WriteLine("Zwischenergebnis" + Zwischenergebnis);
-                Global.Bank1[cutvalue - 128] = (byte) Zwischenergebnis;
-                ChangeZ(Global.Bank1[cutvalue]);
+                Bank1[cutvalue - 128] = (byte) Zwischenergebnis;
+                ChangeZ(Bank1[cutvalue]);
                 if (calcTMR(programmcounter) == 4)
                 {
                     return 3;
                 }
-                Console.WriteLine("Speicherstelle: " + (cutvalue) + "Speicherinhalt: " + Global.Bank1[cutvalue]);
+                Console.WriteLine("Speicherstelle: " + (cutvalue) + "Speicherinhalt: " + Bank1[cutvalue]);
                 return programmcounter;
             }
             else 
             {
 
-                int Zwischenergebnis = ~Global.Bank1[cutvalue];
+                int Zwischenergebnis = ~Bank1[cutvalue];
                 Zwischenergebnis &= 0b1111_1111;
-                Global.w = (byte) Zwischenergebnis;
-                ChangeZ(Global.w);
+                w = (byte) Zwischenergebnis;
+                ChangeZ(w);
                 if (calcTMR(programmcounter) == 4)
                 {
                     return 3;
                 }
-                Console.WriteLine("Speicherstelle: W" + "Speicherinhalt: " + Global.w);
+                Console.WriteLine("Speicherstelle: W" + "Speicherinhalt: " + w);
                 return programmcounter;
             }
 
@@ -757,29 +802,29 @@ namespace Simulator
 
             if (destination)
             {
-                int Zwischenergebnis = Global.Bank1[cutvalue] -1;
+                int Zwischenergebnis = Bank1[cutvalue] -1;
                 Zwischenergebnis &= 0b1111_1111;
                 //Console.WriteLine("Zwischenergebnis" + Zwischenergebnis);
-                Global.Bank1[cutvalue] = (byte) Zwischenergebnis;
-                ChangeZ(Global.Bank1[cutvalue]);
+                Bank1[cutvalue] = (byte) Zwischenergebnis;
+                ChangeZ(Bank1[cutvalue]);
                 if (calcTMR(programmcounter) == 4)
                 {
                     return 3;
                 }
-                Console.WriteLine("Speicherstelle: " + (cutvalue) + "Speicherinhalt: " + Global.Bank1[cutvalue]);
+                Console.WriteLine("Speicherstelle: " + (cutvalue) + "Speicherinhalt: " + Bank1[cutvalue]);
                 return programmcounter;
             }
             else {
 
-                int Zwischenergebnis = Global.Bank1[cutvalue] - 1;
+                int Zwischenergebnis = Bank1[cutvalue] - 1;
                 Zwischenergebnis &= 0b1111_1111;
-                Global.w = (byte) Zwischenergebnis;
-                ChangeZ(Global.w);
+                w = (byte) Zwischenergebnis;
+                ChangeZ(w);
                 if (calcTMR(programmcounter) == 4)
                 {
                     return 3;
                 }
-                Console.WriteLine("Speicherstelle: W" + "Speicherinhalt: " + Global.w);
+                Console.WriteLine("Speicherstelle: W" + "Speicherinhalt: " + w);
                 return programmcounter;
             }
 
@@ -795,7 +840,7 @@ namespace Simulator
 
             if (destination)
             {
-                erg = Global.Bank1[cutvalue] - 1;
+                erg = Bank1[cutvalue] - 1;
                 if (erg == 0)
                 {
                     nop(programminhalt, programmcounter);
@@ -807,9 +852,9 @@ namespace Simulator
                 }
                 else
                 {
-                    Global.Bank1[cutvalue] = (byte) erg;
-                    ChangeZ(Global.Bank1[cutvalue]);
-                    Console.WriteLine("Speicherstelle: " + (cutvalue) + "Speicherinhalt: " + Global.Bank1[cutvalue]);
+                    Bank1[cutvalue] = (byte) erg;
+                    ChangeZ(Bank1[cutvalue]);
+                    Console.WriteLine("Speicherstelle: " + (cutvalue) + "Speicherinhalt: " + Bank1[cutvalue]);
                     //Console.WriteLine("Ergebnis: " + erg);
                     if (calcTMR(programmcounter) == 4)
                     {
@@ -822,7 +867,7 @@ namespace Simulator
             else
             {
 
-                erg = Global.Bank1[cutvalue] - 1;
+                erg = Bank1[cutvalue] - 1;
                 if (erg == 0)
                 {
                     nop(programminhalt, programmcounter);
@@ -834,9 +879,9 @@ namespace Simulator
                 }
                 else
                 {
-                    Global.w = (byte) erg;
-                    ChangeZ(Global.w);
-                    Console.WriteLine("Speicherstelle: W" + "Speicherinhalt: " + Global.w);
+                    w = (byte) erg;
+                    ChangeZ(w);
+                    Console.WriteLine("Speicherstelle: W" + "Speicherinhalt: " + w);
                     //Console.WriteLine("Ergebnis: " + erg);
                     if (calcTMR(programmcounter) == 4)
                     {
@@ -860,44 +905,44 @@ namespace Simulator
 
             if (destination)
             {
-                erg = Global.Bank1[cutvalue] + 1;
+                erg = Bank1[cutvalue] + 1;
                 if (erg >= 256)
                 {
-                    Global.Bank1[cutvalue] = (byte) (erg - 255);
-                    ChangeZ(Global.Bank1[cutvalue]);
+                    Bank1[cutvalue] = (byte) (erg - 255);
+                    ChangeZ(Bank1[cutvalue]);
                 }
                 else
                 {
-                    Global.Bank1[cutvalue] = (byte) erg;
-                    ChangeZ(Global.Bank1[cutvalue]);
+                    Bank1[cutvalue] = (byte) erg;
+                    ChangeZ(Bank1[cutvalue]);
                 }
 
                 if (calcTMR(programmcounter) == 4)
                 {
                     return 3;
                 }
-                Console.WriteLine("Speicherstelle: " + (cutvalue) + "Speicherinhalt: " + Global.Bank1[cutvalue]);
+                Console.WriteLine("Speicherstelle: " + (cutvalue) + "Speicherinhalt: " + Bank1[cutvalue]);
                 return programmcounter;
             }
             else
             {
 
-                erg = Global.Bank1[cutvalue] + 1;
+                erg = Bank1[cutvalue] + 1;
                 if (erg > 255)
                 {
-                    Global.w = (byte)(erg - 255);
-                    ChangeZ(Global.w);
+                    w = (byte)(erg - 255);
+                    ChangeZ(w);
                 }
                 else
                 {
-                    Global.w = (byte) erg;
-                    ChangeZ(Global.w);
+                    w = (byte) erg;
+                    ChangeZ(w);
                 }
                 if (calcTMR(programmcounter) == 4)
                 {
                     return 3;
                 }
-                Console.WriteLine("Speicherstelle: W" + "Speicherinhalt: " + Global.w);
+                Console.WriteLine("Speicherstelle: W" + "Speicherinhalt: " + w);
                 return programmcounter;
 
             }
@@ -913,7 +958,7 @@ namespace Simulator
 
             if (destination)
             {
-                erg = Global.Bank1[cutvalue] + 1;
+                erg = Bank1[cutvalue] + 1;
                 if (erg == 256)
                 {
                     erg = 0;
@@ -930,9 +975,9 @@ namespace Simulator
                 }
                 else
                 {
-                    Global.Bank1[cutvalue] = (byte) erg;
-                    ChangeZ(Global.Bank1[cutvalue]);
-                    Console.WriteLine("Speicherstelle: " + (cutvalue) + "Speicherinhalt: " + Global.Bank1[cutvalue]);
+                    Bank1[cutvalue] = (byte) erg;
+                    ChangeZ(Bank1[cutvalue]);
+                    Console.WriteLine("Speicherstelle: " + (cutvalue) + "Speicherinhalt: " + Bank1[cutvalue]);
                     //Console.WriteLine("Ergebnis: " + erg);
                     if (calcTMR(programmcounter) == 4)
                     {
@@ -945,7 +990,7 @@ namespace Simulator
             else
             {
                 
-                erg = Global.Bank1[cutvalue] + 1;
+                erg = Bank1[cutvalue] + 1;
                 if (erg == 256)
                 {
                     erg = 0;
@@ -962,9 +1007,9 @@ namespace Simulator
                 }
                 else
                 {
-                    Global.w = (byte) erg;
-                    ChangeZ(Global.w);
-                    Console.WriteLine("Speicherstelle: W" + "Speicherinhalt: " + Global.w);
+                    w = (byte) erg;
+                    ChangeZ(w);
+                    Console.WriteLine("Speicherstelle: W" + "Speicherinhalt: " + w);
                     //Console.WriteLine("Ergebnis: " + erg);
                     if (calcTMR(programmcounter) == 4)
                     {
@@ -985,25 +1030,25 @@ namespace Simulator
 
             if (destination)
             {
-                Global.Bank1[cutvalue] = (byte) (Global.Bank1[cutvalue] | Global.w);
-                ChangeZ(Global.Bank1[cutvalue]);
+                Bank1[cutvalue] = (byte) (Bank1[cutvalue] | w);
+                ChangeZ(Bank1[cutvalue]);
                 if (calcTMR(programmcounter) == 4)
                 {
                     return 3;
                 }
-                Console.WriteLine("Speicherstelle: " + cutvalue + "Speicherinhalt: " + Global.Bank1[cutvalue]);
+                Console.WriteLine("Speicherstelle: " + cutvalue + "Speicherinhalt: " + Bank1[cutvalue]);
                 return programmcounter;
             }
             else
             {
 
-                Global.w = (byte)(Global.Bank1[cutvalue] | Global.w);
-                ChangeZ(Global.w);
+                w = (byte)(Bank1[cutvalue] | w);
+                ChangeZ(w);
                 if (calcTMR(programmcounter) == 4)
                 {
                     return 3;
                 }
-                Console.WriteLine("Speicherstelle: W" + "Speicherinhalt: " + Global.w);
+                Console.WriteLine("Speicherstelle: W" + "Speicherinhalt: " + w);
                 return programmcounter;
 
             }
@@ -1018,24 +1063,24 @@ namespace Simulator
 
             if (destination)
             {
-                ChangeZ(Global.Bank1[cutvalue]);
+                ChangeZ(Bank1[cutvalue]);
                 if (calcTMR(programmcounter) == 4)
                 {
                     return 3;
                 }
-                Console.WriteLine("Speicherstelle: " + (cutvalue) + "Speicherinhalt: " + Global.Bank1[cutvalue]);
+                Console.WriteLine("Speicherstelle: " + (cutvalue) + "Speicherinhalt: " + Bank1[cutvalue]);
                 return programmcounter;
             }
             else
             {
 
-                Global.w = Global.Bank1[cutvalue];
-                ChangeZ(Global.w);
+                w = Bank1[cutvalue];
+                ChangeZ(w);
                 if (calcTMR(programmcounter) == 4)
                 {
                     return 3;
                 }
-                Console.WriteLine("Speicherstelle: W" + "Speicherinhalt: " + Global.w);
+                Console.WriteLine("Speicherstelle: W" + "Speicherinhalt: " + w);
                 return programmcounter;
 
             }
@@ -1047,12 +1092,12 @@ namespace Simulator
             cutvalue = isIndirect(cutvalue);
             cutvalue = Bank(cutvalue);
 
-            Global.Bank1[cutvalue] = (byte) Global.w;
+            Bank1[cutvalue] = (byte) w;
             if (calcTMR(programmcounter) == 4)
             {
                 return 3;
             }
-            Console.WriteLine("Speicherstelle: " + cutvalue + "Speicherinhalt: " + Global.Bank1[cutvalue]);
+            Console.WriteLine("Speicherstelle: " + cutvalue + "Speicherinhalt: " + Bank1[cutvalue]);
             return programmcounter;
         }
 
@@ -1075,31 +1120,31 @@ namespace Simulator
 
             if (destination)
             {
-                int res = Global.Bank1[cutvalue];
+                int res = Bank1[cutvalue];
                 res = res  << 1;
                 res = res + c;
                 ChangeC(res);
                 cutvalue = isIndirect(cutvalue);
-                Global.Bank1[cutvalue] = (byte) (res & 0b1111_1111);
+                Bank1[cutvalue] = (byte) (res & 0b1111_1111);
                 if (calcTMR(programmcounter) == 4)
                 {
                     return 3;
                 }
-                Console.WriteLine("Speicherstelle: " + (cutvalue) + "Speicherinhalt: " + Global.Bank1[cutvalue]);
+                Console.WriteLine("Speicherstelle: " + (cutvalue) + "Speicherinhalt: " + Bank1[cutvalue]);
                 return programmcounter;
             }
             else
             {
                 int res = 0;
-                res = Global.Bank1[cutvalue]  << 1;
+                res = Bank1[cutvalue]  << 1;
                 res = res + c;
                 ChangeC(res);
-                Global.w = (byte)(res & 0b1111_1111);
+                w = (byte)(res & 0b1111_1111);
                 if (calcTMR(programmcounter) == 4)
                 {
                     return 3;
                 }
-                Console.WriteLine("Speicherstelle: W" + "Speicherinhalt: " + Global.w);
+                Console.WriteLine("Speicherstelle: W" + "Speicherinhalt: " + w);
                 return programmcounter;
             }
         }
@@ -1114,35 +1159,35 @@ namespace Simulator
             if (destination)
             {
                 //Console.WriteLine("Carry-Flag:" + c);
-                int res = Global.Bank1[cutvalue];
+                int res = Bank1[cutvalue];
                 res += c << 8;
                 res += (res & 0b1) << 10;
                 res >>= 1;
                 ChangeC(res);
                 res &= 0b1111_1111;
-                Global.Bank1[cutvalue] = (byte) res;
+                Bank1[cutvalue] = (byte) res;
                 if (calcTMR(programmcounter) == 4)
                 {
                     return 3;
                 }
-                Console.WriteLine("Speicherstelle: " + (cutvalue) + "Speicherinhalt: " + Global.Bank1[cutvalue]);
+                Console.WriteLine("Speicherstelle: " + (cutvalue) + "Speicherinhalt: " + Bank1[cutvalue]);
                 return programmcounter;
             }
             else
             {
                 //Console.WriteLine("Carry-Flag:" + c);
-                int res = Global.Bank1[cutvalue];
+                int res = Bank1[cutvalue];
                 res += c << 8;
                 res += (res & 0b1) << 10;
                 res >>= 1;
                 ChangeC(res);
                 res &= 0b1111_1111;
-                Global.w = (byte) res;
+                w = (byte) res;
                 if (calcTMR(programmcounter) == 4)
                 {
                     return 3;
                 }
-                Console.WriteLine("Speicherstelle: W" + "Speicherinhalt: " + Global.w);
+                Console.WriteLine("Speicherstelle: W" + "Speicherinhalt: " + w);
                 return programmcounter;
 
             }
@@ -1157,32 +1202,32 @@ namespace Simulator
 
             if (destination)
             {
-                int res = (Global.Bank1[cutvalue] - Global.w) & 0b1111_1111;
+                int res = (Bank1[cutvalue] - w) & 0b1111_1111;
                 ChangeZ(res);
-                ChangeCSUB(Global.Bank1[cutvalue]- Global.w);
-                ChangeDCSUB(Global.w, Global.Bank1[cutvalue]);
-                Global.Bank1[cutvalue] = (byte)res;
+                ChangeCSUB(Bank1[cutvalue]- w);
+                ChangeDCSUB(w, Bank1[cutvalue]);
+                Bank1[cutvalue] = (byte)res;
                 if (calcTMR(programmcounter) == 4)
                 {
                     return 3;
                 }
-                Console.WriteLine("Inhalt Bank1" + Global.Bank1[cutvalue]);
+                Console.WriteLine("Inhalt Bank1" + Bank1[cutvalue]);
                 return programmcounter;
 
             }
             else
             {
 
-                int res = (Global.Bank1[cutvalue] - Global.w) & 0b1111_1111;
+                int res = (Bank1[cutvalue] - w) & 0b1111_1111;
                 ChangeZ(res);
-                ChangeCSUB(Global.Bank1[cutvalue]- Global.w);
-                ChangeDCSUB(Global.w, Global.Bank1[cutvalue]);
-                Global.w = (byte) res;
+                ChangeCSUB(Bank1[cutvalue]- w);
+                ChangeDCSUB(w, Bank1[cutvalue]);
+                w = (byte) res;
                 if (calcTMR(programmcounter) == 4)
                 {
                     return 3;
                 }
-                Console.WriteLine("Inhalt w" + Global.w);
+                Console.WriteLine("Inhalt w" + w);
                 return programmcounter;
 
             }
@@ -1197,22 +1242,22 @@ namespace Simulator
 
             if (destination)
             {
-                Global.Bank1[cutvalue] = (byte) ((Global.Bank1[cutvalue] & 0x0F) << 4 |((Global.Bank1[cutvalue] & 0xF0) >> 4));
+                Bank1[cutvalue] = (byte) ((Bank1[cutvalue] & 0x0F) << 4 |((Bank1[cutvalue] & 0xF0) >> 4));
                 if (calcTMR(programmcounter) == 4)
                 {
                     return 3;
                 }
-                Console.WriteLine("Bank1 an der Stelle" + (cutvalue) + "Inahlt" + Global.Bank1[cutvalue]);
+                Console.WriteLine("Bank1 an der Stelle" + (cutvalue) + "Inahlt" + Bank1[cutvalue]);
                 return programmcounter;
             }
             else
             {
-                Global.w = (byte) ((Global.Bank1[cutvalue] & 0x0F) << 4 | (Global.Bank1[cutvalue] & 0xF0) >> 4);
+                w = (byte) ((Bank1[cutvalue] & 0x0F) << 4 | (Bank1[cutvalue] & 0xF0) >> 4);
                 if (calcTMR(programmcounter) == 4)
                 {
                     return 3;
                 }
-                Console.WriteLine("W Register Inhalt" + Global.w);
+                Console.WriteLine("W Register Inhalt" + w);
                 return programmcounter;
             }
         }
@@ -1226,26 +1271,26 @@ namespace Simulator
 
             if (destination)
             {
-                Global.Bank1[cutvalue] = (byte) (Global.Bank1[cutvalue]  ^ Global.w);
-                ChangeZ(Global.Bank1[cutvalue]);
+                Bank1[cutvalue] = (byte) (Bank1[cutvalue]  ^ w);
+                ChangeZ(Bank1[cutvalue]);
                 if (calcTMR(programmcounter) == 4)
                 {
                     return 3;
                 }
-                Console.WriteLine("Inhalt Bank1" + Global.Bank1[cutvalue]);
+                Console.WriteLine("Inhalt Bank1" + Bank1[cutvalue]);
                 return programmcounter;
 
             }
             else
             {
 
-                Global.w = (byte) (Global.Bank1[cutvalue] ^ Global.w);
-                ChangeZ(Global.w);
+                w = (byte) (Bank1[cutvalue] ^ w);
+                ChangeZ(w);
                 if (calcTMR(programmcounter) == 4)
                 {
                     return 3;
                 }
-                Console.WriteLine("Inhalt w" + Global.w);
+                Console.WriteLine("Inhalt w" + w);
                 return programmcounter;
 
             }
@@ -1272,83 +1317,83 @@ namespace Simulator
                     switch (clearvalue)
                     {
                         case 0:
-                            Global.Bank1[cutvalue] = (byte) (Global.Bank1[cutvalue] & 0b1111_1110);
-                        if (cutvalue == 3) { Global.Bank1[131] = (byte) (Global.Bank1[131] & 0b1111_1110); }
-                        if (cutvalue == 131) { Global.Bank1[3] = (byte) (Global.Bank1[3] & 0b1111_1110); }
+                            Bank1[cutvalue] = (byte) (Bank1[cutvalue] & 0b1111_1110);
+                        if (cutvalue == 3) { Bank1[131] = (byte) (Bank1[131] & 0b1111_1110); }
+                        if (cutvalue == 131) { Bank1[3] = (byte) (Bank1[3] & 0b1111_1110); }
 
-                        if (cutvalue == 11) { Global.Bank1[139] = (byte) (Global.Bank1[139] & 0b1111_1110); }
-                        if (cutvalue == 139) { Global.Bank1[11] = (byte) (Global.Bank1[11] & 0b1111_1110); }
+                        if (cutvalue == 11) { Bank1[139] = (byte) (Bank1[139] & 0b1111_1110); }
+                        if (cutvalue == 139) { Bank1[11] = (byte) (Bank1[11] & 0b1111_1110); }
                         Console.WriteLine("Bit 1 cleared");
                             break;
                     
                         case 1:
-                            Global.Bank1[cutvalue] = (byte)(Global.Bank1[cutvalue] & 0b1111_1101);
+                            Bank1[cutvalue] = (byte)(Bank1[cutvalue] & 0b1111_1101);
 
-                        if (cutvalue == 3) { Global.Bank1[131] = (byte)(Global.Bank1[131] & 0b1111_1101); }
-                        if (cutvalue == 131) { Global.Bank1[3] = (byte)(Global.Bank1[3] & 0b1111_1101); }
+                        if (cutvalue == 3) { Bank1[131] = (byte)(Bank1[131] & 0b1111_1101); }
+                        if (cutvalue == 131) { Bank1[3] = (byte)(Bank1[3] & 0b1111_1101); }
 
-                        if (cutvalue == 11) { Global.Bank1[139] = (byte)(Global.Bank1[139] & 0b1111_1101); }
-                        if (cutvalue == 139) { Global.Bank1[11] = (byte)(Global.Bank1[11] & 0b1111_1101); }
+                        if (cutvalue == 11) { Bank1[139] = (byte)(Bank1[139] & 0b1111_1101); }
+                        if (cutvalue == 139) { Bank1[11] = (byte)(Bank1[11] & 0b1111_1101); }
                         Console.WriteLine("Bit 1 cleared");
                             break;
 
                         case 2:
-                            Global.Bank1[cutvalue] = (byte)(Global.Bank1[cutvalue] & 0b1111_1011);
-                        if (cutvalue == 3) { Global.Bank1[131] = (byte)(Global.Bank1[131] & 0b1111_1011); }
-                        if (cutvalue == 131) { Global.Bank1[3] = (byte)(Global.Bank1[3] & 0b1111_1011); }
+                            Bank1[cutvalue] = (byte)(Bank1[cutvalue] & 0b1111_1011);
+                        if (cutvalue == 3) { Bank1[131] = (byte)(Bank1[131] & 0b1111_1011); }
+                        if (cutvalue == 131) { Bank1[3] = (byte)(Bank1[3] & 0b1111_1011); }
 
-                        if (cutvalue == 11) { Global.Bank1[139] = (byte)(Global.Bank1[139] & 0b1111_1011); }
-                        if (cutvalue == 139) { Global.Bank1[11] = (byte)(Global.Bank1[11] & 0b1111_1011); }
+                        if (cutvalue == 11) { Bank1[139] = (byte)(Bank1[139] & 0b1111_1011); }
+                        if (cutvalue == 139) { Bank1[11] = (byte)(Bank1[11] & 0b1111_1011); }
                         Console.WriteLine("Bit 2 cleared");
                             break;
 
                         case 3:
-                            Global.Bank1[cutvalue] = (byte)(Global.Bank1[cutvalue] & 0b1111_0111);
-                        if (cutvalue == 3) { Global.Bank1[131] = (byte)(Global.Bank1[131] & 0b1111_0111); }
-                        if (cutvalue == 131) { Global.Bank1[3] = (byte)(Global.Bank1[3] & 0b1111_0111); }
+                            Bank1[cutvalue] = (byte)(Bank1[cutvalue] & 0b1111_0111);
+                        if (cutvalue == 3) { Bank1[131] = (byte)(Bank1[131] & 0b1111_0111); }
+                        if (cutvalue == 131) { Bank1[3] = (byte)(Bank1[3] & 0b1111_0111); }
 
-                        if (cutvalue == 11) { Global.Bank1[139] = (byte)(Global.Bank1[139] & 0b1111_0111); }
-                        if (cutvalue == 139) { Global.Bank1[11] = (byte)(Global.Bank1[11] & 0b1111_0111); }
+                        if (cutvalue == 11) { Bank1[139] = (byte)(Bank1[139] & 0b1111_0111); }
+                        if (cutvalue == 139) { Bank1[11] = (byte)(Bank1[11] & 0b1111_0111); }
                         Console.WriteLine("Bit 3 cleared");
                             break;
 
                         case 4:
-                            Global.Bank1[cutvalue] = (byte)(Global.Bank1[cutvalue] & 0b1110_1111);
-                        if (cutvalue == 3) { Global.Bank1[131] = (byte)(Global.Bank1[131] & 0b1110_1111); }
-                        if (cutvalue == 131) { Global.Bank1[3] = (byte)(Global.Bank1[3] & 0b1110_1111); }
+                            Bank1[cutvalue] = (byte)(Bank1[cutvalue] & 0b1110_1111);
+                        if (cutvalue == 3) { Bank1[131] = (byte)(Bank1[131] & 0b1110_1111); }
+                        if (cutvalue == 131) { Bank1[3] = (byte)(Bank1[3] & 0b1110_1111); }
 
-                        if (cutvalue == 11) { Global.Bank1[139] = (byte)(Global.Bank1[139] & 0b1110_1111); }
-                        if (cutvalue == 139) { Global.Bank1[11] = (byte)(Global.Bank1[11] & 0b1110_1111); }
+                        if (cutvalue == 11) { Bank1[139] = (byte)(Bank1[139] & 0b1110_1111); }
+                        if (cutvalue == 139) { Bank1[11] = (byte)(Bank1[11] & 0b1110_1111); }
                         Console.WriteLine("Bit 4 cleared");
                             break;
 
                         case 5:
-                            Global.Bank1[cutvalue] = (byte)(Global.Bank1[cutvalue] & 0b1101_1111);
-                        if (cutvalue == 3) { Global.Bank1[131] = (byte)(Global.Bank1[131] & 0b1101_1111); }
-                        if (cutvalue == 131) { Global.Bank1[3] = (byte)(Global.Bank1[3] & 0b1101_1111); }
+                            Bank1[cutvalue] = (byte)(Bank1[cutvalue] & 0b1101_1111);
+                        if (cutvalue == 3) { Bank1[131] = (byte)(Bank1[131] & 0b1101_1111); }
+                        if (cutvalue == 131) { Bank1[3] = (byte)(Bank1[3] & 0b1101_1111); }
 
-                        if (cutvalue == 11) { Global.Bank1[139] = (byte)(Global.Bank1[139] & 0b1101_1111); }
-                        if (cutvalue == 139) { Global.Bank1[11] = (byte)(Global.Bank1[11] & 0b1101_1111); }
+                        if (cutvalue == 11) { Bank1[139] = (byte)(Bank1[139] & 0b1101_1111); }
+                        if (cutvalue == 139) { Bank1[11] = (byte)(Bank1[11] & 0b1101_1111); }
                         Console.WriteLine("Bit 5 cleared");
                             break;
 
                         case 6:
-                            Global.Bank1[cutvalue] = (byte)(Global.Bank1[cutvalue] & 0b1011_1111);
-                        if (cutvalue == 3) { Global.Bank1[131] = (byte)(Global.Bank1[131] & 0b1011_1111); }
-                        if (cutvalue == 131) { Global.Bank1[3] = (byte)(Global.Bank1[3] & 0b1011_1111); }
+                            Bank1[cutvalue] = (byte)(Bank1[cutvalue] & 0b1011_1111);
+                        if (cutvalue == 3) { Bank1[131] = (byte)(Bank1[131] & 0b1011_1111); }
+                        if (cutvalue == 131) { Bank1[3] = (byte)(Bank1[3] & 0b1011_1111); }
 
-                        if (cutvalue == 11) { Global.Bank1[139] = (byte)(Global.Bank1[139] & 0b1011_1111); }
-                        if (cutvalue == 139) { Global.Bank1[11] = (byte)(Global.Bank1[111] & 0b1011_1111); }
+                        if (cutvalue == 11) { Bank1[139] = (byte)(Bank1[139] & 0b1011_1111); }
+                        if (cutvalue == 139) { Bank1[11] = (byte)(Bank1[111] & 0b1011_1111); }
                         Console.WriteLine("Bit 6 cleared");
                             break;
 
                         case 7:
-                            Global.Bank1[cutvalue] = (byte)(Global.Bank1[cutvalue] & 0b0111_1111);
-                        if (cutvalue == 3) { Global.Bank1[131] = (byte)(Global.Bank1[131] & 0b0111_1111); }
-                        if (cutvalue == 131) { Global.Bank1[3] = (byte)(Global.Bank1[3] & 0b0111_1111); }
+                            Bank1[cutvalue] = (byte)(Bank1[cutvalue] & 0b0111_1111);
+                        if (cutvalue == 3) { Bank1[131] = (byte)(Bank1[131] & 0b0111_1111); }
+                        if (cutvalue == 131) { Bank1[3] = (byte)(Bank1[3] & 0b0111_1111); }
 
-                        if (cutvalue == 11) { Global.Bank1[139] = (byte)(Global.Bank1[139] & 0b0111_1111); }
-                        if (cutvalue == 139) { Global.Bank1[11] = (byte)(Global.Bank1[11] & 0b0111_1111); }
+                        if (cutvalue == 11) { Bank1[139] = (byte)(Bank1[139] & 0b0111_1111); }
+                        if (cutvalue == 139) { Bank1[11] = (byte)(Bank1[11] & 0b0111_1111); }
                         Console.WriteLine("Bit 7 cleared");
                             break;
 
@@ -1392,83 +1437,83 @@ namespace Simulator
                 switch (clearvalue)
                 {
                     case 0:
-                        Global.Bank1[cutvalue] = (byte)(Global.Bank1[cutvalue] | 0b0000_0001);
-                        if(cutvalue == 3) {Global.Bank1[131] = (byte)(Global.Bank1[131] | 0b0000_0001); }
-                        if (cutvalue == 131) { Global.Bank1[3] = (byte)(Global.Bank1[3] | 0b0000_0001); }
+                        Bank1[cutvalue] = (byte)(Bank1[cutvalue] | 0b0000_0001);
+                        if(cutvalue == 3) {Bank1[131] = (byte)(Bank1[131] | 0b0000_0001); }
+                        if (cutvalue == 131) { Bank1[3] = (byte)(Bank1[3] | 0b0000_0001); }
 
-                        if (cutvalue == 11) { Global.Bank1[139] = (byte)(Global.Bank1[139] | 0b0000_0001); }
-                        if (cutvalue == 139) { Global.Bank1[11] = (byte)(Global.Bank1[11] | 0b0000_0001); }
+                        if (cutvalue == 11) { Bank1[139] = (byte)(Bank1[139] | 0b0000_0001); }
+                        if (cutvalue == 139) { Bank1[11] = (byte)(Bank1[11] | 0b0000_0001); }
                         Console.WriteLine("Bit 0 set");
                         break;
 
                     case 1:
-                        Global.Bank1[cutvalue] = (byte)(Global.Bank1[cutvalue] | 0b0000_0010);
-                        if (cutvalue == 3) { Global.Bank1[131] = (byte)(Global.Bank1[131] | 0b0000_0010); }
-                        if (cutvalue == 131) { Global.Bank1[3] = (byte)(Global.Bank1[3] | 0b0000_0010); }
+                        Bank1[cutvalue] = (byte)(Bank1[cutvalue] | 0b0000_0010);
+                        if (cutvalue == 3) { Bank1[131] = (byte)(Bank1[131] | 0b0000_0010); }
+                        if (cutvalue == 131) { Bank1[3] = (byte)(Bank1[3] | 0b0000_0010); }
 
-                        if (cutvalue == 11) { Global.Bank1[139] = (byte)(Global.Bank1[139] | 0b0000_0010); }
-                        if (cutvalue == 139) { Global.Bank1[11] = (byte)(Global.Bank1[11] | 0b0000_0010); }
+                        if (cutvalue == 11) { Bank1[139] = (byte)(Bank1[139] | 0b0000_0010); }
+                        if (cutvalue == 139) { Bank1[11] = (byte)(Bank1[11] | 0b0000_0010); }
                         Console.WriteLine("Bit 1 set");
                         break;
                         
 
                     case 2:
-                        Global.Bank1[cutvalue] = (byte)(Global.Bank1[cutvalue] | 0b0000_0100);
-                        if (cutvalue == 3) { Global.Bank1[131] = (byte)(Global.Bank1[131] | 0b0000_0100); }
-                        if (cutvalue == 131) { Global.Bank1[3] = (byte)(Global.Bank1[3] | 0b0000_0100); }
+                        Bank1[cutvalue] = (byte)(Bank1[cutvalue] | 0b0000_0100);
+                        if (cutvalue == 3) { Bank1[131] = (byte)(Bank1[131] | 0b0000_0100); }
+                        if (cutvalue == 131) { Bank1[3] = (byte)(Bank1[3] | 0b0000_0100); }
 
-                        if (cutvalue == 11) { Global.Bank1[139] = (byte)(Global.Bank1[139] | 0b0000_0100); }
-                        if (cutvalue == 139) { Global.Bank1[11] = (byte)(Global.Bank1[11] | 0b0000_0100); }
+                        if (cutvalue == 11) { Bank1[139] = (byte)(Bank1[139] | 0b0000_0100); }
+                        if (cutvalue == 139) { Bank1[11] = (byte)(Bank1[11] | 0b0000_0100); }
                         Console.WriteLine("Bit 2 set");
                         break;
 
                     case 3:
-                        Global.Bank1[cutvalue] = (byte)(Global.Bank1[cutvalue] | 0b0000_1000);
-                        if (cutvalue == 3) { Global.Bank1[131] = (byte)(Global.Bank1[131] | 0b0000_1000); }
-                        if (cutvalue == 131) { Global.Bank1[3] = (byte)(Global.Bank1[3] | 0b0000_1000); }
+                        Bank1[cutvalue] = (byte)(Bank1[cutvalue] | 0b0000_1000);
+                        if (cutvalue == 3) { Bank1[131] = (byte)(Bank1[131] | 0b0000_1000); }
+                        if (cutvalue == 131) { Bank1[3] = (byte)(Bank1[3] | 0b0000_1000); }
 
-                        if (cutvalue == 11) { Global.Bank1[139] = (byte)(Global.Bank1[139] | 0b0000_1000); }
-                        if (cutvalue == 139) { Global.Bank1[11] = (byte)(Global.Bank1[11] | 0b0000_1000); }
+                        if (cutvalue == 11) { Bank1[139] = (byte)(Bank1[139] | 0b0000_1000); }
+                        if (cutvalue == 139) { Bank1[11] = (byte)(Bank1[11] | 0b0000_1000); }
                         Console.WriteLine("Bit 3 set");
                         break;
 
                     case 4:
-                        Global.Bank1[cutvalue] = (byte)(Global.Bank1[cutvalue] | 0b0001_0000);
-                        if (cutvalue == 3) { Global.Bank1[131] = (byte)(Global.Bank1[131] | 0b0001_0000); }
-                        if (cutvalue == 131) { Global.Bank1[3] = (byte)(Global.Bank1[3] | 0b0001_0000); }
+                        Bank1[cutvalue] = (byte)(Bank1[cutvalue] | 0b0001_0000);
+                        if (cutvalue == 3) { Bank1[131] = (byte)(Bank1[131] | 0b0001_0000); }
+                        if (cutvalue == 131) { Bank1[3] = (byte)(Bank1[3] | 0b0001_0000); }
 
-                        if (cutvalue == 11) { Global.Bank1[139] = (byte)(Global.Bank1[139] | 0b0001_0000); }
-                        if (cutvalue == 139) { Global.Bank1[11] = (byte)(Global.Bank1[11] | 0b0001_0000); }
+                        if (cutvalue == 11) { Bank1[139] = (byte)(Bank1[139] | 0b0001_0000); }
+                        if (cutvalue == 139) { Bank1[11] = (byte)(Bank1[11] | 0b0001_0000); }
                         Console.WriteLine("Bit 4 set");
                         break;
 
                     case 5:
-                        Global.Bank1[cutvalue] = (byte)(Global.Bank1[cutvalue] ^ 0b0010_0000);
-                        if (cutvalue == 3) { Global.Bank1[131] = (byte)(Global.Bank1[131] | 0b0010_0000); }
-                        if (cutvalue == 131) { Global.Bank1[3] = (byte)(Global.Bank1[3] | 0b0010_0000); }
+                        Bank1[cutvalue] = (byte)(Bank1[cutvalue] ^ 0b0010_0000);
+                        if (cutvalue == 3) { Bank1[131] = (byte)(Bank1[131] | 0b0010_0000); }
+                        if (cutvalue == 131) { Bank1[3] = (byte)(Bank1[3] | 0b0010_0000); }
 
-                        if (cutvalue == 11) { Global.Bank1[139] = (byte)(Global.Bank1[139] | 0b0010_0000); }
-                        if (cutvalue == 139) { Global.Bank1[11] = (byte)(Global.Bank1[11] | 0b0010_0000); }
+                        if (cutvalue == 11) { Bank1[139] = (byte)(Bank1[139] | 0b0010_0000); }
+                        if (cutvalue == 139) { Bank1[11] = (byte)(Bank1[11] | 0b0010_0000); }
                         Console.WriteLine("Bit 5 set");
                         break;
 
                     case 6:
-                        Global.Bank1[cutvalue] = (byte) (Global.Bank1[cutvalue]  | 0b0100_0000);
-                        if (cutvalue == 3) { Global.Bank1[131] = (byte)(Global.Bank1[131] | 0b0100_0000); }
-                        if (cutvalue == 131) { Global.Bank1[3] = (byte)(Global.Bank1[3] | 0b0100_0000); }
+                        Bank1[cutvalue] = (byte) (Bank1[cutvalue]  | 0b0100_0000);
+                        if (cutvalue == 3) { Bank1[131] = (byte)(Bank1[131] | 0b0100_0000); }
+                        if (cutvalue == 131) { Bank1[3] = (byte)(Bank1[3] | 0b0100_0000); }
 
-                        if (cutvalue == 11) { Global.Bank1[139] = (byte)(Global.Bank1[139] | 0b0100_0000); }
-                        if (cutvalue == 139) { Global.Bank1[11] = (byte)(Global.Bank1[11] | 0b0100_0000); }
+                        if (cutvalue == 11) { Bank1[139] = (byte)(Bank1[139] | 0b0100_0000); }
+                        if (cutvalue == 139) { Bank1[11] = (byte)(Bank1[11] | 0b0100_0000); }
                         Console.WriteLine("Bit 6 set");
                         break;
 
                     case 7:
-                        Global.Bank1[cutvalue] = (byte)(Global.Bank1[cutvalue] | 0b1000_0000);
-                        if (cutvalue == 3) { Global.Bank1[131] = (byte)(Global.Bank1[131] | 0b1000_0000); }
-                        if (cutvalue == 131) { Global.Bank1[3] = (byte)(Global.Bank1[3] | 0b1000_0000); }
+                        Bank1[cutvalue] = (byte)(Bank1[cutvalue] | 0b1000_0000);
+                        if (cutvalue == 3) { Bank1[131] = (byte)(Bank1[131] | 0b1000_0000); }
+                        if (cutvalue == 131) { Bank1[3] = (byte)(Bank1[3] | 0b1000_0000); }
 
-                        if (cutvalue == 11) { Global.Bank1[139] = (byte)(Global.Bank1[139] | 0b1000_0000); }
-                        if (cutvalue == 139) { Global.Bank1[11] = (byte)(Global.Bank1[11] | 0b1000_0000); }
+                        if (cutvalue == 11) { Bank1[139] = (byte)(Bank1[139] | 0b1000_0000); }
+                        if (cutvalue == 139) { Bank1[11] = (byte)(Bank1[11] | 0b1000_0000); }
                         Console.WriteLine("Bit 7 set");
                         break;
 
@@ -1565,18 +1610,18 @@ namespace Simulator
         {
             int cutvalue = ReadProgrammspeicherInhalt(programminhalt);
 
-            int res = (Global.w + cutvalue) & 0b1111_1111;
+            int res = (w + cutvalue) & 0b1111_1111;
 
             ChangeZ(res);
-            ChangeC(Global.w+ cutvalue);
-            ChangeDCADD(Global.w, cutvalue);
-            Global.w = (byte) res;
+            ChangeC(w+ cutvalue);
+            ChangeDCADD(w, cutvalue);
+            w = (byte) res;
 
             if (calcTMR(programmcounter) == 4)
             {
                 return 3;
             }
-            Console.WriteLine("Inhalt W-Register: {0}", Global.w);
+            Console.WriteLine("Inhalt W-Register: {0}", w);
             return programmcounter;
         }
 
@@ -1584,18 +1629,18 @@ namespace Simulator
         {
             int cutvalue = ReadProgrammspeicherInhalt(programminhalt);
 
-            int inhaltw = Global.w;
+            int inhaltw = w;
 
             int erg = cutvalue & inhaltw;
 
             ChangeZ(erg);
 
-            Global.w = (byte) erg;
+            w = (byte) erg;
             if (calcTMR(programmcounter) == 4)
             {
                 return 3;
             }
-            Console.WriteLine("Inhalt W-Register: {0}", Global.w);
+            Console.WriteLine("Inhalt W-Register: {0}", w);
             return programmcounter;
         }
         public int call(int programminhalt, int programmcounter) 
@@ -1603,9 +1648,9 @@ namespace Simulator
             int cutvalue = ReadProgrammspeicherInhalt11(programminhalt);
 
             //Console.WriteLine("Programmcounter: " + programmcounter);
-            Global.push(programmcounter);
+            push(programmcounter);
             Console.WriteLine("Sprungziel: " + cutvalue);
-            //Console.WriteLine("Top of Stack: " + Global.stack[Global.stackindex]);
+            //Console.WriteLine("Top of Stack: " + stack[stackindex]);
             if (calcTMR(programmcounter) == 4)
             {
                 return 3;
@@ -1617,16 +1662,16 @@ namespace Simulator
             return cutvalue - 1;
         }
 
-        public int clrwdt(int programminhalt, int programmcounter)
+        public int clrwdt(int programmcounter)
         {
-            Global.watchdog = 0;
-            Global.Bank1[3] = 0b0001_1000;
-            Global.Bank1[131] = 0b0001_1000;
+            watchdog = 0;
+            Bank1[3] = 0b0001_1000;
+            Bank1[131] = 0b0001_1000;
             if (calcTMR(programmcounter) == 4)
             {
                 return 3;
             }
-            Console.WriteLine("Watchdog cleared" + Global.Bank1[3]);
+            Console.WriteLine("Watchdog cleared" + Bank1[3]);
             return programmcounter;
 
         }
@@ -1666,18 +1711,18 @@ namespace Simulator
             int cutvalue = ReadProgrammspeicherInhalt(programminhalt);
             //Console.WriteLine(cutvalue);
 
-            string inhw = Convert.ToString(Global.w, 2);
+            string inhw = Convert.ToString(w, 2);
             int inhaltw = Convert.ToInt32(inhw, 2);
             //Console.WriteLine(inhaltw);
 
-            Global.w = (byte) (cutvalue | inhaltw);
+            w = (byte) (cutvalue | inhaltw);
 
-            ChangeZ(Global.w);
+            ChangeZ(w);
             if (calcTMR(programmcounter) == 4)
             {
                 return 3;
             }
-            Console.WriteLine("Inhalt W-Register: {0}", Global.w);
+            Console.WriteLine("Inhalt W-Register: {0}", w);
             return programmcounter;
         }
 
@@ -1685,29 +1730,29 @@ namespace Simulator
         {
             int cutvalue = ReadProgrammspeicherInhalt(programminhalt);
 
-            Global.w = (byte) cutvalue;
+            w = (byte) cutvalue;
             if (calcTMR(programmcounter) == 4)
             {
                 return 3;
             }
-            Console.WriteLine("Inhalt W-Register: {0}", Global.w);
+            Console.WriteLine("Inhalt W-Register: {0}", w);
             return programmcounter;
         }
 
         public int retfie(int programminhalt, int programmcounter)
         {
-            int GIEset = Global.Bank1[11] & 0b1000_0000;
-            Global.Bank1[11] = (byte) (Global.Bank1[11] | 0b1000_0000);
-            Global.Bank1[139] = (byte)(Global.Bank1[139] | 0b1000_0000);
+            int GIEset = Bank1[11] & 0b1000_0000;
+            Bank1[11] = (byte) (Bank1[11] | 0b1000_0000);
+            Bank1[139] = (byte)(Bank1[139] | 0b1000_0000);
             if (GIEset == 128)
             {
                 Console.WriteLine("Nothing to do");
                 
-                return Global.pop();
+                return pop();
             }
             else
             {
-                Global.Bank1[11] = (byte)(Global.Bank1[11] + 128);
+                Bank1[11] = (byte)(Bank1[11] + 128);
                 if (calcTMR(programmcounter) == 4)
                 {
                     return 3;
@@ -1717,7 +1762,7 @@ namespace Simulator
                     return 3;
                 }
                 Console.WriteLine("GIE Set");
-                return Global.pop();
+                return pop();
             }
         }
 
@@ -1725,8 +1770,8 @@ namespace Simulator
         {
             int cutvalue = ReadProgrammspeicherInhalt(programminhalt);
 
-            Global.w = (byte) cutvalue;
-            Console.WriteLine(Global.w);
+            w = (byte) cutvalue;
+            Console.WriteLine(w);
             if (calcTMR(programmcounter) == 4)
             {
                 return 3;
@@ -1735,12 +1780,12 @@ namespace Simulator
             {
                 return 3;
             }
-            return Global.pop();
+            return pop();
         }
 
         public int RETURN(int programminhalt, int programmcounter)
         {
-            Console.WriteLine("RETURN:" + Global.programmcounter);
+            Console.WriteLine("RETURN:" + programmcounter);
             if (calcTMR(programmcounter) == 4)
             {
                 return 3;
@@ -1749,7 +1794,7 @@ namespace Simulator
             {
                 return 3;
             }
-            return Global.pop();
+            return pop();
         }
 
         public int sleep(int programminhalt, int programmcounter)
@@ -1757,19 +1802,19 @@ namespace Simulator
 
             if (getPD() == 1)
             {
-                Global.Bank1[3] = (byte)(Global.Bank1[3] & 0b1111_0111);
-                Global.Bank1[131] = (byte)(Global.Bank1[131] & 0b1111_0111);
+                Bank1[3] = (byte)(Bank1[3] & 0b1111_0111);
+                Bank1[131] = (byte)(Bank1[131] & 0b1111_0111);
             }
             
 
             if (getTO() == 0)
             {
-                Global.Bank1[3] = (byte)(Global.Bank1[3] | 0b0001_0000);
-                Global.Bank1[131] = (byte)(Global.Bank1[131] | 0b0001_0000);
+                Bank1[3] = (byte)(Bank1[3] | 0b0001_0000);
+                Bank1[131] = (byte)(Bank1[131] | 0b0001_0000);
             }
             
 
-            Global.watchdog = 0;
+            watchdog = 0;
             calcWTD();
 
             if (calcTMR(programmcounter) == 4)
@@ -1783,18 +1828,18 @@ namespace Simulator
         {
             int cutvalue = ReadProgrammspeicherInhalt(programminhalt);
 
-            int res = (cutvalue - Global.w) & 0b1111_1111;
+            int res = (cutvalue - w) & 0b1111_1111;
 
             ChangeZ(res);
-            ChangeCSUB(cutvalue-Global.w);
-            ChangeDCSUB(Global.w, cutvalue);
+            ChangeCSUB(cutvalue-w);
+            ChangeDCSUB(w, cutvalue);
 
-            Global.w = (byte) res;
+            w = (byte) res;
             if (calcTMR(programmcounter) == 4)
             {
                 return 3;
             }
-            Console.WriteLine("Inhalt W-Register Test: {0}" , Global.w);
+            Console.WriteLine("Inhalt W-Register Test: {0}" , w);
             return programmcounter;
         }
 
@@ -1802,13 +1847,13 @@ namespace Simulator
         {
             int cutvalue = ReadProgrammspeicherInhalt(programminhalt);
 
-            Global.w ^= (byte) cutvalue;
-            ChangeZ(Global.w);
+            w ^= (byte) cutvalue;
+            ChangeZ(w);
             if (calcTMR(programmcounter) == 4)
             {
                 return 3;
             }
-            Console.WriteLine("Inhalt W-Register = {0}", Global.w);
+            Console.WriteLine("Inhalt W-Register = {0}", w);
             return programmcounter;
         }
 
@@ -1818,7 +1863,7 @@ namespace Simulator
 
         public int getIRP()
         {
-            int erg = Global.Bank1[3] & 0b1000_0000;
+            int erg = Bank1[3] & 0b1000_0000;
             if(erg == 128)
             {
                 return 1;
@@ -1830,7 +1875,7 @@ namespace Simulator
         }
         public int getRP1()
         {
-            int erg = Global.Bank1[3] & 0b0100_0000;
+            int erg = Bank1[3] & 0b0100_0000;
             if (erg == 64)
             {
                 return 1;
@@ -1843,7 +1888,7 @@ namespace Simulator
 
         public int getRP0()
         {
-            int erg = Global.Bank1[3] & 0b0010_0000;
+            int erg = Bank1[3] & 0b0010_0000;
             if (erg == 32)
             {
                 return 1;
@@ -1856,7 +1901,7 @@ namespace Simulator
 
         public int getTO()
         {
-            int erg = Global.Bank1[3] & 0b0001_0000;
+            int erg = Bank1[3] & 0b0001_0000;
             if (erg == 16)
             {
                 return 1;
@@ -1869,7 +1914,7 @@ namespace Simulator
 
         public int getPD()
         {
-            int erg = Global.Bank1[3] & 0b0000_1000;
+            int erg = Bank1[3] & 0b0000_1000;
             if (erg == 8)
             {
                 return 1;
@@ -1882,7 +1927,7 @@ namespace Simulator
 
         public int getZ()
         {
-            int erg = Global.Bank1[3] & 0b0000_0100;
+            int erg = Bank1[3] & 0b0000_0100;
             if (erg == 4)
             {
                 return 1;
@@ -1895,7 +1940,7 @@ namespace Simulator
 
         public int getDC()
         {
-            int erg = Global.Bank1[3] & 0b0000_0010;
+            int erg = Bank1[3] & 0b0000_0010;
             if (erg == 2)
             {
                 return 1;
@@ -1908,7 +1953,7 @@ namespace Simulator
 
         public int getC()
         {
-            int erg = Global.Bank1[3] & 0b0000_0001;
+            int erg = Bank1[3] & 0b0000_0001;
             if (erg == 1)
             {
                 return 1;
@@ -1922,7 +1967,7 @@ namespace Simulator
         //Get Option Bits
         public int getRPu()
         {
-            int erg = Global.Bank1[129] & 0b1000_0000;
+            int erg = Bank1[129] & 0b1000_0000;
             if (erg == 128)
             {
                 return 1;
@@ -1934,7 +1979,7 @@ namespace Simulator
         }
         public int getIEg()
         {
-            int erg = Global.Bank1[129] & 0b0100_0000;
+            int erg = Bank1[129] & 0b0100_0000;
             if (erg == 64)
             {
                 return 1;
@@ -1947,7 +1992,7 @@ namespace Simulator
 
         public int getTCs()
         {
-            int erg = Global.Bank1[129] & 0b0010_0000;
+            int erg = Bank1[129] & 0b0010_0000;
             if (erg == 32)
             {
                 return 1;
@@ -1960,7 +2005,7 @@ namespace Simulator
 
         public int getTSe()
         {
-            int erg = Global.Bank1[129] & 0b0001_0000;
+            int erg = Bank1[129] & 0b0001_0000;
             if (erg == 16)
             {
                 return 1;
@@ -1973,7 +2018,7 @@ namespace Simulator
 
         public int getPSA()
         {
-            int erg = Global.Bank1[129] & 0b0000_1000;
+            int erg = Bank1[129] & 0b0000_1000;
             if (erg == 8)
             {
                 return 1;
@@ -1986,7 +2031,7 @@ namespace Simulator
 
         public int getPS2()
         {
-            int erg = Global.Bank1[129] & 0b0000_0100;
+            int erg = Bank1[129] & 0b0000_0100;
             if (erg == 4)
             {
                 return 1;
@@ -1999,7 +2044,7 @@ namespace Simulator
 
         public int getPS1()
         {
-            int erg = Global.Bank1[129] & 0b0000_0010;
+            int erg = Bank1[129] & 0b0000_0010;
             if (erg == 2)
             {
                 return 1;
@@ -2012,7 +2057,7 @@ namespace Simulator
 
         public int getPS0()
         {
-            int erg = Global.Bank1[129] & 0b0000_0001;
+            int erg = Bank1[129] & 0b0000_0001;
             if (erg == 1)
             {
                 return 1;
@@ -2026,7 +2071,7 @@ namespace Simulator
         //Get INTCON Bits
         public int getGIE()
         {
-            int erg = Global.Bank1[11] & 0b1000_0000;
+            int erg = Bank1[11] & 0b1000_0000;
             if (erg > 0)
             {
                 return 1;
@@ -2038,7 +2083,7 @@ namespace Simulator
         }
         public int getEIE()
         {
-            int erg = Global.Bank1[11] & 0b0100_0000;
+            int erg = Bank1[11] & 0b0100_0000;
             if (erg == 64)
             {
                 return 1;
@@ -2051,7 +2096,7 @@ namespace Simulator
 
         public int getTIE()
         {
-            int erg = Global.Bank1[11] & 0b0010_0000;
+            int erg = Bank1[11] & 0b0010_0000;
             if (erg == 32)
             {
                 return 1;
@@ -2064,7 +2109,7 @@ namespace Simulator
 
         public int getIE()
         {
-            int erg = Global.Bank1[11] & 0b0001_0000;
+            int erg = Bank1[11] & 0b0001_0000;
             if (erg == 16)
             {
                 return 1;
@@ -2077,7 +2122,7 @@ namespace Simulator
 
         public int getRIE()
         {
-            int erg = Global.Bank1[11] & 0b0000_1000;
+            int erg = Bank1[11] & 0b0000_1000;
             if (erg == 8)
             {
                 return 1;
@@ -2090,7 +2135,7 @@ namespace Simulator
 
         public int getTIF()
         {
-            int erg = Global.Bank1[11] & 0b0000_0100;
+            int erg = Bank1[11] & 0b0000_0100;
             if (erg == 4)
             {
                 return 1;
@@ -2103,7 +2148,7 @@ namespace Simulator
 
         public int getIF()
         {
-            int erg = Global.Bank1[11] & 0b0000_0010;
+            int erg = Bank1[11] & 0b0000_0010;
             if (erg == 2)
             {
                 return 1;
@@ -2116,7 +2161,7 @@ namespace Simulator
 
         public int getRIF()
         {
-            int erg = Global.Bank1[11] & 0b0000_0001;
+            int erg = Bank1[11] & 0b0000_0001;
             if (erg == 1)
             {
                 return 1;
@@ -2129,84 +2174,84 @@ namespace Simulator
 
         public int getW()
         {
-            return Global.w;
+            return w;
         }
 
         public int getFSR()
         {
-            return Global.Bank1[4];
+            return Bank1[4];
         }
 
         public int getStatus()
         {
-            return Global.Bank1[3];
+            return Bank1[3];
         }
 
         public int getOption()
         {
-            return Global.Bank1[129];
+            return Bank1[129];
         }
 
         public int getStack1()
         {
-            return Global.stack[0];
+            return stack[0];
         }
         public int getStack2()
         {
-            return Global.stack[1];
+            return stack[1];
         }
         public int getStack3()
         {
-            return Global.stack[2];
+            return stack[2];
         }
         public int getStack4()
         {
-            return Global.stack[3];
+            return stack[3];
         }
         public int getStack5()
         {
-            return Global.stack[4];
+            return stack[4];
         }
         public int getStack6()
         {
-            return Global.stack[5];
+            return stack[5];
         }
         public int getStack7()
         {
-            return Global.stack[6];
+            return stack[6];
         }
         public int getStack8()
         {
-            return Global.stack[7];
+            return stack[7];
         }
 
         public int getTrisA()
         {
-            return Global.Bank1[133];
+            return Bank1[133];
         }
 
         public int getTrisB()
         {
-            Console.WriteLine("TrisB" + Global.Bank1[134]);
-            return Global.Bank1[134];
+            Console.WriteLine("TrisB" + Bank1[134]);
+            return Bank1[134];
         }
 
         public int Pinbelegung(int portA, int portB, int programmcounter)
         {
-            byte portAvorher = (byte) Global.Bank1[5];
-            byte portBvorher = (byte) Global.Bank1[6];
-            Global.Bank1[5] = (byte) portA;
-            Global.Bank1[6] = (byte) portB;
+            byte portAvorher = (byte) Bank1[5];
+            byte portBvorher = (byte) Bank1[6];
+            Bank1[5] = (byte) portA;
+            Bank1[6] = (byte) portB;
             bool rb0int = false;
             bool rbint  = false ;
-            //int ursprung = Global.stack[0];
+            //int ursprung = stack[0];
 
             if (getIEg() == 1)
             {
                 //steigende 
                 if ((portBvorher & 0b0000_0001) == 0 && (portB & 0b0000_0001) == 1)
                 {
-                    Global.Bank1[11] |= 0b0000_0010;
+                    Bank1[11] |= 0b0000_0010;
 
                     if (getGIE() ==1 && getIE() == 1)
                     {
@@ -2220,7 +2265,7 @@ namespace Simulator
                 //fallende
                 if ((portBvorher & 0b0000_0001) == 1 && (portB & 0b0000_0001) == 0)
                 {
-                    Global.Bank1[11] |= 0b0000_0010;
+                    Bank1[11] |= 0b0000_0010;
 
                     if (getGIE() == 1 && getIE() == 1)
                     {
@@ -2243,25 +2288,25 @@ namespace Simulator
                 return 4;
             }
             
-            //Console.WriteLine("PortA: " + Global.Bank1[5]);
-            //Console.WriteLine("PortB: " + Global.Bank1[6]);
+            //Console.WriteLine("PortA: " + Bank1[5]);
+            //Console.WriteLine("PortB: " + Bank1[6]);
             return programmcounter;
         }
 
         public bool RB0Interrupt(int portA, int portB, int programmcounter)
         {
-            int eingang = Global.Bank1[134] & 0b0000_0001;
+            int eingang = Bank1[134] & 0b0000_0001;
 
             if (eingang == 1)
             {
                             Console.WriteLine("RB0 Interrupt");
                             //RB0 Interruptflag
-                            Global.Bank1[11] = (byte)(Global.Bank1[11] | 0b0000_0010);
-                            Global.Bank1[139] = (byte)(Global.Bank1[139] | 0b0000_0010);
+                            Bank1[11] = (byte)(Bank1[11] | 0b0000_0010);
+                            Bank1[139] = (byte)(Bank1[139] | 0b0000_0010);
 
-                            Global.Bank1[11] = (byte)(Global.Bank1[11] & 0b0111_1111);
-                            Global.Bank1[139] = (byte)(Global.Bank1[139] & 0b0111_1111);
-                            Global.push(programmcounter);
+                            Bank1[11] = (byte)(Bank1[11] & 0b0111_1111);
+                            Bank1[139] = (byte)(Bank1[139] & 0b0111_1111);
+                            push(programmcounter);
                             return true;
             }
 
@@ -2270,7 +2315,7 @@ namespace Simulator
 
         public bool RBInterrupt(int portAvorher, int programmcounter)
         {
-            int eingang = Global.Bank1[134] & 0b1111_0000;
+            int eingang = Bank1[134] & 0b1111_0000;
 
 
 
@@ -2282,17 +2327,17 @@ namespace Simulator
                     {
                         Console.WriteLine("RB Interrupt");
 
-                        int interrupt = Global.Bank1[6] & 0b1111_0000;
+                        int interrupt = Bank1[6] & 0b1111_0000;
                         if (16 <= interrupt && interrupt <= 128)
                         {
                             Console.WriteLine("RB Interrupt");
                             //RB0 Interruptflag
-                            Global.Bank1[11] = (byte)(Global.Bank1[11] | 0b0000_0001);
-                            Global.Bank1[139] = (byte)(Global.Bank1[139] | 0b0000_0001);
+                            Bank1[11] = (byte)(Bank1[11] | 0b0000_0001);
+                            Bank1[139] = (byte)(Bank1[139] | 0b0000_0001);
                             
-                            Global.Bank1[11] = (byte)(Global.Bank1[11] & 0b0111_1111);
-                            Global.Bank1[139] = (byte)(Global.Bank1[139] & 0b0111_1111);
-                            Global.push(programmcounter);
+                            Bank1[11] = (byte)(Bank1[11] & 0b0111_1111);
+                            Bank1[139] = (byte)(Bank1[139] & 0b0111_1111);
+                            push(programmcounter);
                             return true;
                         }
                     }
@@ -2305,37 +2350,37 @@ namespace Simulator
 
         public int GetPortA()
         {
-            return Global.Bank1[5];
+            return Bank1[5];
         }
 
         public int GetPortB()
         {
-            return Global.Bank1[6];
+            return Bank1[6];
         }
 
         public float getWatchdog()
         {
-            return Global.watchdog;
+            return watchdog;
         }
 
         public int getBankInhalt(int stelle)
         {
-            return Global.Bank1[stelle];
+            return Bank1[stelle];
         }
 
         public int getPrescalerGUI()
         {
-            return Global.prescaler;
+            return prescaler;
         }
 
         public int getTimer0()
         {
-            return Global.Bank1[1];
+            return Bank1[1];
         }
 
         public void updateFile(int speicherstelle, int wert)
         {
-            Global.Bank1[speicherstelle] = (byte) wert;
+            Bank1[speicherstelle] = (byte) wert;
         }
     }
 }

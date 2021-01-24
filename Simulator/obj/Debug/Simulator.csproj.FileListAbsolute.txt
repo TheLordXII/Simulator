@@ -18,13 +18,13 @@ D:\OneDrive\Dokumente\DHBW\4. Semester\SystemnahesProgrammieren\Simulator\Simula
 D:\OneDrive\Dokumente\DHBW\4. Semester\SystemnahesProgrammieren\Simulator\Simulator\obj\Debug\Simulator.exe
 D:\OneDrive\Dokumente\DHBW\4. Semester\SystemnahesProgrammieren\Simulator\Simulator\obj\Debug\Simulator.pdb
 D:\OneDrive\Dokumente\DHBW\4. Semester\SystemnahesProgrammieren\Simulator\Simulator\obj\Debug\Simulator.csproj.CoreCompileInputs.cache
-C:\Users\Ted\Source\Repos\Simulator\Simulator\bin\Debug\Simulator.exe.config
-C:\Users\Ted\Source\Repos\Simulator\Simulator\bin\Debug\Simulator.exe
-C:\Users\Ted\Source\Repos\Simulator\Simulator\bin\Debug\Simulator.pdb
-C:\Users\Ted\Source\Repos\Simulator\Simulator\obj\Debug\Simulator.csprojAssemblyReference.cache
-C:\Users\Ted\Source\Repos\Simulator\Simulator\obj\Debug\Simulator.Form1.resources
-C:\Users\Ted\Source\Repos\Simulator\Simulator\obj\Debug\Simulator.Properties.Resources.resources
-C:\Users\Ted\Source\Repos\Simulator\Simulator\obj\Debug\Simulator.csproj.GenerateResource.cache
-C:\Users\Ted\Source\Repos\Simulator\Simulator\obj\Debug\Simulator.csproj.CoreCompileInputs.cache
-C:\Users\Ted\Source\Repos\Simulator\Simulator\obj\Debug\Simulator.exe
-C:\Users\Ted\Source\Repos\Simulator\Simulator\obj\Debug\Simulator.pdb
+C:\Users\Ted\source\repos\Simulator\Simulator\bin\Debug\Simulator.exe.config
+C:\Users\Ted\source\repos\Simulator\Simulator\bin\Debug\Simulator.exe
+C:\Users\Ted\source\repos\Simulator\Simulator\bin\Debug\Simulator.pdb
+C:\Users\Ted\source\repos\Simulator\Simulator\obj\Debug\Simulator.Form1.resources
+C:\Users\Ted\source\repos\Simulator\Simulator\obj\Debug\Simulator.Properties.Resources.resources
+C:\Users\Ted\source\repos\Simulator\Simulator\obj\Debug\Simulator.csproj.GenerateResource.cache
+C:\Users\Ted\source\repos\Simulator\Simulator\obj\Debug\Simulator.csproj.CoreCompileInputs.cache
+C:\Users\Ted\source\repos\Simulator\Simulator\obj\Debug\Simulator.exe
+C:\Users\Ted\source\repos\Simulator\Simulator\obj\Debug\Simulator.pdb
+C:\Users\Ted\source\repos\Simulator\Simulator\obj\Debug\Simulator.csprojAssemblyReference.cache
