@@ -10,7 +10,7 @@ namespace Simulator
     public class ParserUnitTest
     {
         [TestMethod]
-        public void TestParserMain() //Integration Test
+        public void TestParser_Main() //Integration Test
         {
             //Arrange
 
@@ -21,7 +21,7 @@ namespace Simulator
         }
 
         [TestMethod]
-        public void TestParserProgrammspeicherLeeren() //Unit Test
+        public void TestParser_ProgrammspeicherLeeren() //Unit Test
         {
             //Arrange
             String[] matches = new String[1024];

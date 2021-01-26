@@ -6,10 +6,10 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Simulator
 {
     [TestClass]
-    class OperationenUnitTest
+    public class OperationenUnitTest
     {
         [TestMethod]
-        public void TestOperationenclrwdt()
+        public void TestOperationen_clrwdt()
         {
             //Arrange
             Operationen operation = new Operationen();
@@ -21,7 +21,7 @@ namespace Simulator
 
             //Assert
             Assert.AreEqual(1, returnwert);
-            Assert.AreEqual(3, returnwert);
+            //Assert.AreEqual(3, returnwert); --> Seperater Test auf den Sonderfall nötig.
             Assert.AreEqual(0, operation.watchdog);
         }
     }

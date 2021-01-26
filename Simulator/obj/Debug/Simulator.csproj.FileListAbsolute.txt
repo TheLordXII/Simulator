@@ -27,3 +27,4 @@ C:\Users\Ted\source\repos\Simulator\Simulator\obj\Debug\Simulator.csproj.Generat
 C:\Users\Ted\source\repos\Simulator\Simulator\obj\Debug\Simulator.csproj.CoreCompileInputs.cache
 C:\Users\Ted\source\repos\Simulator\Simulator\obj\Debug\Simulator.exe
 C:\Users\Ted\source\repos\Simulator\Simulator\obj\Debug\Simulator.pdb
+C:\Users\Ted\source\repos\Simulator\Simulator\obj\Debug\Simulator.csprojAssemblyReference.cache

@@ -6,7 +6,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Simulator
 {
     [TestClass]
-    class UmwandlungUnitTest
+    public class UmwandlungUnitTest
     {
     }
 }
