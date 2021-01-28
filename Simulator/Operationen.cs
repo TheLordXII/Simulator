@@ -28,7 +28,7 @@ namespace Simulator
         public byte w { get; set; } //Work Register
 
         //Bänke
-        private byte[] Bank1 = new byte[256];
+        public byte[] Bank1 = new byte[256];
         
         //Watchdog
         public float watchdog { get; set; }
