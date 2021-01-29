@@ -162,7 +162,7 @@ namespace Simulator
             else
             {
                 Bank1[3] &= 0b1111_1101;
-                Bank1[131] |= 0b1111_1101;
+                Bank1[131] &= 0b1111_1101;
             }
         }
 
