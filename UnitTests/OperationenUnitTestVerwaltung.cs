@@ -334,7 +334,7 @@ namespace Simulator
         {
             //Arrange
             Operationen operation = new Operationen();
-            int programminhalt = 1793;
+            int programminhalt = 385;
 
             //Act
             int result = operation.ReadProgrammspeicherInhalt7(programminhalt);
@@ -376,7 +376,7 @@ namespace Simulator
         {
             //Arrange
             Operationen operation = new Operationen();
-            int programminhalt = 1793;
+            int programminhalt = 2817;
 
             //Act
             int result = operation.getFinalCut(programminhalt);

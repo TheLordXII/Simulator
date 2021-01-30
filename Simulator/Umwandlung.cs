@@ -79,19 +79,19 @@ namespace Simulator
                         case int n when (256 <= n && n <= 383):
                             //clrw
                             Console.WriteLine("clrw");
-                    programmcounter = operation.clrw(Programmspeicher[programmcounter], programmcounter);
+                            programmcounter = operation.clrw(Programmspeicher[programmcounter], programmcounter);
                             return 0;
 
                         case int n when (2304 <= n && n <= 2559):
                             //comf
                             Console.WriteLine("comf");
-                    programmcounter = operation.comf(Programmspeicher[programmcounter], programmcounter);
+                            programmcounter = operation.comf(Programmspeicher[programmcounter], programmcounter);
                             return 0;
 
                         case int n when (768 <= n && n <= 1023):
                             //decf
                             Console.WriteLine("decf");
-                    programmcounter = operation.decf(Programmspeicher[programmcounter], programmcounter);
+                            programmcounter = operation.decf(Programmspeicher[programmcounter], programmcounter);
                             return 0;
 
                         case int n when (2816 <= n && n <= 3071):
@@ -103,7 +103,7 @@ namespace Simulator
                         case int n when (2560 <= n && n <= 2815):
                             //incf
                             Console.WriteLine("incf");
-                    programmcounter = operation.incf(Programmspeicher[programmcounter], programmcounter);
+                            programmcounter = operation.incf(Programmspeicher[programmcounter], programmcounter);
                             return 0;
 
                         case int n when (3840 <= n && n <= 4095):
