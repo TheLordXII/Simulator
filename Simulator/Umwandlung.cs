@@ -115,55 +115,55 @@ namespace Simulator
                         case int n when (1024 <= n && n <= 1279):
                             //iorwf
                             Console.WriteLine("iorwf");
-                    programmcounter = operation.iorwf(Programmspeicher[programmcounter], programmcounter);
+                            programmcounter = operation.iorwf(Programmspeicher[programmcounter], programmcounter);
                             return 0;
 
                         case int n when (2048 <= n && n <= 2303):
                             //movf
                             Console.WriteLine("movf");
-                    programmcounter = operation.movf(Programmspeicher[programmcounter], programmcounter);
+                            programmcounter = operation.movf(Programmspeicher[programmcounter], programmcounter);
                             return 0;
 
                         case int n when (128 <= n && n <= 255):
                             //movwf
                             Console.WriteLine("movwf");
-                    programmcounter = operation.movwf(Programmspeicher[programmcounter], programmcounter);
+                            programmcounter = operation.movwf(Programmspeicher[programmcounter], programmcounter);
                             return 0;
 
                         case int n when (n == 0 || n == 96 || n == 32 || n == 64):
                             //nop
                             Console.WriteLine("nop");
-                    programmcounter = operation.nop(Programmspeicher[programmcounter], programmcounter);
+                            programmcounter = operation.nop(Programmspeicher[programmcounter], programmcounter);
                             return 0;
 
                         case int n when (3328 <= n && n <= 3583):
                             //rlf
                             Console.WriteLine("rlf");
-                    programmcounter = operation.rlf(Programmspeicher[programmcounter], operation.getC(), programmcounter);
+                            programmcounter = operation.rlf(Programmspeicher[programmcounter], operation.getC(), programmcounter);
                             return 0;
 
                         case int n when (3072 <= n && n <= 3327):
                             //rrf
                             Console.WriteLine("rrf");
-                    programmcounter = operation.rrf(Programmspeicher[programmcounter], operation.getC(), programmcounter);
+                            programmcounter = operation.rrf(Programmspeicher[programmcounter], operation.getC(), programmcounter);
                             return 0;
 
                         case int n when (512 <= n && n <= 767):
                             //subwf
                             Console.WriteLine("subwf");
-                    programmcounter = operation.subwf(Programmspeicher[programmcounter], programmcounter);
+                            programmcounter = operation.subwf(Programmspeicher[programmcounter], programmcounter);
                             return 0;
 
                         case int n when (3584 <= n && n <= 3839):
                             //swapf
                             Console.WriteLine("swapf");
-                    programmcounter = operation.swapf(Programmspeicher[programmcounter], programmcounter);
+                            programmcounter = operation.swapf(Programmspeicher[programmcounter], programmcounter);
                             return 0;
 
                         case int n when (1536 <= n && n <= 1791):
                             //xorwf
                             Console.WriteLine("xorwf");
-                    programmcounter = operation.xorwf(Programmspeicher[programmcounter], programmcounter);
+                            programmcounter = operation.xorwf(Programmspeicher[programmcounter], programmcounter);
                             return 0;
                         //BIT-ORIENTED FILE REGISTER OPERATIONS
                         case int n when (4096 <= n && n <= 5119):
