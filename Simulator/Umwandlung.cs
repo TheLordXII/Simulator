@@ -195,13 +195,13 @@ namespace Simulator
                         case int n when (15872 <= n && n <= 16383):
                             //addlw
                             Console.WriteLine("addlw");
-                    programmcounter = operation.addlw(Programmspeicher[programmcounter], programmcounter);
+                            programmcounter = operation.addlw(Programmspeicher[programmcounter], programmcounter);
                             return 0;
 
                         case int n when (14592 <= n && n <= 14847):
                             //andlw
                             Console.WriteLine("andlw");
-                    programmcounter = operation.andlw(Programmspeicher[programmcounter], programmcounter);
+                            programmcounter = operation.andlw(Programmspeicher[programmcounter], programmcounter);
                             return 0;
 
                         case int n when (8192 <= n && n <= 10239):
@@ -213,7 +213,7 @@ namespace Simulator
                         case 100:
                             //clrwdt
                             Console.WriteLine("clrwdt");
-                    programmcounter = operation.clrwdt(programmcounter);
+                            programmcounter = operation.clrwdt(programmcounter);
                             return 0;
 
                         case int n when (10240 <= n && n <= 11287):
@@ -225,25 +225,25 @@ namespace Simulator
                         case int n when (14336 <= n && n <= 14591):
                             //iorlw
                             Console.WriteLine("iorlw");
-                    programmcounter = operation.iorlw(Programmspeicher[programmcounter], programmcounter);
+                            programmcounter = operation.iorlw(Programmspeicher[programmcounter], programmcounter);
                             return 0;
 
                         case int n when (12288 <= n && n <= 13311):
                             //movelw
                             Console.WriteLine("movelw");
-                    programmcounter = operation.movlw(Programmspeicher[programmcounter], programmcounter);
+                            programmcounter = operation.movlw(Programmspeicher[programmcounter], programmcounter);
                             return 0;
 
                         case 9:
                             //refie
                             Console.WriteLine("retfie");
-                    programmcounter = operation.retfie(Programmspeicher[programmcounter], programmcounter);
+                            programmcounter = operation.retfie(Programmspeicher[programmcounter], programmcounter);
                             return 0;
 
                         case int n when (13312 <= n && n <= 14335):
                             //retlw
                             Console.WriteLine("retlw");
-                    programmcounter = programmcounter = operation.retlw(Programmspeicher[programmcounter], programmcounter);
+                            programmcounter = programmcounter = operation.retlw(Programmspeicher[programmcounter], programmcounter);
                             return 0;
 
                         case 8:
@@ -255,19 +255,19 @@ namespace Simulator
                         case 99:
                             //sleep
                             Console.WriteLine("sleep");
-                    programmcounter = operation.sleep(Programmspeicher[programmcounter], programmcounter);
+                            programmcounter = operation.sleep(Programmspeicher[programmcounter], programmcounter);
                             return 0;
 
                         case int n when (15360 <= n && n <= 15871):
                             //sublw
                             Console.WriteLine("sublw");
-                    programmcounter = operation.sublw(Programmspeicher[programmcounter], programmcounter);
+                            programmcounter = operation.sublw(Programmspeicher[programmcounter], programmcounter);
                             return 0;
 
                         case int n when (14848 <= n && n <= 15103):
                             //xorlw
                             Console.WriteLine("xorlw");
-                    programmcounter = operation.xorlw(Programmspeicher[programmcounter], programmcounter);
+                            programmcounter = operation.xorlw(Programmspeicher[programmcounter], programmcounter);
                             return 0;
 
                         default:

@@ -66,7 +66,7 @@ namespace Simulator
         {
             //Arrange
             Operationen operation = new Operationen();
-            int programminhalt = 6145;
+            int programminhalt = 7169;
             int programmcounter = 1;
             operation.Bank1[1] = 0b0000_0001;
 
