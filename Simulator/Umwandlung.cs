@@ -169,13 +169,13 @@ namespace Simulator
                         case int n when (4096 <= n && n <= 5119):
                             //bcf
                             Console.WriteLine("bcf");
-                    programmcounter = operation.bcf(Programmspeicher[programmcounter] ,programmcounter);
+                            programmcounter = operation.bcf(Programmspeicher[programmcounter] ,programmcounter);
                             return 0;
 
                         case int n when (5120 <= n && n <= 6143):
                             //bsf
                             Console.WriteLine("bsf");
-                    programmcounter = operation.bsf(Programmspeicher[programmcounter], programmcounter);
+                            programmcounter = operation.bsf(Programmspeicher[programmcounter], programmcounter);
                             return 0;
 
                         case int n when (6144 <= n && n <= 7167):

@@ -1304,12 +1304,12 @@ namespace Simulator
         {
             int cutvalue = ReadProgrammspeicherInhalt7(programminhalt);
             int clearvalue = ReadProgrammspeicherInhalt3(programminhalt);
-            //Console.WriteLine("Bit Set an der Stelle:" + clearvalue);
-            //Console.WriteLine("Cutvalue " + cutvalue);
+            Console.WriteLine("Bit Set an der Stelle:" + clearvalue);
+            Console.WriteLine("Cutvalue " + cutvalue);
             cutvalue = Bank(cutvalue);
             cutvalue = isIndirect(cutvalue);
             bool bitgesetzt = einzelnesBitAuslesen(clearvalue, cutvalue);
-            //Console.WriteLine(bitgesetzt);
+            Console.WriteLine(bitgesetzt);
 
 
             if (bitgesetzt != false)
@@ -1317,7 +1317,7 @@ namespace Simulator
                     switch (clearvalue)
                     {
                         case 0:
-                            Bank1[cutvalue] = (byte) (Bank1[cutvalue] & 0b1111_1110);
+                            Bank1[cutvalue] = (byte) (Bank1[cutvalue] & 0b1111_1110-1);
                         if (cutvalue == 3) { Bank1[131] = (byte) (Bank1[131] & 0b1111_1110); }
                         if (cutvalue == 131) { Bank1[3] = (byte) (Bank1[3] & 0b1111_1110); }
 
@@ -1437,7 +1437,7 @@ namespace Simulator
                 switch (clearvalue)
                 {
                     case 0:
-                        Bank1[cutvalue] = (byte)(Bank1[cutvalue] | 0b0000_0001);
+                        Bank1[cutvalue] = (byte)(Bank1[cutvalue] | 0b0000_0001 - 1);
                         if(cutvalue == 3) {Bank1[131] = (byte)(Bank1[131] | 0b0000_0001); }
                         if (cutvalue == 131) { Bank1[3] = (byte)(Bank1[3] | 0b0000_0001); }
 
