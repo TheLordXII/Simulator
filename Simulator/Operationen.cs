@@ -428,6 +428,16 @@ namespace Simulator
             }
         }
 
+        public int isInterrupt(int programmcounter)
+        {
+            if (calcTMR(programmcounter) == 4)
+            {
+                return 3;
+            }
+
+            return programmcounter;
+        }
+
         public bool einzelnesBitAuslesen(int stelle, int cutvalue)
         {
 
@@ -655,12 +665,10 @@ namespace Simulator
                     ChangeZ(Bank1[cutvalue]);
                 }
                 
-                if (calcTMR(programmcounter) == 4)
-                {
-                    return 3;
-                }
                 Console.WriteLine("Speicherstelle: " + (cutvalue) + "Speicherinhalt: " + Bank1[cutvalue]);
-                return programmcounter;
+                return isInterrupt(programmcounter);
+                
+                
             }
             else
             {
@@ -679,12 +687,8 @@ namespace Simulator
                     w = (byte)erg;
                     ChangeZ(w);
                 }
-                if (calcTMR(programmcounter) == 4)
-                {
-                    return 3;
-                }
                 Console.WriteLine("Speicherstelle: W" + "Speicherinhalt: " + w);
-                return programmcounter;
+                return isInterrupt(programmcounter);
             }
         }
 
@@ -699,26 +703,16 @@ namespace Simulator
             {
                 Bank1[cutvalue] = (byte) (Bank1[cutvalue] & w);
                 ChangeZ(Bank1[cutvalue]);
-                
-                if (calcTMR(programmcounter) == 4)
-                {
-                    return 3;
-                }
-                Console.WriteLine("Speicherstelle: " + (cutvalue) + "Speicherinhalt: " + Bank1[cutvalue]);
-                return programmcounter;
+
+                return isInterrupt(programmcounter);
             }
             else
             {
 
                 w = (byte)(Bank1[cutvalue] & w);
                 ChangeZ(w);
-                
-                if (calcTMR(programmcounter) == 4)
-                {
-                    return 3;
-                }
-                Console.WriteLine("Speicherstelle: W" + "Speicherinhalt: " + w);
-                return programmcounter;
+
+                return isInterrupt(programmcounter);
             }
         }
 
@@ -732,12 +726,7 @@ namespace Simulator
 
             ChangeZ(Bank1[cutvalue]);
 
-            if (calcTMR(programmcounter) == 4)
-            {
-                return 3;
-            }
-            Console.WriteLine("Speicherstelle: " + cutvalue + "Speicherinhalt: " + Bank1[cutvalue]);
-            return programmcounter;
+            return isInterrupt(programmcounter);
         }
 
         public int clrw(int programminhalt, int programmcounter)
@@ -745,12 +734,7 @@ namespace Simulator
             w = 0b0000_0000;
 
             ChangeZ(w);
-            if (calcTMR(programmcounter) == 4)
-            {
-                return 3;
-            }
-            Console.WriteLine("W-Register: " + w);
-            return programmcounter;
+            return isInterrupt(programmcounter);
         }
 
         public int comf(int programminhalt, int programmcounter)
@@ -767,12 +751,7 @@ namespace Simulator
                 //Console.WriteLine("Zwischenergebnis" + Zwischenergebnis);
                 Bank1[cutvalue - 128] = (byte) Zwischenergebnis;
                 ChangeZ(Bank1[cutvalue]);
-                if (calcTMR(programmcounter) == 4)
-                {
-                    return 3;
-                }
-                Console.WriteLine("Speicherstelle: " + (cutvalue) + "Speicherinhalt: " + Bank1[cutvalue]);
-                return programmcounter;
+                return isInterrupt(programmcounter);
             }
             else 
             {
@@ -781,12 +760,7 @@ namespace Simulator
                 Zwischenergebnis &= 0b1111_1111;
                 w = (byte) Zwischenergebnis;
                 ChangeZ(w);
-                if (calcTMR(programmcounter) == 4)
-                {
-                    return 3;
-                }
-                Console.WriteLine("Speicherstelle: W" + "Speicherinhalt: " + w);
-                return programmcounter;
+                return isInterrupt(programmcounter);
             }
 
 
@@ -807,12 +781,8 @@ namespace Simulator
                 //Console.WriteLine("Zwischenergebnis" + Zwischenergebnis);
                 Bank1[cutvalue] = (byte) Zwischenergebnis;
                 ChangeZ(Bank1[cutvalue]);
-                if (calcTMR(programmcounter) == 4)
-                {
-                    return 3;
-                }
-                Console.WriteLine("Speicherstelle: " + (cutvalue) + "Speicherinhalt: " + Bank1[cutvalue]);
-                return programmcounter;
+
+                return isInterrupt(programmcounter);
             }
             else {
 
@@ -820,12 +790,8 @@ namespace Simulator
                 Zwischenergebnis &= 0b1111_1111;
                 w = (byte) Zwischenergebnis;
                 ChangeZ(w);
-                if (calcTMR(programmcounter) == 4)
-                {
-                    return 3;
-                }
-                Console.WriteLine("Speicherstelle: W" + "Speicherinhalt: " + w);
-                return programmcounter;
+
+                return isInterrupt(programmcounter);
             }
 
         }
@@ -856,11 +822,8 @@ namespace Simulator
                     ChangeZ(Bank1[cutvalue]);
                     Console.WriteLine("Speicherstelle: " + (cutvalue) + "Speicherinhalt: " + Bank1[cutvalue]);
                     //Console.WriteLine("Ergebnis: " + erg);
-                    if (calcTMR(programmcounter) == 4)
-                    {
-                        return 3;
-                    }
-                    return programmcounter;
+                    
+                    return isInterrupt(programmcounter);
                 }
                 
             }
@@ -883,11 +846,8 @@ namespace Simulator
                     ChangeZ(w);
                     Console.WriteLine("Speicherstelle: W" + "Speicherinhalt: " + w);
                     //Console.WriteLine("Ergebnis: " + erg);
-                    if (calcTMR(programmcounter) == 4)
-                    {
-                        return 3;
-                    }
-                    return programmcounter;
+                    
+                    return isInterrupt(programmcounter);
                 }
                 
             }
@@ -917,12 +877,7 @@ namespace Simulator
                     ChangeZ(Bank1[cutvalue]);
                 }
 
-                if (calcTMR(programmcounter) == 4)
-                {
-                    return 3;
-                }
-                Console.WriteLine("Speicherstelle: " + (cutvalue) + "Speicherinhalt: " + Bank1[cutvalue]);
-                return programmcounter;
+                return isInterrupt(programmcounter);
             }
             else
             {
@@ -938,12 +893,8 @@ namespace Simulator
                     w = (byte) erg;
                     ChangeZ(w);
                 }
-                if (calcTMR(programmcounter) == 4)
-                {
-                    return 3;
-                }
-                Console.WriteLine("Speicherstelle: W" + "Speicherinhalt: " + w);
-                return programmcounter;
+
+                return isInterrupt(programmcounter);
 
             }
         }
@@ -979,11 +930,8 @@ namespace Simulator
                     ChangeZ(Bank1[cutvalue]);
                     Console.WriteLine("Speicherstelle: " + (cutvalue) + "Speicherinhalt: " + Bank1[cutvalue]);
                     //Console.WriteLine("Ergebnis: " + erg);
-                    if (calcTMR(programmcounter) == 4)
-                    {
-                        return 3;
-                    }
-                    return programmcounter;
+
+                    return isInterrupt(programmcounter);
                 }
 
             }
@@ -1011,11 +959,8 @@ namespace Simulator
                     ChangeZ(w);
                     Console.WriteLine("Speicherstelle: W" + "Speicherinhalt: " + w);
                     //Console.WriteLine("Ergebnis: " + erg);
-                    if (calcTMR(programmcounter) == 4)
-                    {
-                        return 3;
-                    }
-                    return programmcounter;
+                    
+                    return isInterrupt(programmcounter);
                 }
 
             }
@@ -1032,24 +977,16 @@ namespace Simulator
             {
                 Bank1[cutvalue] = (byte) (Bank1[cutvalue] | w);
                 ChangeZ(Bank1[cutvalue]);
-                if (calcTMR(programmcounter) == 4)
-                {
-                    return 3;
-                }
-                Console.WriteLine("Speicherstelle: " + cutvalue + "Speicherinhalt: " + Bank1[cutvalue]);
-                return programmcounter;
+
+                return isInterrupt(programmcounter);
             }
             else
             {
 
                 w = (byte)(Bank1[cutvalue] | w);
                 ChangeZ(w);
-                if (calcTMR(programmcounter) == 4)
-                {
-                    return 3;
-                }
-                Console.WriteLine("Speicherstelle: W" + "Speicherinhalt: " + w);
-                return programmcounter;
+
+                return isInterrupt(programmcounter);
 
             }
         }
@@ -1064,24 +1001,16 @@ namespace Simulator
             if (destination)
             {
                 ChangeZ(Bank1[cutvalue]);
-                if (calcTMR(programmcounter) == 4)
-                {
-                    return 3;
-                }
-                Console.WriteLine("Speicherstelle: " + (cutvalue) + "Speicherinhalt: " + Bank1[cutvalue]);
-                return programmcounter;
+
+                return isInterrupt(programmcounter);
             }
             else
             {
 
                 w = Bank1[cutvalue];
                 ChangeZ(w);
-                if (calcTMR(programmcounter) == 4)
-                {
-                    return 3;
-                }
-                Console.WriteLine("Speicherstelle: W" + "Speicherinhalt: " + w);
-                return programmcounter;
+
+                return isInterrupt(programmcounter);
 
             }
         }
@@ -1093,22 +1022,14 @@ namespace Simulator
             cutvalue = Bank(cutvalue);
 
             Bank1[cutvalue] = (byte) w;
-            if (calcTMR(programmcounter) == 4)
-            {
-                return 3;
-            }
-            Console.WriteLine("Speicherstelle: " + cutvalue + "Speicherinhalt: " + Bank1[cutvalue]);
-            return programmcounter;
+
+            return isInterrupt(programmcounter);
         }
 
         public int nop(int programminhalt, int programmcounter)
         {
-            if (calcTMR(programmcounter) == 4)
-            {
-                return 3;
-            }
-            Console.WriteLine("NOP - Succsessfull");
-            return programmcounter;
+            return isInterrupt(programmcounter);
+
         }
 
         public int rlf(int programminhalt, int c, int programmcounter)
@@ -1126,12 +1047,8 @@ namespace Simulator
                 ChangeC(res);
                 cutvalue = isIndirect(cutvalue);
                 Bank1[cutvalue] = (byte) (res & 0b1111_1111);
-                if (calcTMR(programmcounter) == 4)
-                {
-                    return 3;
-                }
-                Console.WriteLine("Speicherstelle: " + (cutvalue) + "Speicherinhalt: " + Bank1[cutvalue]);
-                return programmcounter;
+
+                return isInterrupt(programmcounter);
             }
             else
             {
@@ -1140,12 +1057,8 @@ namespace Simulator
                 res = res + c;
                 ChangeC(res);
                 w = (byte)(res & 0b1111_1111);
-                if (calcTMR(programmcounter) == 4)
-                {
-                    return 3;
-                }
-                Console.WriteLine("Speicherstelle: W" + "Speicherinhalt: " + w);
-                return programmcounter;
+
+                return isInterrupt(programmcounter);
             }
         }
 
@@ -1166,12 +1079,8 @@ namespace Simulator
                 ChangeC(res);
                 res &= 0b1111_1111;
                 Bank1[cutvalue] = (byte) res;
-                if (calcTMR(programmcounter) == 4)
-                {
-                    return 3;
-                }
-                Console.WriteLine("Speicherstelle: " + (cutvalue) + "Speicherinhalt: " + Bank1[cutvalue]);
-                return programmcounter;
+
+                return isInterrupt(programmcounter);
             }
             else
             {
@@ -1183,12 +1092,8 @@ namespace Simulator
                 ChangeC(res);
                 res &= 0b1111_1111;
                 w = (byte) res;
-                if (calcTMR(programmcounter) == 4)
-                {
-                    return 3;
-                }
-                Console.WriteLine("Speicherstelle: W" + "Speicherinhalt: " + w);
-                return programmcounter;
+
+                return isInterrupt(programmcounter);
 
             }
         }
@@ -1207,12 +1112,8 @@ namespace Simulator
                 ChangeCSUB(Bank1[cutvalue]- w);
                 ChangeDCSUB(w, Bank1[cutvalue]);
                 Bank1[cutvalue] = (byte)res;
-                if (calcTMR(programmcounter) == 4)
-                {
-                    return 3;
-                }
-                Console.WriteLine("Inhalt Bank1" + Bank1[cutvalue]);
-                return programmcounter;
+                
+                return isInterrupt(programmcounter);
 
             }
             else
@@ -1223,12 +1124,8 @@ namespace Simulator
                 ChangeCSUB(Bank1[cutvalue]- w);
                 ChangeDCSUB(w, Bank1[cutvalue]);
                 w = (byte) res;
-                if (calcTMR(programmcounter) == 4)
-                {
-                    return 3;
-                }
-                Console.WriteLine("Inhalt w" + w);
-                return programmcounter;
+
+                return isInterrupt(programmcounter);
 
             }
         }
@@ -1243,22 +1140,14 @@ namespace Simulator
             if (destination)
             {
                 Bank1[cutvalue] = (byte) ((Bank1[cutvalue] & 0x0F) << 4 |((Bank1[cutvalue] & 0xF0) >> 4));
-                if (calcTMR(programmcounter) == 4)
-                {
-                    return 3;
-                }
-                Console.WriteLine("Bank1 an der Stelle" + (cutvalue) + "Inahlt" + Bank1[cutvalue]);
-                return programmcounter;
+
+                return isInterrupt(programmcounter);
             }
             else
             {
                 w = (byte) ((Bank1[cutvalue] & 0x0F) << 4 | (Bank1[cutvalue] & 0xF0) >> 4);
-                if (calcTMR(programmcounter) == 4)
-                {
-                    return 3;
-                }
-                Console.WriteLine("W Register Inhalt" + w);
-                return programmcounter;
+
+                return isInterrupt(programmcounter);
             }
         }
 
@@ -1273,12 +1162,8 @@ namespace Simulator
             {
                 Bank1[cutvalue] = (byte) (Bank1[cutvalue]  ^ w);
                 ChangeZ(Bank1[cutvalue]);
-                if (calcTMR(programmcounter) == 4)
-                {
-                    return 3;
-                }
-                Console.WriteLine("Inhalt Bank1" + Bank1[cutvalue]);
-                return programmcounter;
+
+                return isInterrupt(programmcounter);
 
             }
             else
@@ -1286,12 +1171,8 @@ namespace Simulator
 
                 w = (byte) (Bank1[cutvalue] ^ w);
                 ChangeZ(w);
-                if (calcTMR(programmcounter) == 4)
-                {
-                    return 3;
-                }
-                Console.WriteLine("Inhalt w" + w);
-                return programmcounter;
+
+                return isInterrupt(programmcounter);
 
             }
         }
@@ -1402,20 +1283,11 @@ namespace Simulator
                             break;
 
                 }
-                if(calcTMR(programmcounter) == 4)
-                {
-                    return 3;
-                }
-                return programmcounter;
+                return isInterrupt(programmcounter);
             }
             else
             {
-                if (calcTMR(programmcounter) == 4)
-                {
-                    return 3;
-                }
-                Console.WriteLine("Bit Already Cleared");
-                return programmcounter;
+                return isInterrupt(programmcounter);
             }
           
         }
@@ -1522,20 +1394,15 @@ namespace Simulator
                         break;
 
                 }
-                if (calcTMR(programmcounter) == 4)
-                {
-                    return 3;
-                }
-                return programmcounter;
+
+                return isInterrupt(programmcounter);
             }
 
-            else { 
-            Console.WriteLine("Bit Already Set");
-                if (calcTMR(programmcounter) == 4)
-                {
-                    return 3;
-                }
-                return programmcounter;
+            else 
+            { 
+                Console.WriteLine("Bit Already Set");
+
+                return isInterrupt(programmcounter);
             }
         }
 
@@ -1563,11 +1430,8 @@ namespace Simulator
             else
             {
                 Console.WriteLine("Bit not clear no skip");
-                if (calcTMR(programmcounter) == 4)
-                {
-                    return 3;
-                }
-                return programmcounter;
+
+                return isInterrupt(programmcounter);
             }
 
         }
@@ -1594,11 +1458,8 @@ namespace Simulator
             else
             {
                 Console.WriteLine("Bit not set no Skip");
-                if (calcTMR(programmcounter) == 4)
-                {
-                    return 3;
-                }
-                return programmcounter;
+
+                return isInterrupt(programmcounter);
             }
 
         }
@@ -1617,12 +1478,7 @@ namespace Simulator
             ChangeDCADD(w, cutvalue);
             w = (byte) res;
 
-            if (calcTMR(programmcounter) == 4)
-            {
-                return 3;
-            }
-            Console.WriteLine("Inhalt W-Register: {0}", w);
-            return programmcounter;
+            return isInterrupt(programmcounter);
         }
 
         public int andlw(int programminhalt, int programmcounter)
@@ -1636,12 +1492,8 @@ namespace Simulator
             ChangeZ(erg);
 
             w = (byte) erg;
-            if (calcTMR(programmcounter) == 4)
-            {
-                return 3;
-            }
-            Console.WriteLine("Inhalt W-Register: {0}", w);
-            return programmcounter;
+
+            return isInterrupt(programmcounter);
         }
         public int call(int programminhalt, int programmcounter) 
         {
@@ -1667,12 +1519,8 @@ namespace Simulator
             watchdog = 0;
             Bank1[3] = 0b0001_1000;
             Bank1[131] = 0b0001_1000;
-            if (calcTMR(programmcounter) == 4)
-            {
-                return 3;
-            }
-            Console.WriteLine("Watchdog cleared" + Bank1[3]);
-            return programmcounter;
+
+            return isInterrupt(programmcounter);
 
         }
 
@@ -1718,12 +1566,8 @@ namespace Simulator
             w = (byte) (cutvalue | inhaltw);
 
             ChangeZ(w);
-            if (calcTMR(programmcounter) == 4)
-            {
-                return 3;
-            }
-            Console.WriteLine("Inhalt W-Register: {0}", w);
-            return programmcounter;
+
+            return isInterrupt(programmcounter);
         }
 
         public int movlw(int programminhalt, int programmcounter) //kommt als DEC an 
@@ -1731,12 +1575,8 @@ namespace Simulator
             int cutvalue = ReadProgrammspeicherInhalt(programminhalt);
 
             w = (byte) cutvalue;
-            if (calcTMR(programmcounter) == 4)
-            {
-                return 3;
-            }
-            Console.WriteLine("Inhalt W-Register: {0}", w);
-            return programmcounter;
+
+            return isInterrupt(programmcounter);
         }
 
         public int retfie(int programminhalt, int programmcounter)
@@ -1817,11 +1657,7 @@ namespace Simulator
             watchdog = 0;
             calcWTD();
 
-            if (calcTMR(programmcounter) == 4)
-            {
-                return 3;
-            }
-            return programmcounter;
+            return isInterrupt(programmcounter);
         }
 
         public int sublw(int programminhalt, int programmcounter)
@@ -1835,12 +1671,8 @@ namespace Simulator
             ChangeDCSUB(w, cutvalue);
 
             w = (byte) res;
-            if (calcTMR(programmcounter) == 4)
-            {
-                return 3;
-            }
-            Console.WriteLine("Inhalt W-Register Test: {0}" , w);
-            return programmcounter;
+
+            return isInterrupt(programmcounter);
         }
 
         public int xorlw(int programminhalt, int programmcounter)
@@ -1849,12 +1681,8 @@ namespace Simulator
 
             w ^= (byte) cutvalue;
             ChangeZ(w);
-            if (calcTMR(programmcounter) == 4)
-            {
-                return 3;
-            }
-            Console.WriteLine("Inhalt W-Register = {0}", w);
-            return programmcounter;
+
+            return isInterrupt(programmcounter);
         }
 
         //*********************************************
