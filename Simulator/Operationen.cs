@@ -16,6 +16,8 @@ namespace Simulator
 {
     public class Operationen
     {
+        Management man = new Management();
+
         public Operationen()
         {
             w = 0;
@@ -61,51 +63,6 @@ namespace Simulator
             return element;
         }
 
-
-        public void InitialisierungBaenke()
-        {
-            for (int i = 0; i < Bank1.Length; i++)
-            {
-                Bank1[i] = 0b0000_0000;
-            }
-
-            Bank1[0] = 0b0000_0000; //INDF
-            Bank1[1] = 0b0000_0000; //TMR0
-            Bank1[2] = 0b0000_0000; //PCL
-            Bank1[3] = 0b0001_1000; //STATUS
-            Bank1[4] = 0b0000_0000; //FSR
-            Bank1[5] = 0b0000_0000; //PORTA
-            Bank1[6] = 0b0000_0000; //PORTB
-            Bank1[8] = 0b0000_0000; //EEDATA
-            Bank1[9] = 0b0000_0000; //EEADR
-            Bank1[10] = 0b0000_0000; //PCLATH
-            Bank1[11] = 0b0000_0000; //INTCON
-
-            Bank1[128] = 0b0000_0000; //INDF
-            Bank1[129] = 0b1111_1111; //OPTION_REG
-            Bank1[130] = 0b0000_0000; //PCL
-            Bank1[131] = 0b0001_1000; //STATUS
-            Bank1[132] = 0b0000_0000; //FSR
-            Bank1[133] = 0b1111_1111; //TRISA
-            Bank1[134] = 0b1111_1111; //TRISB
-            Bank1[136] = 0b0000_0000; //EECON1
-            Bank1[137] = 0b0000_0000; //EECON2
-            Bank1[138] = 0b0000_0000; //PCLATH
-            Bank1[139] = 0b0000_0000; //INTCON
-
-        }
-
-        public void clearW()
-        {
-            w = 0;
-        }
-
-        public int ExtractRP0()
-        {
-            int flag = Bank1[3] & 0b0001_0000;
-            return flag;
-        }
-
         public void ChangeZ(int result)
         {
             if (result == 0)
@@ -136,7 +93,7 @@ namespace Simulator
 
         public void ChangeCSUB(int result)
         {
-            if(result >= 0)
+            if (result >= 0)
             {
                 Bank1[3] |= 0b0000_0001;
                 Bank1[131] |= 0b0000_0001;
@@ -204,18 +161,37 @@ namespace Simulator
             Bank1[132] = Bank1[4];
         }
 
-        public bool DestinationSet(int cutvalue)
+        public void InitialisierungBaenke()
         {
-            int res = cutvalue & 0b1000_0000;
-            
-            if (res == 128)
+            for (int i = 0; i < Bank1.Length; i++)
             {
-                return true;
+                Bank1[i] = 0b0000_0000;
             }
-            else
-            {
-                return false;
-            }
+
+            Bank1[0] = 0b0000_0000; //INDF
+            Bank1[1] = 0b0000_0000; //TMR0
+            Bank1[2] = 0b0000_0000; //PCL
+            Bank1[3] = 0b0001_1000; //STATUS
+            Bank1[4] = 0b0000_0000; //FSR
+            Bank1[5] = 0b0000_0000; //PORTA
+            Bank1[6] = 0b0000_0000; //PORTB
+            Bank1[8] = 0b0000_0000; //EEDATA
+            Bank1[9] = 0b0000_0000; //EEADR
+            Bank1[10] = 0b0000_0000; //PCLATH
+            Bank1[11] = 0b0000_0000; //INTCON
+
+            Bank1[128] = 0b0000_0000; //INDF
+            Bank1[129] = 0b1111_1111; //OPTION_REG
+            Bank1[130] = 0b0000_0000; //PCL
+            Bank1[131] = 0b0001_1000; //STATUS
+            Bank1[132] = 0b0000_0000; //FSR
+            Bank1[133] = 0b1111_1111; //TRISA
+            Bank1[134] = 0b1111_1111; //TRISB
+            Bank1[136] = 0b0000_0000; //EECON1
+            Bank1[137] = 0b0000_0000; //EECON2
+            Bank1[138] = 0b0000_0000; //PCLATH
+            Bank1[139] = 0b0000_0000; //INTCON
+
         }
 
         public int Bank(int cutvalue)
@@ -343,28 +319,28 @@ namespace Simulator
         {
             if (Bank1[1] == 1 && counter >= getPrescaler())
             {
-                
-                counter = getPrescaler()-1;
+
+                counter = getPrescaler() - 1;
                 //Console.WriteLine("Counter set");
                 return 0;
             }
 
             if (counter == 0)
             {
-                
-                counter = getPrescaler()-1;
+
+                counter = getPrescaler() - 1;
                 Bank1[1]++;
                 if (Bank1[1] >= 255)
                 {
                     //TimerInterrupt
                     Bank1[11] |= 0b0000_0100;
-                    Bank1[139] |=  0b0000_0100;
-                    
-                    
-                    
+                    Bank1[139] |= 0b0000_0100;
+
+
+
                     Bank1[1] = 0;
                     push(programmcounter);
-                    
+
                     //wenn GIE dann pc-> adresse 4
                     if (getGIE() == 1)
                     {
@@ -372,7 +348,7 @@ namespace Simulator
                         Bank1[139] &= 0b0111_1111;
                         return 4;
                     }
-                    
+
                 }
                 //Console.WriteLine("Counter: " + counter);
                 return 0;
@@ -539,102 +515,14 @@ namespace Simulator
             }
         }
 
-        public int ReadProgrammspeicherInhalt(int programminhalt)
-        {
-            string binary = Convert.ToString(programminhalt, 2); //transformiert in BIN
-            //Console.WriteLine(binary);
-
-            string pattern = @"\S\S\S\S\S\S\S\S\b";
-            string input = binary;
-            string cut = "";
-            RegexOptions options = RegexOptions.Multiline;
-
-            foreach (Match m in Regex.Matches(input, pattern, options))
-            {
-                //Console.WriteLine("'{0}' found at index {1}.", m.Value, m.Index);
-                cut = m.Value;
-            }
-
-            return Convert.ToInt32(cut, 2);
-
-        }
-
-        public int ReadProgrammspeicherInhalt7(int programminhalt)
-        {
-            string binary = Convert.ToString(programminhalt, 2); //transformiert in BIN
-            //Console.WriteLine(binary);
-
-            string pattern = @"\S\S\S\S\S\S\S\b";
-            string input = binary;
-            string cut = "";
-            RegexOptions options = RegexOptions.Multiline;
-
-            foreach (Match m in Regex.Matches(input, pattern, options))
-            {
-                //Console.WriteLine("'{0}' found at index {1}. 7", m.Value, m.Index);
-                cut = m.Value;
-            }
-
-            return Convert.ToInt32(cut, 2);
-
-        }
-        public int ReadProgrammspeicherInhalt3(int programminhalt)
-        {
-            string binary = Convert.ToString(programminhalt, 2); //transformiert in BIN
-            //Console.WriteLine(binary);
-
-            string pattern = @"^\S\S\S\S\S\S";
-            string input = binary;
-            string cut = "";
-            RegexOptions options = RegexOptions.Multiline;
-
-            foreach (Match m in Regex.Matches(input, pattern, options))
-            {
-                //Console.WriteLine("'{0}' found at index {1}.", m.Value, m.Index);
-                cut = m.Value;
-            }
-            int value = Convert.ToInt32(cut, 2) & 0b0000_0111;
-            return value;
-
-        }
-
-        public int ReadProgrammspeicherInhalt11(int programminhalt)
-        {
-            string binary = Convert.ToString(programminhalt, 2); //transformiert in BIN
-            //Console.WriteLine(binary);
-
-            string pattern = @"\d\d\d\d\d\d\d\d\d\d\d\b";
-            string input = binary;
-            string cut = "";
-            RegexOptions options = RegexOptions.Multiline;
-
-            foreach (Match m in Regex.Matches(input, pattern, options))
-            {
-                //Console.WriteLine("'{0}' found at index {1}.", m.Value, m.Index);
-                cut = m.Value;
-            }
-
-            return Convert.ToInt32(cut, 2);
-
-        }
-
         public int getFinalCut(int programminhalt)
         {
-            
-            int cutvalue = ReadProgrammspeicherInhalt7(programminhalt);
+
+            int cutvalue = man.ReadProgrammspeicherInhalt7(programminhalt);
             cutvalue = isIndirect(cutvalue);
             cutvalue = Bank(cutvalue);
             //Console.WriteLine("FinalCutMethode: " + cutvalue);
             return cutvalue;
-        }
-
-        public bool getDestination(int programminhalt)
-        {
-            int cutvalue = ReadProgrammspeicherInhalt(programminhalt);
-            bool destination;
-            destination = DestinationSet(cutvalue);
-            //Console.WriteLine("Destination: " + destination);
-            return destination;
         }
 
         //*********************************************
@@ -643,7 +531,7 @@ namespace Simulator
         public int addwf(int programminhalt, int programmcounter)
         {
             int cutvalue = getFinalCut(programminhalt);
-            bool destination = getDestination(programminhalt);
+            bool destination = man.getDestination(programminhalt);
 
             //Console.WriteLine("Final Cutvalue: " + cutvalue);
             int erg = 0;
@@ -695,7 +583,7 @@ namespace Simulator
         public int andwf(int programminhalt, int programmcounter)
         {
             int cutvalue = getFinalCut(programminhalt);
-            bool destination = getDestination(programminhalt);
+            bool destination = man.getDestination(programminhalt);
 
             //Console.WriteLine("Final Cutvalue: " + cutvalue);
 
@@ -718,7 +606,7 @@ namespace Simulator
 
         public int clrf(int programminhalt, int programmcounter)
         {
-            int cutvalue = ReadProgrammspeicherInhalt7(programminhalt);
+            int cutvalue = man.ReadProgrammspeicherInhalt7(programminhalt);
             cutvalue = isIndirect(cutvalue);
             cutvalue = Bank(cutvalue);
 
@@ -740,7 +628,7 @@ namespace Simulator
         public int comf(int programminhalt, int programmcounter)
         {
             int cutvalue = getFinalCut(programminhalt);
-            bool destination = getDestination(programminhalt);
+            bool destination = man.getDestination(programminhalt);
 
             //Console.WriteLine("Final Cutvalue: " + cutvalue);
 
@@ -770,7 +658,7 @@ namespace Simulator
         public int decf(int programminhalt, int programmcounter)
         {
             int cutvalue = getFinalCut(programminhalt);
-            bool destination = getDestination(programminhalt);
+            bool destination = man.getDestination(programminhalt);
 
             //Console.WriteLine("Final Cutvalue: " + cutvalue);
 
@@ -799,7 +687,7 @@ namespace Simulator
         public int decfsz(int programminhalt, int programmcounter)
         {
             int cutvalue = getFinalCut(programminhalt);
-            bool destination = getDestination(programminhalt);
+            bool destination = man.getDestination(programminhalt);
 
             //Console.WriteLine("Final Cutvalue: " + cutvalue);
             int erg;
@@ -857,7 +745,7 @@ namespace Simulator
         public int incf(int programminhalt, int programmcounter)
         {
             
-            bool destination = getDestination(programminhalt);
+            bool destination = man.getDestination(programminhalt);
             int cutvalue = getFinalCut(programminhalt);
 
             //Console.WriteLine("Final Cutvalue: " + cutvalue);
@@ -902,7 +790,7 @@ namespace Simulator
         public int incfsz(int programminhalt, int programmcounter)
         {
             int cutvalue = getFinalCut(programminhalt);
-            bool destination = getDestination(programminhalt);
+            bool destination = man.getDestination(programminhalt);
 
             //Console.WriteLine("Final Cutvalue: " + cutvalue);
             int erg;
@@ -969,7 +857,7 @@ namespace Simulator
         public int iorwf(int programminhalt, int programmcounter)
         {
             int cutvalue = getFinalCut(programminhalt);
-            bool destination = getDestination(programminhalt);
+            bool destination = man.getDestination(programminhalt);
 
             //Console.WriteLine("Final Cutvalue: " + cutvalue);
 
@@ -994,7 +882,7 @@ namespace Simulator
         public int movf(int programminhalt, int programmcounter)
         {
             int cutvalue = getFinalCut(programminhalt);
-            bool destination = getDestination(programminhalt);
+            bool destination = man.getDestination(programminhalt);
 
             //Console.WriteLine("Final Cutvalue: " + cutvalue);
 
@@ -1017,7 +905,7 @@ namespace Simulator
 
         public int movwf(int programminhalt, int programmcounter)
         {
-            int cutvalue = ReadProgrammspeicherInhalt7(programminhalt);
+            int cutvalue = man.ReadProgrammspeicherInhalt7(programminhalt);
             cutvalue = isIndirect(cutvalue);
             cutvalue = Bank(cutvalue);
 
@@ -1035,7 +923,7 @@ namespace Simulator
         public int rlf(int programminhalt, int c, int programmcounter)
         {
             int cutvalue = getFinalCut(programminhalt);
-            bool destination = getDestination(programminhalt);
+            bool destination = man.getDestination(programminhalt);
 
             //Console.WriteLine("Final Cutvalue: " + cutvalue);
 
@@ -1065,7 +953,7 @@ namespace Simulator
         public int rrf(int programminhalt, int c, int programmcounter)
         {
             int cutvalue = getFinalCut(programminhalt);
-            bool destination = getDestination(programminhalt);
+            bool destination = man.getDestination(programminhalt);
 
             //Console.WriteLine("Final Cutvalue: " + cutvalue);
             
@@ -1101,7 +989,7 @@ namespace Simulator
         public int subwf(int programminhalt, int programmcounter)
         {
             int cutvalue = getFinalCut(programminhalt);
-            bool destination = getDestination(programminhalt);
+            bool destination = man.getDestination(programminhalt);
 
             //Console.WriteLine("Final Cutvalue: " + cutvalue);
 
@@ -1133,7 +1021,7 @@ namespace Simulator
         public int swapf(int programminhalt, int programmcounter)
         {
             int cutvalue = getFinalCut(programminhalt);
-            bool destination = getDestination(programminhalt);
+            bool destination = man.getDestination(programminhalt);
 
             //Console.WriteLine("Final Cutvalue: " + cutvalue);
 
@@ -1154,7 +1042,7 @@ namespace Simulator
         public int xorwf(int programminhalt, int programmcounter)
         {
             int cutvalue = getFinalCut(programminhalt);
-            bool destination = getDestination(programminhalt);
+            bool destination = man.getDestination(programminhalt);
 
             //Console.WriteLine("Final Cutvalue: " + cutvalue);
 
@@ -1183,8 +1071,8 @@ namespace Simulator
 
         public int bcf(int programminhalt, int programmcounter)
         {
-            int cutvalue = ReadProgrammspeicherInhalt7(programminhalt);
-            int clearvalue = ReadProgrammspeicherInhalt3(programminhalt);
+            int cutvalue = man.ReadProgrammspeicherInhalt7(programminhalt);
+            int clearvalue = man.ReadProgrammspeicherInhalt3(programminhalt);
             Console.WriteLine("Bit Set an der Stelle:" + clearvalue);
             Console.WriteLine("Cutvalue " + cutvalue);
             cutvalue = Bank(cutvalue);
@@ -1294,8 +1182,8 @@ namespace Simulator
 
         public int bsf(int programminhalt, int programmcounter)
         {
-            int cutvalue = ReadProgrammspeicherInhalt7(programminhalt);
-            int clearvalue = ReadProgrammspeicherInhalt3(programminhalt);
+            int cutvalue = man.ReadProgrammspeicherInhalt7(programminhalt);
+            int clearvalue = man.ReadProgrammspeicherInhalt3(programminhalt);
             //Console.WriteLine("Bit Set an der Stelle:" + clearvalue);
             //Console.WriteLine("Cutvalue " + cutvalue);
             cutvalue = Bank(cutvalue);
@@ -1408,8 +1296,8 @@ namespace Simulator
 
         public int btfsc(int programminhalt, int programmcounter)
         {
-            int cutvalue = ReadProgrammspeicherInhalt7(programminhalt);
-            int clearvalue = ReadProgrammspeicherInhalt3(programminhalt);
+            int cutvalue = man.ReadProgrammspeicherInhalt7(programminhalt);
+            int clearvalue = man.ReadProgrammspeicherInhalt3(programminhalt);
             //Console.WriteLine("Bit Test an der Stelle:" + clearvalue);
             cutvalue = isIndirect(cutvalue);
             cutvalue = Bank(cutvalue);
@@ -1438,8 +1326,8 @@ namespace Simulator
 
         public int btfss(int programminhalt, int programmcounter)
         {
-            int cutvalue = ReadProgrammspeicherInhalt7(programminhalt);
-            int clearvalue = ReadProgrammspeicherInhalt3(programminhalt);
+            int cutvalue = man.ReadProgrammspeicherInhalt7(programminhalt);
+            int clearvalue = man.ReadProgrammspeicherInhalt3(programminhalt);
             //Console.WriteLine("Bit Test an der Stelle;", clearvalue);
             cutvalue = isIndirect(cutvalue);
             cutvalue = Bank(cutvalue);
@@ -1469,21 +1357,21 @@ namespace Simulator
         //*********************************************
         public int addlw(int programminhalt, int programmcounter)
         {
-            int cutvalue = ReadProgrammspeicherInhalt(programminhalt);
+            int cutvalue = man.ReadProgrammspeicherInhalt(programminhalt);
 
             int res = (w + cutvalue) & 0b1111_1111;
 
             ChangeZ(res);
-            ChangeC(w+ cutvalue);
+            ChangeC(w + cutvalue);
             ChangeDCADD(w, cutvalue);
-            w = (byte) res;
+            w = (byte)res;
 
             return isInterrupt(programmcounter);
         }
 
         public int andlw(int programminhalt, int programmcounter)
         {
-            int cutvalue = ReadProgrammspeicherInhalt(programminhalt);
+            int cutvalue = man.ReadProgrammspeicherInhalt(programminhalt);
 
             int inhaltw = w;
 
@@ -1491,13 +1379,13 @@ namespace Simulator
 
             ChangeZ(erg);
 
-            w = (byte) erg;
+            w = (byte)erg;
 
             return isInterrupt(programmcounter);
         }
-        public int call(int programminhalt, int programmcounter) 
+        public int call(int programminhalt, int programmcounter)
         {
-            int cutvalue = ReadProgrammspeicherInhalt11(programminhalt);
+            int cutvalue = man.ReadProgrammspeicherInhalt11(programminhalt);
 
             //Console.WriteLine("Programmcounter: " + programmcounter);
             push(programmcounter);
@@ -1551,19 +1439,19 @@ namespace Simulator
             {
                 return 3;
             }
-            return cutvalue -1;
+            return cutvalue - 1;
         }
 
         public int iorlw(int programminhalt, int programmcounter)
         {
-            int cutvalue = ReadProgrammspeicherInhalt(programminhalt);
+            int cutvalue = man.ReadProgrammspeicherInhalt(programminhalt);
             //Console.WriteLine(cutvalue);
 
             string inhw = Convert.ToString(w, 2);
             int inhaltw = Convert.ToInt32(inhw, 2);
             //Console.WriteLine(inhaltw);
 
-            w = (byte) (cutvalue | inhaltw);
+            w = (byte)(cutvalue | inhaltw);
 
             ChangeZ(w);
 
@@ -1572,9 +1460,9 @@ namespace Simulator
 
         public int movlw(int programminhalt, int programmcounter) //kommt als DEC an 
         {
-            int cutvalue = ReadProgrammspeicherInhalt(programminhalt);
+            int cutvalue = man.ReadProgrammspeicherInhalt(programminhalt);
 
-            w = (byte) cutvalue;
+            w = (byte)cutvalue;
 
             return isInterrupt(programmcounter);
         }
@@ -1582,12 +1470,12 @@ namespace Simulator
         public int retfie(int programminhalt, int programmcounter)
         {
             int GIEset = Bank1[11] & 0b1000_0000;
-            Bank1[11] = (byte) (Bank1[11] | 0b1000_0000);
+            Bank1[11] = (byte)(Bank1[11] | 0b1000_0000);
             Bank1[139] = (byte)(Bank1[139] | 0b1000_0000);
             if (GIEset == 128)
             {
                 Console.WriteLine("Nothing to do");
-                
+
                 return pop();
             }
             else
@@ -1608,9 +1496,9 @@ namespace Simulator
 
         public int retlw(int programminhalt, int programmcounter)
         {
-            int cutvalue = ReadProgrammspeicherInhalt(programminhalt);
+            int cutvalue = man.ReadProgrammspeicherInhalt(programminhalt);
 
-            w = (byte) cutvalue;
+            w = (byte)cutvalue;
             Console.WriteLine(w);
             if (calcTMR(programmcounter) == 4)
             {
@@ -1645,14 +1533,14 @@ namespace Simulator
                 Bank1[3] = (byte)(Bank1[3] & 0b1111_0111);
                 Bank1[131] = (byte)(Bank1[131] & 0b1111_0111);
             }
-            
+
 
             if (getTO() == 0)
             {
                 Bank1[3] = (byte)(Bank1[3] | 0b0001_0000);
                 Bank1[131] = (byte)(Bank1[131] | 0b0001_0000);
             }
-            
+
 
             watchdog = 0;
             calcWTD();
@@ -1662,56 +1550,27 @@ namespace Simulator
 
         public int sublw(int programminhalt, int programmcounter)
         {
-            int cutvalue = ReadProgrammspeicherInhalt(programminhalt);
+            int cutvalue = man.ReadProgrammspeicherInhalt(programminhalt);
 
             int res = (cutvalue - w) & 0b1111_1111;
 
             ChangeZ(res);
-            ChangeCSUB(cutvalue-w);
+            ChangeCSUB(cutvalue - w);
             ChangeDCSUB(w, cutvalue);
 
-            w = (byte) res;
+            w = (byte)res;
 
             return isInterrupt(programmcounter);
         }
 
         public int xorlw(int programminhalt, int programmcounter)
         {
-            int cutvalue = ReadProgrammspeicherInhalt(programminhalt);
+            int cutvalue = man.ReadProgrammspeicherInhalt(programminhalt);
 
-            w ^= (byte) cutvalue;
+            w ^= (byte)cutvalue;
             ChangeZ(w);
 
             return isInterrupt(programmcounter);
-        }
-
-        //*********************************************
-        //GUI Zeug
-        //*********************************************
-
-        public int getIRP()
-        {
-            int erg = Bank1[3] & 0b1000_0000;
-            if(erg == 128)
-            {
-                return 1;
-            }
-            else
-            {
-                return 0;
-            }
-        }
-        public int getRP1()
-        {
-            int erg = Bank1[3] & 0b0100_0000;
-            if (erg == 64)
-            {
-                return 1;
-            }
-            else
-            {
-                return 0;
-            }
         }
 
         public int getRP0()
@@ -1753,32 +1612,7 @@ namespace Simulator
             }
         }
 
-        public int getZ()
-        {
-            int erg = Bank1[3] & 0b0000_0100;
-            if (erg == 4)
-            {
-                return 1;
-            }
-            else
-            {
-                return 0;
-            }
-        }
-
-        public int getDC()
-        {
-            int erg = Bank1[3] & 0b0000_0010;
-            if (erg == 2)
-            {
-                return 1;
-            }
-            else
-            {
-                return 0;
-            }
-        }
-
+        
         public int getC()
         {
             int erg = Bank1[3] & 0b0000_0001;
@@ -1791,50 +1625,11 @@ namespace Simulator
                 return 0;
             }
         }
-
-        //Get Option Bits
-        public int getRPu()
-        {
-            int erg = Bank1[129] & 0b1000_0000;
-            if (erg == 128)
-            {
-                return 1;
-            }
-            else
-            {
-                return 0;
-            }
-        }
+        
         public int getIEg()
         {
             int erg = Bank1[129] & 0b0100_0000;
             if (erg == 64)
-            {
-                return 1;
-            }
-            else
-            {
-                return 0;
-            }
-        }
-
-        public int getTCs()
-        {
-            int erg = Bank1[129] & 0b0010_0000;
-            if (erg == 32)
-            {
-                return 1;
-            }
-            else
-            {
-                return 0;
-            }
-        }
-
-        public int getTSe()
-        {
-            int erg = Bank1[129] & 0b0001_0000;
-            if (erg == 16)
             {
                 return 1;
             }
@@ -1896,7 +1691,6 @@ namespace Simulator
             }
         }
 
-        //Get INTCON Bits
         public int getGIE()
         {
             int erg = Bank1[11] & 0b1000_0000;
@@ -1908,307 +1702,6 @@ namespace Simulator
             {
                 return 0;
             }
-        }
-        public int getEIE()
-        {
-            int erg = Bank1[11] & 0b0100_0000;
-            if (erg == 64)
-            {
-                return 1;
-            }
-            else
-            {
-                return 0;
-            }
-        }
-
-        public int getTIE()
-        {
-            int erg = Bank1[11] & 0b0010_0000;
-            if (erg == 32)
-            {
-                return 1;
-            }
-            else
-            {
-                return 0;
-            }
-        }
-
-        public int getIE()
-        {
-            int erg = Bank1[11] & 0b0001_0000;
-            if (erg == 16)
-            {
-                return 1;
-            }
-            else
-            {
-                return 0;
-            }
-        }
-
-        public int getRIE()
-        {
-            int erg = Bank1[11] & 0b0000_1000;
-            if (erg == 8)
-            {
-                return 1;
-            }
-            else
-            {
-                return 0;
-            }
-        }
-
-        public int getTIF()
-        {
-            int erg = Bank1[11] & 0b0000_0100;
-            if (erg == 4)
-            {
-                return 1;
-            }
-            else
-            {
-                return 0;
-            }
-        }
-
-        public int getIF()
-        {
-            int erg = Bank1[11] & 0b0000_0010;
-            if (erg == 2)
-            {
-                return 1;
-            }
-            else
-            {
-                return 0;
-            }
-        }
-
-        public int getRIF()
-        {
-            int erg = Bank1[11] & 0b0000_0001;
-            if (erg == 1)
-            {
-                return 1;
-            }
-            else
-            {
-                return 0;
-            }
-        }
-
-        public int getW()
-        {
-            return w;
-        }
-
-        public int getFSR()
-        {
-            return Bank1[4];
-        }
-
-        public int getStatus()
-        {
-            return Bank1[3];
-        }
-
-        public int getOption()
-        {
-            return Bank1[129];
-        }
-
-        public int getStack1()
-        {
-            return stack[0];
-        }
-        public int getStack2()
-        {
-            return stack[1];
-        }
-        public int getStack3()
-        {
-            return stack[2];
-        }
-        public int getStack4()
-        {
-            return stack[3];
-        }
-        public int getStack5()
-        {
-            return stack[4];
-        }
-        public int getStack6()
-        {
-            return stack[5];
-        }
-        public int getStack7()
-        {
-            return stack[6];
-        }
-        public int getStack8()
-        {
-            return stack[7];
-        }
-
-        public int getTrisA()
-        {
-            return Bank1[133];
-        }
-
-        public int getTrisB()
-        {
-            Console.WriteLine("TrisB" + Bank1[134]);
-            return Bank1[134];
-        }
-
-        public int Pinbelegung(int portA, int portB, int programmcounter)
-        {
-            byte portAvorher = (byte) Bank1[5];
-            byte portBvorher = (byte) Bank1[6];
-            Bank1[5] = (byte) portA;
-            Bank1[6] = (byte) portB;
-            bool rb0int = false;
-            bool rbint  = false ;
-            //int ursprung = stack[0];
-
-            if (getIEg() == 1)
-            {
-                //steigende 
-                if ((portBvorher & 0b0000_0001) == 0 && (portB & 0b0000_0001) == 1)
-                {
-                    Bank1[11] |= 0b0000_0010;
-
-                    if (getGIE() ==1 && getIE() == 1)
-                    {
-                        rb0int = RB0Interrupt(portA, portB, programmcounter);
-                    }
-                    
-                }
-            }
-            else
-            {
-                //fallende
-                if ((portBvorher & 0b0000_0001) == 1 && (portB & 0b0000_0001) == 0)
-                {
-                    Bank1[11] |= 0b0000_0010;
-
-                    if (getGIE() == 1 && getIE() == 1)
-                    {
-                        rb0int = RB0Interrupt(portA, portB, programmcounter);
-                    }
-                }
-            }
-
-
-            
-            //rbint = RBInterrupt(portAvorher, programmcounter);
-
-            if (rb0int)
-            {
-                return 4;
-            }
-
-            if (rbint)
-            {
-                return 4;
-            }
-            
-            //Console.WriteLine("PortA: " + Bank1[5]);
-            //Console.WriteLine("PortB: " + Bank1[6]);
-            return programmcounter;
-        }
-
-        public bool RB0Interrupt(int portA, int portB, int programmcounter)
-        {
-            int eingang = Bank1[134] & 0b0000_0001;
-
-            if (eingang == 1)
-            {
-                            Console.WriteLine("RB0 Interrupt");
-                            //RB0 Interruptflag
-                            Bank1[11] = (byte)(Bank1[11] | 0b0000_0010);
-                            Bank1[139] = (byte)(Bank1[139] | 0b0000_0010);
-
-                            Bank1[11] = (byte)(Bank1[11] & 0b0111_1111);
-                            Bank1[139] = (byte)(Bank1[139] & 0b0111_1111);
-                            push(programmcounter);
-                            return true;
-            }
-
-            return false;
-        }
-
-        public bool RBInterrupt(int portAvorher, int programmcounter)
-        {
-            int eingang = Bank1[134] & 0b1111_0000;
-
-
-
-            if (eingang != 0 )
-            {
-                if (getGIE() == 1)
-                {
-                    if (getRIE() == 1)
-                    {
-                        Console.WriteLine("RB Interrupt");
-
-                        int interrupt = Bank1[6] & 0b1111_0000;
-                        if (16 <= interrupt && interrupt <= 128)
-                        {
-                            Console.WriteLine("RB Interrupt");
-                            //RB0 Interruptflag
-                            Bank1[11] = (byte)(Bank1[11] | 0b0000_0001);
-                            Bank1[139] = (byte)(Bank1[139] | 0b0000_0001);
-                            
-                            Bank1[11] = (byte)(Bank1[11] & 0b0111_1111);
-                            Bank1[139] = (byte)(Bank1[139] & 0b0111_1111);
-                            push(programmcounter);
-                            return true;
-                        }
-                    }
-                }
-
-            }
-
-            return false;
-        }
-
-        public int GetPortA()
-        {
-            return Bank1[5];
-        }
-
-        public int GetPortB()
-        {
-            return Bank1[6];
-        }
-
-        public float getWatchdog()
-        {
-            return watchdog;
-        }
-
-        public int getBankInhalt(int stelle)
-        {
-            return Bank1[stelle];
-        }
-
-        public int getPrescalerGUI()
-        {
-            return prescaler;
-        }
-
-        public int getTimer0()
-        {
-            return Bank1[1];
-        }
-
-        public void updateFile(int speicherstelle, int wert)
-        {
-            Bank1[speicherstelle] = (byte) wert;
         }
     }
 }

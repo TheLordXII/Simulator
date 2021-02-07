@@ -77,33 +77,6 @@ namespace Simulator
         }
 
         [TestMethod]
-        public void TestOperationen_ClearW()
-        {
-            //Arrange
-            Operationen operation = new Operationen();
-
-            //Act
-            operation.clearW();
-
-            //Assert
-            Assert.AreEqual(0, operation.w);
-        }
-
-        [TestMethod]
-        public void TestOperationen_ExtractRP0()
-        {
-            //Arrange
-            Operationen operation = new Operationen();
-            operation.Bank1[3] = 0b0001_1000;
-
-            //Act
-            int ergebnis = operation.ExtractRP0();
-
-            //Assert
-            Assert.AreEqual(16, ergebnis);
-        }
-
-        [TestMethod]
         public void TestOperationen_ChangeZ()
         {
             //Arrange
@@ -221,10 +194,11 @@ namespace Simulator
         {
             //Arrange
             Operationen operation = new Operationen();
+            Management man = new Management();
             int cutvalue = 128;
 
             //Act
-            bool result = operation.DestinationSet(cutvalue);
+            bool result = man.DestinationSet(cutvalue);
 
             //Assert
             Assert.IsTrue(result);
@@ -289,13 +263,28 @@ namespace Simulator
         {
             //Arrange
             Operationen operation = new Operationen();
-            
+
 
             //Act
             operation.calcWTD();
 
             //Assert
             Assert.AreEqual(1, operation.watchdog);
+        }
+
+        [TestMethod]
+        public void TestOperationen_IsInterrupt()
+        {
+            //Arrange
+            Operationen operation = new Operationen();
+            operation.Bank1[11] = 0b1000_0000;
+
+
+            //Act
+            int res = operation.isInterrupt(3);
+
+            //Assert
+            Assert.AreEqual(3, res);
         }
 
         [TestMethod]
@@ -320,10 +309,11 @@ namespace Simulator
         {
             //Arrange
             Operationen operation = new Operationen();
+            Management man = new Management();
             int programminhalt = 1793;
 
             //Act
-            int result = operation.ReadProgrammspeicherInhalt(programminhalt);
+            int result = man.ReadProgrammspeicherInhalt(programminhalt);
 
             //Assert
             Assert.AreEqual(1, result);
@@ -334,10 +324,11 @@ namespace Simulator
         {
             //Arrange
             Operationen operation = new Operationen();
+            Management man = new Management();
             int programminhalt = 385;
 
             //Act
-            int result = operation.ReadProgrammspeicherInhalt7(programminhalt);
+            int result = man.ReadProgrammspeicherInhalt7(programminhalt);
 
             //Assert
             Assert.AreEqual(1, result);
@@ -348,10 +339,11 @@ namespace Simulator
         {
             //Arrange
             Operationen operation = new Operationen();
+            Management man = new Management();
             int programminhalt = 1793;
 
             //Act
-            int result = operation.ReadProgrammspeicherInhalt7(programminhalt);
+            int result = man.ReadProgrammspeicherInhalt7(programminhalt);
 
             //Assert
             Assert.AreEqual(1, result);
@@ -362,10 +354,11 @@ namespace Simulator
         {
             //Arrange
             Operationen operation = new Operationen();
+            Management man = new Management();
             int programminhalt = 1793;
 
             //Act
-            int result = operation.ReadProgrammspeicherInhalt7(programminhalt);
+            int result = man.ReadProgrammspeicherInhalt7(programminhalt);
 
             //Assert
             Assert.AreEqual(1, result);
@@ -390,10 +383,11 @@ namespace Simulator
         {
             //Arrange
             Operationen operation = new Operationen();
+            Management man = new Management();
             int programminhalt = 1793;
 
             //Act
-            bool result = operation.getDestination(programminhalt);
+            bool result = man.getDestination(programminhalt);
 
             //Assert
             Assert.IsFalse(result);

@@ -273,7 +273,7 @@ namespace Simulator
                     if (cbPinB6.Checked == true) { portB += 64; };
                     if (cbPinB7.Checked == true) { portB += 128; };
 
-                    umwandlung.programmcounter = umwandlung.operation.Pinbelegung(portA, portB, umwandlung.programmcounter);
+                    umwandlung.programmcounter = umwandlung.gui.Pinbelegung(portA, portB, umwandlung.programmcounter);
 
                 }
 
@@ -285,65 +285,65 @@ namespace Simulator
         public void UpdateSFR()
         {
             //Status
-            lblIRP.Text = Convert.ToString(umwandlung.operation.getIRP());
-            lblRP1.Text = Convert.ToString(umwandlung.operation.getRP1());
+            lblIRP.Text = Convert.ToString(umwandlung.gui.getIRP());
+            lblRP1.Text = Convert.ToString(umwandlung.gui.getRP1());
             lblRP0.Text = Convert.ToString(umwandlung.operation.getRP0());
             lblTO.Text = Convert.ToString(umwandlung.operation.getTO());
             lblPD.Text = Convert.ToString(umwandlung.operation.getPD());
-            lblZ.Text = Convert.ToString(umwandlung.operation.getZ());
-            lblDC.Text = Convert.ToString(umwandlung.operation.getDC());
+            lblZ.Text = Convert.ToString(umwandlung.gui.getZ());
+            lblDC.Text = Convert.ToString(umwandlung.gui.getDC());
             lblC.Text = Convert.ToString(umwandlung.operation.getC());
             //Option
-            lblRPu.Text = Convert.ToString(umwandlung.operation.getRPu());
+            lblRPu.Text = Convert.ToString(umwandlung.gui.getRPu());
             lblIEg.Text = Convert.ToString(umwandlung.operation.getIEg());
-            lblTCs.Text = Convert.ToString(umwandlung.operation.getTCs());
-            lblTSe.Text = Convert.ToString(umwandlung.operation.getTSe());
+            lblTCs.Text = Convert.ToString(umwandlung.gui.getTCs());
+            lblTSe.Text = Convert.ToString(umwandlung.gui.getTSe());
             lblPSA.Text = Convert.ToString(umwandlung.operation.getPSA());
             lblPS2.Text = Convert.ToString(umwandlung.operation.getPS2());
             lblPS1.Text = Convert.ToString(umwandlung.operation.getPS1());
             lblPS0.Text = Convert.ToString(umwandlung.operation.getPS0());
             //Intcon
             lblGIE.Text = Convert.ToString(umwandlung.operation.getGIE());
-            lblEIE.Text = Convert.ToString(umwandlung.operation.getEIE());
-            lblTIE.Text = Convert.ToString(umwandlung.operation.getTIE());
-            lblIE.Text = Convert.ToString(umwandlung.operation.getIE());
-            lblRIE.Text = Convert.ToString(umwandlung.operation.getRIE());
-            lblTIF.Text = Convert.ToString(umwandlung.operation.getTIF());
-            lblIF.Text = Convert.ToString(umwandlung.operation.getIF());
-            lblRIF.Text = Convert.ToString(umwandlung.operation.getRIF());
+            lblEIE.Text = Convert.ToString(umwandlung.gui.getEIE());
+            lblTIE.Text = Convert.ToString(umwandlung.gui.getTIE());
+            lblIE.Text = Convert.ToString(umwandlung.gui.getIE());
+            lblRIE.Text = Convert.ToString(umwandlung.gui.getRIE());
+            lblTIF.Text = Convert.ToString(umwandlung.gui.getTIF());
+            lblIF.Text = Convert.ToString(umwandlung.gui.getIF());
+            lblRIF.Text = Convert.ToString(umwandlung.gui.getRIF());
         }
 
         public void UpdateRegisterinhalt()
         {
-            lblWReg.Text = Convert.ToString(umwandlung.operation.getW());
+            lblWReg.Text = Convert.ToString(umwandlung.gui.getW());
             lblPCIntern.Text = Convert.ToString(umwandlung.getPCIntern());
             lblPCL.Text = Convert.ToString(umwandlung.getPCL());
             lblPCLATCH.Text = Convert.ToString(umwandlung.getPCLATCH());
-            lblStatus.Text = Convert.ToString(umwandlung.operation.getStatus());
-            lblFSR.Text = Convert.ToString(umwandlung.operation.getFSR());
-            lblOption.Text = Convert.ToString(umwandlung.operation.getOption());
-            lblVorteiler.Text = "1:" + Convert.ToString(umwandlung.operation.getPrescalerGUI());
-            lblTimer0.Text = Convert.ToString(umwandlung.operation.getTimer0());
+            lblStatus.Text = Convert.ToString(umwandlung.gui.getStatus());
+            lblFSR.Text = Convert.ToString(umwandlung.gui.getFSR());
+            lblOption.Text = Convert.ToString(umwandlung.gui.getOption());
+            lblVorteiler.Text = "1:" + Convert.ToString(umwandlung.gui.getPrescalerGUI());
+            lblTimer0.Text = Convert.ToString(umwandlung.gui.getTimer0());
         }
 
         public void UpdateStack()
         {
-            lblStack1.Text = Convert.ToString(umwandlung.operation.getStack1());
-            lblStack2.Text = Convert.ToString(umwandlung.operation.getStack2());
-            lblStack3.Text = Convert.ToString(umwandlung.operation.getStack3());
-            lblStack4.Text = Convert.ToString(umwandlung.operation.getStack4());
-            lblStack5.Text = Convert.ToString(umwandlung.operation.getStack5());
-            lblStack6.Text = Convert.ToString(umwandlung.operation.getStack6());
-            lblStack7.Text = Convert.ToString(umwandlung.operation.getStack7());
-            lblStack8.Text = Convert.ToString(umwandlung.operation.getStack8());
+            lblStack1.Text = Convert.ToString(umwandlung.gui.getStack1());
+            lblStack2.Text = Convert.ToString(umwandlung.gui.getStack2());
+            lblStack3.Text = Convert.ToString(umwandlung.gui.getStack3());
+            lblStack4.Text = Convert.ToString(umwandlung.gui.getStack4());
+            lblStack5.Text = Convert.ToString(umwandlung.gui.getStack5());
+            lblStack6.Text = Convert.ToString(umwandlung.gui.getStack6());
+            lblStack7.Text = Convert.ToString(umwandlung.gui.getStack7());
+            lblStack8.Text = Convert.ToString(umwandlung.gui.getStack8());
         }
 
         public void UpdateTris()
         {
-            int trisA = umwandlung.operation.getTrisA();
-            int trisB = umwandlung.operation.getTrisB();
-            int portA = umwandlung.operation.GetPortA();
-            int portB = umwandlung.operation.GetPortB();
+            int trisA = umwandlung.gui.getTrisA();
+            int trisB = umwandlung.gui.getTrisB();
+            int portA = umwandlung.gui.GetPortA();
+            int portB = umwandlung.gui.GetPortB();
 
             Console.WriteLine("TrisA" + trisA);
             Console.WriteLine("TrisB" + trisB);
@@ -394,7 +394,7 @@ namespace Simulator
 
         public void UpdateTiming()
         {
-            lblWatchdog.Text = Convert.ToString(umwandlung.operation.getWatchdog());
+            lblWatchdog.Text = Convert.ToString(umwandlung.gui.getWatchdog());
             double result = 0;
             Console.WriteLine("CBQUARZ" + cbQuarz.SelectedIndex);
 
@@ -436,7 +436,7 @@ namespace Simulator
                 for (int j = 0; j <= 7; j++)
                 {
                     int stelle = i + j;
-                    inhaltrow[j] = umwandlung.operation.getBankInhalt(stelle);
+                    inhaltrow[j] = umwandlung.gui.getBankInhalt(stelle);
                 }
 
                 string[] row =
@@ -461,10 +461,10 @@ namespace Simulator
 
         public void UpdateTrisThread()
         {
-            int trisA = umwandlung.operation.getTrisA();
-            int trisB = umwandlung.operation.getTrisB();
-            int portA = umwandlung.operation.GetPortA();
-            int portB = umwandlung.operation.GetPortB();
+            int trisA = umwandlung.gui.getTrisA();
+            int trisB = umwandlung.gui.getTrisB();
+            int portA = umwandlung.gui.GetPortA();
+            int portB = umwandlung.gui.GetPortB();
 
             if ((trisA & 0b0000_0001) == 1) { cbTrisA0.Invoke(new Action(() => cbTrisA0.Checked = true)); } else { cbTrisA0.Invoke(new Action(() => cbTrisA0.Checked = false)); }
             if ((trisA & 0b0000_0010) == 2) { cbTrisA1.Invoke(new Action(() => cbTrisA1.Checked = true)); } else { cbTrisA1.Invoke(new Action(() => cbTrisA1.Checked = false)); }
@@ -523,58 +523,58 @@ namespace Simulator
 
         public void UpdateRegisterinhaltThread()
         {
-            lblWReg.Invoke(new Action(() => lblWReg.Text = Convert.ToString(umwandlung.operation.getW())));
+            lblWReg.Invoke(new Action(() => lblWReg.Text = Convert.ToString(umwandlung.gui.getW())));
             lblPCIntern.Invoke(new Action(() => lblPCIntern.Text = Convert.ToString(umwandlung.getPCIntern())));
             lblPCL.Invoke(new Action(() => lblPCL.Text = Convert.ToString(umwandlung.getPCL())));
             lblPCLATCH.Invoke(new Action(() => lblPCLATCH.Text = Convert.ToString(umwandlung.getPCLATCH())));
-            lblStatus.Invoke(new Action(() => lblStatus.Text = Convert.ToString(umwandlung.operation.getStatus())));
-            lblFSR.Invoke(new Action(() => lblFSR.Text = Convert.ToString(umwandlung.operation.getFSR())));
-            lblOption.Invoke(new Action(() => lblOption.Text = Convert.ToString(umwandlung.operation.getOption())));
-            lblVorteiler.Invoke(new Action(() => lblVorteiler.Text = "1:" + Convert.ToString(umwandlung.operation.getPrescalerGUI())));
-            lblTimer0.Invoke(new Action(() => lblTimer0.Text = Convert.ToString(umwandlung.operation.getTimer0())));
+            lblStatus.Invoke(new Action(() => lblStatus.Text = Convert.ToString(umwandlung.gui.getStatus())));
+            lblFSR.Invoke(new Action(() => lblFSR.Text = Convert.ToString(umwandlung.gui.getFSR())));
+            lblOption.Invoke(new Action(() => lblOption.Text = Convert.ToString(umwandlung.gui.getOption())));
+            lblVorteiler.Invoke(new Action(() => lblVorteiler.Text = "1:" + Convert.ToString(umwandlung.gui.getPrescalerGUI())));
+            lblTimer0.Invoke(new Action(() => lblTimer0.Text = Convert.ToString(umwandlung.gui.getTimer0())));
         }
 
         public void UpdateSFRThread()
         {
             //Status
-            lblIRP.Invoke(new Action(() => lblIRP.Text = Convert.ToString(umwandlung.operation.getIRP())));
-            lblRP1.Invoke(new Action(() => lblRP1.Text = Convert.ToString(umwandlung.operation.getRP1())));
+            lblIRP.Invoke(new Action(() => lblIRP.Text = Convert.ToString(umwandlung.gui.getIRP())));
+            lblRP1.Invoke(new Action(() => lblRP1.Text = Convert.ToString(umwandlung.gui.getRP1())));
             lblRP0.Invoke(new Action(() => lblRP0.Text = Convert.ToString(umwandlung.operation.getRP0())));
             lblTO.Invoke(new Action(() => lblTO.Text = Convert.ToString(umwandlung.operation.getTO())));
             lblPD.Invoke(new Action(() => lblPD.Text = Convert.ToString(umwandlung.operation.getPD())));
-            lblZ.Invoke(new Action(() => lblZ.Text = Convert.ToString(umwandlung.operation.getZ())));
-            lblDC.Invoke(new Action(() => lblDC.Text = Convert.ToString(umwandlung.operation.getDC())));
+            lblZ.Invoke(new Action(() => lblZ.Text = Convert.ToString(umwandlung.gui.getZ())));
+            lblDC.Invoke(new Action(() => lblDC.Text = Convert.ToString(umwandlung.gui.getDC())));
             lblC.Invoke(new Action(() => lblC.Text = Convert.ToString(umwandlung.operation.getC())));
             //Option
-            lblRPu.Invoke(new Action(() => lblRPu.Text = Convert.ToString(umwandlung.operation.getRPu())));
+            lblRPu.Invoke(new Action(() => lblRPu.Text = Convert.ToString(umwandlung.gui.getRPu())));
             lblIEg.Invoke(new Action(() => lblIEg.Text = Convert.ToString(umwandlung.operation.getIEg())));
-            lblTCs.Invoke(new Action(() => lblTCs.Text = Convert.ToString(umwandlung.operation.getTCs())));
-            lblTSe.Invoke(new Action(() => lblTSe.Text = Convert.ToString(umwandlung.operation.getTSe())));
+            lblTCs.Invoke(new Action(() => lblTCs.Text = Convert.ToString(umwandlung.gui.getTCs())));
+            lblTSe.Invoke(new Action(() => lblTSe.Text = Convert.ToString(umwandlung.gui.getTSe())));
             lblPSA.Invoke(new Action(() => lblPSA.Text = Convert.ToString(umwandlung.operation.getPSA())));
             lblPS2.Invoke(new Action(() => lblPS2.Text = Convert.ToString(umwandlung.operation.getPS2())));
             lblPS1.Invoke(new Action(() => lblPS1.Text = Convert.ToString(umwandlung.operation.getPS1())));
             lblPS0.Invoke(new Action(() => lblPS0.Text = Convert.ToString(umwandlung.operation.getPS0())));
             //Intcon
             lblGIE.Invoke(new Action(() => lblGIE.Text = Convert.ToString(umwandlung.operation.getGIE())));
-            lblEIE.Invoke(new Action(() => lblEIE.Text = Convert.ToString(umwandlung.operation.getEIE())));
-            lblTIE.Invoke(new Action(() => lblTIE.Text = Convert.ToString(umwandlung.operation.getTIE())));
-            lblIE.Invoke(new Action(() => lblIE.Text = Convert.ToString(umwandlung.operation.getIE())));
-            lblRIE.Invoke(new Action(() => lblRIE.Text = Convert.ToString(umwandlung.operation.getRIE())));
-            lblTIF.Invoke(new Action(() => lblTIF.Text = Convert.ToString(umwandlung.operation.getTIF())));
-            lblIF.Invoke(new Action(() => lblIF.Text = Convert.ToString(umwandlung.operation.getIF())));
-            lblRIF.Invoke(new Action(() => lblRIF.Text = Convert.ToString(umwandlung.operation.getRIF())));
+            lblEIE.Invoke(new Action(() => lblEIE.Text = Convert.ToString(umwandlung.gui.getEIE())));
+            lblTIE.Invoke(new Action(() => lblTIE.Text = Convert.ToString(umwandlung.gui.getTIE())));
+            lblIE.Invoke(new Action(() => lblIE.Text = Convert.ToString(umwandlung.gui.getIE())));
+            lblRIE.Invoke(new Action(() => lblRIE.Text = Convert.ToString(umwandlung.gui.getRIE())));
+            lblTIF.Invoke(new Action(() => lblTIF.Text = Convert.ToString(umwandlung.gui.getTIF())));
+            lblIF.Invoke(new Action(() => lblIF.Text = Convert.ToString(umwandlung.gui.getIF())));
+            lblRIF.Invoke(new Action(() => lblRIF.Text = Convert.ToString(umwandlung.gui.getRIF())));
         }
 
         public void UpdateStackThread()
         {
-            lblStack1.Invoke(new Action(() => lblStack1.Text = Convert.ToString(umwandlung.operation.getStack1())));
-            lblStack2.Invoke(new Action(() => lblStack2.Text = Convert.ToString(umwandlung.operation.getStack2())));
-            lblStack3.Invoke(new Action(() => lblStack3.Text = Convert.ToString(umwandlung.operation.getStack3())));
-            lblStack4.Invoke(new Action(() => lblStack4.Text = Convert.ToString(umwandlung.operation.getStack4())));
-            lblStack5.Invoke(new Action(() => lblStack5.Text = Convert.ToString(umwandlung.operation.getStack5())));
-            lblStack6.Invoke(new Action(() => lblStack6.Text = Convert.ToString(umwandlung.operation.getStack6())));
-            lblStack7.Invoke(new Action(() => lblStack7.Text = Convert.ToString(umwandlung.operation.getStack7())));
-            lblStack8.Invoke(new Action(() => lblStack8.Text = Convert.ToString(umwandlung.operation.getStack8())));
+            lblStack1.Invoke(new Action(() => lblStack1.Text = Convert.ToString(umwandlung.gui.getStack1())));
+            lblStack2.Invoke(new Action(() => lblStack2.Text = Convert.ToString(umwandlung.gui.getStack2())));
+            lblStack3.Invoke(new Action(() => lblStack3.Text = Convert.ToString(umwandlung.gui.getStack3())));
+            lblStack4.Invoke(new Action(() => lblStack4.Text = Convert.ToString(umwandlung.gui.getStack4())));
+            lblStack5.Invoke(new Action(() => lblStack5.Text = Convert.ToString(umwandlung.gui.getStack5())));
+            lblStack6.Invoke(new Action(() => lblStack6.Text = Convert.ToString(umwandlung.gui.getStack6())));
+            lblStack7.Invoke(new Action(() => lblStack7.Text = Convert.ToString(umwandlung.gui.getStack7())));
+            lblStack8.Invoke(new Action(() => lblStack8.Text = Convert.ToString(umwandlung.gui.getStack8())));
         }
 
         public void UpdateFileThread()
@@ -594,7 +594,7 @@ namespace Simulator
                 for (int j = 0; j <= 7; j++)
                 {
                     int stelle = i + j;
-                    inhaltrow[j] = umwandlung.operation.getBankInhalt(stelle);
+                    inhaltrow[j] = umwandlung.gui.getBankInhalt(stelle);
                 }
 
                 string[] row =
@@ -616,7 +616,7 @@ namespace Simulator
 
         public void UpdateTimingThread()
         {
-            lblWatchdog.Invoke(new Action(() => lblWatchdog.Text = Convert.ToString(umwandlung.operation.getWatchdog())));
+            lblWatchdog.Invoke(new Action(() => lblWatchdog.Text = Convert.ToString(umwandlung.gui.getWatchdog())));
             double result = 0;
             //Console.WriteLine("CBQUARZ" + cbQuarz.SelectedIndex);
 
@@ -670,7 +670,7 @@ namespace Simulator
             int speicherstelle = Convert.ToInt32(tbSpeicherstelle.Text, 16);
             int wert = Convert.ToInt32(tbWert.Text, 16);
 
-            umwandlung.operation.updateFile(speicherstelle, wert);
+            umwandlung.gui.updateFile(speicherstelle, wert);
 
             UpdateFile();
 

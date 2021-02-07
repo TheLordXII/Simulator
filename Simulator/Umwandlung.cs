@@ -14,6 +14,9 @@ namespace Simulator
             programmcounter = 0;
         }
         public Operationen operation = new Operationen();
+        public GuiInfos gui = new GuiInfos();
+        public Management man = new Management();
+
         //Programmcounter 
         public int programmcounter { get; set; }
         private int[] Programmspeicher = new int[1024];
