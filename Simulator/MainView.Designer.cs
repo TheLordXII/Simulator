@@ -1,6 +1,6 @@
 ﻿namespace Simulator
 {
-    partial class Form1
+    partial class MainView
     {
         /// <summary>
         /// Erforderliche Designervariable.
@@ -64,7 +64,7 @@
             this.lblPCLText = new System.Windows.Forms.Label();
             this.lblWReg = new System.Windows.Forms.Label();
             this.lblWRegText = new System.Windows.Forms.Label();
-            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.GuiThread = new System.ComponentModel.BackgroundWorker();
             this.gbPortA = new System.Windows.Forms.GroupBox();
             this.cbPinA4 = new System.Windows.Forms.CheckBox();
             this.cbPinA3 = new System.Windows.Forms.CheckBox();
@@ -1875,7 +1875,7 @@
         private System.Windows.Forms.Label lblPCLText;
         private System.Windows.Forms.Label lblWReg;
         private System.Windows.Forms.Label lblWRegText;
-        private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.ComponentModel.BackgroundWorker GuiThread;
         private System.Windows.Forms.GroupBox gbPortA;
         private System.Windows.Forms.CheckBox cbPinA3;
         private System.Windows.Forms.CheckBox cbPinA2;

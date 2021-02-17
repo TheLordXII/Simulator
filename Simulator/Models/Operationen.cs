@@ -1,16 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Text.RegularExpressions;
-using System.ComponentModel;
-using System.Security.Cryptography;
-using System.Windows.Forms;
-using System.Runtime.InteropServices;
-using System.Diagnostics;
 using System.Threading;
-using System.Runtime.CompilerServices;
 
 namespace Simulator
 {
@@ -29,7 +19,6 @@ namespace Simulator
 
         public byte w { get; set; } //Work Register
 
-        //Bänke
         public byte[] Bank1 = new byte[256];
         
         //Watchdog

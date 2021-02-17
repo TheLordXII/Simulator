@@ -16,7 +16,7 @@ using System.Runtime.InteropServices;
 
 namespace Simulator
 {
-    public partial class Form1 : Form
+    public partial class MainView : Form
     {
         Parser parser = new Parser();
         Umwandlung umwandlung = new Umwandlung();
@@ -26,11 +26,11 @@ namespace Simulator
         //*****************************************************************************************
         //GUI ZEUG
         //*****************************************************************************************
-        public Form1()
+        public MainView()
         {
             InitializeComponent();
-            backgroundWorker1.WorkerSupportsCancellation = true;
-            backgroundWorker1.DoWork += new DoWorkEventHandler(backgroundWorker1_DoWork);
+            GuiThread.WorkerSupportsCancellation = true;
+            GuiThread.DoWork += new DoWorkEventHandler(backgroundWorker1_DoWork);
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -96,16 +96,16 @@ namespace Simulator
         private void btnStart_Click(object sender, EventArgs e)
         {
             //Fuehrt Programm einmal aus
-            backgroundWorker1.RunWorkerAsync();
+            GuiThread.RunWorkerAsync();
         }
 
         private void btnStopp_Click(object sender, EventArgs e)
         {
             //Stoppt das Programm
-            if (backgroundWorker1.WorkerSupportsCancellation == true)
+            if (GuiThread.WorkerSupportsCancellation == true)
             {
                 // Cancel the asynchronous operation.
-                backgroundWorker1.CancelAsync();
+                GuiThread.CancelAsync();
             }
         }
 
@@ -230,7 +230,7 @@ namespace Simulator
             if (BreakpointChecked(counter))
             {
                 MessageBox.Show("Breakpoint");
-                backgroundWorker1.CancelAsync();
+                GuiThread.CancelAsync();
             }
             else
             {
