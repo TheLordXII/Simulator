@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Simulator",
+    "\\UnitTests"
   ],
-  "SelectedNode": "\\Simulator.sln",
+  "SelectedNode": "\\Simulator\\Simulator.sln",
   "PreviewInSolutionExplorer": false
 }

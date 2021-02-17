@@ -6,6 +6,19 @@ namespace Simulator
 {
     public class Operationen
     {
+        public byte w { get; set; } //Work Register
+
+        public byte[] Bank1 = new byte[256];
+
+        //Watchdog
+        public float watchdog { get; set; }
+        public int prescaler { get; set; }
+        public int counter { get; set; }
+
+        public int[] stack = new int[8];
+        public int stackindex { get; set; }
+
+
         Management man = new Management();
 
         public Operationen()
@@ -16,20 +29,6 @@ namespace Simulator
             stackindex = -1;
 
         }
-
-        public byte w { get; set; } //Work Register
-
-        public byte[] Bank1 = new byte[256];
-        
-        //Watchdog
-        public float watchdog { get; set; }
-        public int prescaler { get; set; }
-        public int counter { get; set; }
-
-        public int[] stack = new int[8];
-        public int stackindex { get; set; }
-
-
 
         public void push(int element)
         {

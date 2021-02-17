@@ -29,6 +29,11 @@ namespace Simulator
         public MainView()
         {
             InitializeComponent();
+            //Create the ViewModel with a factory
+
+
+            //Map the bindings
+
             GuiThread.WorkerSupportsCancellation = true;
             GuiThread.DoWork += new DoWorkEventHandler(backgroundWorker1_DoWork);
         }
@@ -220,7 +225,7 @@ namespace Simulator
                 MessageBox.Show("BITTE PROGRAMM LADEN!");
             }
                     
-                }
+        }
 
         public void StepThread()
         {

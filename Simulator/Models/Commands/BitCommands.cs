@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Simulator.ViewModels
+namespace Simulator.Models.Commands
 {
-    public interface IViewModelFactory
+    public class BitCommands
     {
-        ViewModelBase Load();
     }
 }

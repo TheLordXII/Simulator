@@ -48,14 +48,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Helpers\ObservableObject.cs" />
     <Compile Include="MainView.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MainView.Designer.cs">
       <DependentUpon>MainView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\Commands\BitCommands.cs" />
+    <Compile Include="Models\Commands\ByteCommands.cs" />
+    <Compile Include="Models\Commands\CommandSet.cs" />
+    <Compile Include="Models\Commands\LiteralCommands.cs" />
     <Compile Include="Models\GuiInfos.cs" />
     <Compile Include="Models\Management.cs" />
+    <Compile Include="Models\Memory.cs" />
     <Compile Include="Models\Operationen.cs" />
     <Compile Include="Models\Parser.cs" />
     <Compile Include="Program.cs" />
