@@ -38,3 +38,13 @@ C:\Users\eliah\Source\Repos\TheLordXII\Simulator\Simulator\obj\Debug\Simulator.p
 C:\Users\eliah\Source\Repos\TheLordXII\Simulator\Simulator\bin\Debug\Simulator.exe.config
 C:\Users\eliah\Source\Repos\TheLordXII\Simulator\Simulator\bin\Debug\Simulator.exe
 C:\Users\eliah\Source\Repos\TheLordXII\Simulator\Simulator\bin\Debug\Simulator.pdb
+C:\Users\Ted\Source\Repos\TheLordXII\Simulator\Simulator\obj\Debug\Simulator.csprojAssemblyReference.cache
+C:\Users\Ted\Source\Repos\TheLordXII\Simulator\Simulator\obj\Debug\Simulator.MainView.resources
+C:\Users\Ted\Source\Repos\TheLordXII\Simulator\Simulator\obj\Debug\Simulator.Properties.Resources.resources
+C:\Users\Ted\Source\Repos\TheLordXII\Simulator\Simulator\obj\Debug\Simulator.csproj.GenerateResource.cache
+C:\Users\Ted\Source\Repos\TheLordXII\Simulator\Simulator\obj\Debug\Simulator.csproj.CoreCompileInputs.cache
+C:\Users\Ted\Source\Repos\TheLordXII\Simulator\Simulator\obj\Debug\Simulator.exe
+C:\Users\Ted\Source\Repos\TheLordXII\Simulator\Simulator\obj\Debug\Simulator.pdb
+C:\Users\Ted\Source\Repos\TheLordXII\Simulator\Simulator\bin\Debug\Simulator.exe.config
+C:\Users\Ted\Source\Repos\TheLordXII\Simulator\Simulator\bin\Debug\Simulator.exe
+C:\Users\Ted\Source\Repos\TheLordXII\Simulator\Simulator\bin\Debug\Simulator.pdb

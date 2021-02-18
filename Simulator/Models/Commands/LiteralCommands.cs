@@ -20,13 +20,14 @@ namespace Simulator.Models.Commands
         {
             int result = literal + _memory.W;
 
-            if (result > 255)
-            {
-                result = result - 256;
-            }
+            _memory.WriteToMemory(result);
+        }
 
+        public void ANDLW(short literal)
+        {
+            int result = _memory.W & literal;
 
-
+            _memory.WriteToMemory(result);
         }
     }
 }

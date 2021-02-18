@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Simulator.Models;
 
 namespace Simulator.ViewModels
 {
@@ -15,12 +16,12 @@ namespace Simulator.ViewModels
         public ViewModelBase Load()
         {
             // build models
+            var memory = new Memory();
 
 
 
-
-
-            return new MainViewModel(/* inject models for easier testing*/);
+            
+            return new MainViewModel(/* inject models for easier testing*/memory);
         }
     }
 }
