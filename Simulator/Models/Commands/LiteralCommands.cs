@@ -29,5 +29,17 @@ namespace Simulator.Models.Commands
 
             _memory.WriteToMemory(result);
         }
+
+        public void CALL(short target)
+        {
+            _memory.PushToStack(_memory.Programcounter);
+
+            _memory.Programcounter = target;
+        }
+
+        public void CLRWTD()
+        {
+            
+        }
     }
 }

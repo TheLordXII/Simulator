@@ -39,6 +39,11 @@ namespace Simulator.Models
         /// </summary>
         private Stack<short> _stack = new Stack<short>(8);
 
+        /// <summary>
+        /// programcounter
+        /// </summary>
+        private short _programcounter;
+
         public short W
         {
             get
@@ -52,6 +57,44 @@ namespace Simulator.Models
             }
         }
 
+        public short Programcounter
+        {
+            get
+            {
+                return _programcounter;
+            }
+            set
+            {
+                _programcounter = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        public float Watchdog
+        {
+            get
+            {
+                return _watchdog;
+            }
+            set
+            {
+                _watchdog = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        public int Prescaler
+        {
+            get
+            {
+                return _prescaler;
+            }
+            set
+            {
+                _prescaler = value;
+                RaisePropertyChanged();
+            }
+        }
         
         /// <summary>
         /// Changes Flags for Operations and stores Result into the W-Register
@@ -183,6 +226,24 @@ namespace Simulator.Models
                     _fileRegister[131] &= 0b1111_1101;
                 }
             }
+        }
+
+        /// <summary>
+        /// Pushes a value on the Stack.
+        /// </summary>
+        /// <param name="value"></param>
+        public void PushToStack(short value)
+        {
+            _stack.Push(value);
+        }
+
+        /// <summary>
+        /// Pops a Value from the Stack and returns it.
+        /// </summary>
+        /// <returns></returns>
+        public short PopFromStack()
+        {
+            return _stack.Pop();
         }
 
     }
