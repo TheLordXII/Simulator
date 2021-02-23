@@ -39,7 +39,29 @@ namespace Simulator.Models.Commands
 
         public void CLRWTD()
         {
-            
+            _memory.Watchdog = 0;
+            _memory.WriteToMemory(24, 3);
+        }
+
+        public void GOTO(short target)
+        {
+            _memory.Programcounter = target;
+        }
+
+        public void IORLW(short literal)
+        {
+            short result = (short)(_memory.W | literal);
+            _memory.WriteToMemory(result);
+        }
+
+        public void MOVLW(short literal)
+        {
+            _memory.W = literal;
+        }
+
+        public void RETFIE()
+        {
+
         }
     }
 }

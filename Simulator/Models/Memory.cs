@@ -50,7 +50,7 @@ namespace Simulator.Models
             {
                 return _w;
             }
-            private set
+            set
             {
                 _w = value;
                 RaisePropertyChanged();
