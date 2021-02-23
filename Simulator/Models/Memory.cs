@@ -249,8 +249,8 @@ namespace Simulator.Models
         /// <summary>
         /// Sets a Bit in the FileRegister 
         /// </summary>
-        /// <param name="position"></param>
-        /// <param name="bit"></param>
+        /// <param name="position">File Register Position</param>
+        /// <param name="bit">Bit to Set</param>
         public void SetBit(short position, short bit)
         {
             switch (bit)
@@ -286,8 +286,8 @@ namespace Simulator.Models
         /// <summary>
         /// Clears a Bit in the Fileregister
         /// </summary>
-        /// <param name="position"></param>
-        /// <param name="bit"></param>
+        /// <param name="position">File Register Position</param>
+        /// <param name="bit">Bit to Clear</param>
         public void ClearBit(short position, short bit)
         {
             switch (bit)
