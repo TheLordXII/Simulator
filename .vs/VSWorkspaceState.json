@@ -2,14 +2,8 @@
   "ExpandedNodes": [
     "",
     "\\Simulator",
-    "\\Simulator\\bin",
-    "\\Simulator\\Helpers",
-    "\\Simulator\\Models",
-    "\\Simulator\\Models\\Commands",
-    "\\Simulator\\obj",
-    "\\Simulator\\ViewModels",
     "\\UnitTests"
   ],
-  "SelectedNode": "\\Simulator\\Models\\Commands\\LiteralCommands.cs",
+  "SelectedNode": "\\Simulator\\Simulator.sln",
   "PreviewInSolutionExplorer": false
 }
