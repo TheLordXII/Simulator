@@ -8,5 +8,13 @@ namespace Simulator.Models.Commands
 {
     public class BitCommands
     {
+        private Memory _memory;
+
+        public BitCommands(Memory memory)
+        {
+            _memory = memory;
+        }
+
+
     }
 }

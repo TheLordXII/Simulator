@@ -10,6 +10,6 @@
     "\\Simulator\\ViewModels",
     "\\UnitTests"
   ],
-  "SelectedNode": "\\Simulator\\Simulator.sln",
+  "SelectedNode": "\\Simulator\\Models\\Commands\\LiteralCommands.cs",
   "PreviewInSolutionExplorer": false
 }

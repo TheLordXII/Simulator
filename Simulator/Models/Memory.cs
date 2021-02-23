@@ -246,5 +246,88 @@ namespace Simulator.Models
             return _stack.Pop();
         }
 
+        /// <summary>
+        /// Sets a Bit in the FileRegister 
+        /// </summary>
+        /// <param name="position"></param>
+        /// <param name="bit"></param>
+        public void SetBit(short position, short bit)
+        {
+            switch (bit)
+            {
+                case 0:
+                    _fileRegister[position] = (short)(_fileRegister[position] | 0b0000_0001);
+                    break;
+                case 1:
+                    _fileRegister[position] = (short)(_fileRegister[position] | 0b0000_0010);
+                    break;
+                case 2:
+                    _fileRegister[position] = (short)(_fileRegister[position] | 0b0000_0100);
+                    break;
+                case 3:
+                    _fileRegister[position] = (short)(_fileRegister[position] | 0b0000_1000);
+                    break;
+                case 4:
+                    _fileRegister[position] = (short)(_fileRegister[position] | 0b0001_0000);
+                    break;
+                case 5:
+                    _fileRegister[position] = (short)(_fileRegister[position] | 0b0010_0000);
+                    break;
+                case 6:
+                    _fileRegister[position] = (short)(_fileRegister[position] | 0b0100_0000);
+                    break;
+                case 7:
+                    _fileRegister[position] = (short)(_fileRegister[position] | 0b1000_0000);
+                    break;
+
+            }
+        }
+
+        /// <summary>
+        /// Clears a Bit in the Fileregister
+        /// </summary>
+        /// <param name="position"></param>
+        /// <param name="bit"></param>
+        public void ClearBit(short position, short bit)
+        {
+            switch (bit)
+            {
+                case 0:
+                    _fileRegister[position] = (short)(_fileRegister[position] & 0b1111_1110);
+                    break;
+                case 1:
+                    _fileRegister[position] = (short)(_fileRegister[position] & 0b1111_1101);
+                    break;
+                case 2:
+                    _fileRegister[position] = (short)(_fileRegister[position] & 0b1111_1011);
+                    break;
+                case 3:
+                    _fileRegister[position] = (short)(_fileRegister[position] & 0b1111_0111);
+                    break;
+                case 4:
+                    _fileRegister[position] = (short)(_fileRegister[position] & 0b1110_1111);
+                    break;
+                case 5:
+                    _fileRegister[position] = (short)(_fileRegister[position] & 0b1101_1111);
+                    break;
+                case 6:
+                    _fileRegister[position] = (short)(_fileRegister[position] & 0b1011_1111);
+                    break;
+                case 7:
+                    _fileRegister[position] = (short)(_fileRegister[position] & 0b0111_1111);
+                    break;
+
+            }
+        }
+
+        /// <summary>
+        /// Returns Content of one Register in the FileRegister
+        /// </summary>
+        /// <param name="position"></param>
+        /// <returns></returns>
+        public short GetRegisterContent(short register)
+        {
+            return _fileRegister[register];
+        }
     }
 }

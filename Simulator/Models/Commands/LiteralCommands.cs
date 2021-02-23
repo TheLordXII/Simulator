@@ -61,7 +61,8 @@ namespace Simulator.Models.Commands
 
         public void RETFIE()
         {
-
+            _memory.Programcounter = _memory.PopFromStack();
+            _memory.SetBit(11, 7);
         }
 
         public void RETLW(short literal)
@@ -77,7 +78,9 @@ namespace Simulator.Models.Commands
 
         public void SLEEP()
         {
-
+            _memory.Watchdog = 0;
+            _memory.ClearBit(3, 3);
+            _memory.SetBit(3, 4);
         }
 
         public void SUBLW(short literal)
