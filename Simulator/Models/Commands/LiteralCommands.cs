@@ -56,12 +56,40 @@ namespace Simulator.Models.Commands
 
         public void MOVLW(short literal)
         {
-            _memory.W = literal;
+            _memory.WriteToMemory(literal);
         }
 
         public void RETFIE()
         {
 
+        }
+
+        public void RETLW(short literal)
+        {
+            _memory.WriteToMemory(literal);
+            _memory.Programcounter = _memory.PopFromStack();
+        }
+
+        public void RETURN()
+        {
+            _memory.Programcounter = _memory.PopFromStack();
+        }
+
+        public void SLEEP()
+        {
+
+        }
+
+        public void SUBLW(short literal)
+        {
+            short result = (short)(_memory.W - literal);
+            _memory.WriteToMemory(result, false);
+        }
+
+        public void XORLW(short literal)
+        {
+            short result = (short)(_memory.W ^ literal);
+            _memory.WriteToMemory(result);
         }
     }
 }
