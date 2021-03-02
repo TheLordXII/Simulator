@@ -83,7 +83,23 @@ namespace Simulator.Models.Commands
 
         public void DECFSZ(short register, bool destination)
         {
+            short result = (short)(_memory.GetRegisterContent(register) - 1);
 
+            if (result <= 0)
+            {
+                NOP();
+            }
+            else
+            {
+                if (destination)
+                {
+                    _memory.WriteToMemory(result, register);
+                }
+                else
+                {
+                    _memory.WriteToMemory(result);
+                }
+            }
         }
 
         public void INCF(short register, bool destination)
@@ -100,9 +116,25 @@ namespace Simulator.Models.Commands
             }
         }
 
-        public void INCFSZ()
+        public void INCFSZ(short register, bool destination)
         {
+            short result = (short)(_memory.GetRegisterContent(register) + 1);
 
+            if (result >= 256)
+            {
+                NOP();
+            }
+            else
+            {
+                if (destination)
+                {
+                    _memory.WriteToMemory(result, register);
+                }
+                else
+                {
+                    _memory.WriteToMemory(result);
+                }
+            }
         }
 
         public void IORWF(short register, bool destination)
@@ -177,7 +209,44 @@ namespace Simulator.Models.Commands
 
         public void SUBWF(short register, bool destination)
         {
+            short result = (short)(_memory.GetRegisterContent(register) - _memory.W);
 
+            if (destination)
+            {
+                _memory.WriteToMemory(result, register);
+            }
+            else
+            {
+                _memory.WriteToMemory(result);
+            }
+        }
+
+        public void SWAPF(short register, bool destination)
+        {
+            short result = (short)((_memory.GetRegisterContent(register) & 0x0F) << 4 | ((_memory.GetRegisterContent(register) & 0xF0) >> 4));
+
+            if (destination)
+            {
+                _memory.WriteToMemory(result, register);
+            }
+            else
+            {
+                _memory.WriteToMemory(result);
+            }
+        }
+
+        public void XORWF(short register, bool destination)
+        {
+            short result = (short)(_memory.GetRegisterContent(register) ^ _memory.W);
+
+            if (destination)
+            {
+                _memory.WriteToMemory(result, register);
+            }
+            else
+            {
+                _memory.WriteToMemory(result);
+            }
         }
     }
 }
