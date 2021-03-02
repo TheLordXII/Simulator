@@ -321,6 +321,68 @@ namespace Simulator.Models
         }
 
         /// <summary>
+        /// Checks if a Bit is set.
+        /// </summary>
+        /// <param name="position">File Register Position</param>
+        /// <param name="bit">Bit to Clear</param>
+        /// <returns></returns>
+        public bool BitSet(short position, short bit)
+        {
+            switch (bit)
+            {
+                case 0:
+                    if ((_fileRegister[position] & 0b1111_1110) == 1)
+                    {
+                        return true;
+                    }
+                    break;
+                case 1:
+                    if ((_fileRegister[position] & 0b1111_1101) == 2)
+                    {
+                        return true;
+                    }
+                    break;
+                case 2:
+                    if ((_fileRegister[position] & 0b1111_1011) == 4)
+                    {
+                        return true;
+                    }
+                    break;
+                case 3:
+                    if ((_fileRegister[position] & 0b1111_0111) == 8)
+                    {
+                        return true;
+                    }
+                    break;
+                case 4:
+                    if ((_fileRegister[position] & 0b1110_1111) == 16)
+                    {
+                        return true;
+                    }
+                    break;
+                case 5:
+                    if ((_fileRegister[position] & 0b1101_1111) == 32)
+                    {
+                        return true;
+                    }
+                    break;
+                case 6:
+                    if ((_fileRegister[position] & 0b1011_1111) == 64)
+                    {
+                        return true;
+                    }
+                    break;
+                case 7:
+                    if ((_fileRegister[position] & 0b0111_1111) == 128)
+                    {
+                        return true;
+                    }
+                    break;
+            }
+            return false;
+        }
+
+        /// <summary>
         /// Returns Content of one Register in the FileRegister
         /// </summary>
         /// <param name="position"></param>
