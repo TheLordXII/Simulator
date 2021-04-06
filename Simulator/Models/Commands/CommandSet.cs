@@ -4,14 +4,53 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Simulator.Models.Commands;
+using Simulator.Helpers;
 
 namespace Simulator.Models
 {
-    public class CommandSet
+    public class CommandSet : ObservableObject
     {
-        private BitCommands _bitCommands;
-        private LiteralCommands _literalCommands;
-        private ByteCommands _byteCommands;
+        public BitCommands _bitCommands
+        {
+            get
+            {
+                return _bitCommands;
+            }
+
+            set
+            {
+                _bitCommands = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        public LiteralCommands _literalCommands
+        {
+            get
+            {
+                return _literalCommands;
+            }
+
+            set
+            {
+                _literalCommands = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        public ByteCommands _byteCommands
+        {
+            get
+            {
+                return _byteCommands;
+            }
+
+            set
+            {
+                _byteCommands = value;
+                RaisePropertyChanged();
+            }
+        }
 
         public CommandSet(BitCommands bitCommands, LiteralCommands literalCommands, ByteCommands byteCommands)
         {

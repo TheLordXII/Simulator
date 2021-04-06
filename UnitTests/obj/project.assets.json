@@ -6198,19 +6198,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\eliah\\.nuget\\packages\\": {}
+    "C:\\Users\\Ted\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\eliah\\Source\\Repos\\TheLordXII\\Simulator\\UnitTests\\UnitTests.csproj",
+      "projectUniqueName": "C:\\Users\\Ted\\Source\\Repos\\TheLordXII\\Simulator\\UnitTests\\UnitTests.csproj",
       "projectName": "UnitTests",
-      "projectPath": "C:\\Users\\eliah\\Source\\Repos\\TheLordXII\\Simulator\\UnitTests\\UnitTests.csproj",
-      "packagesPath": "C:\\Users\\eliah\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\eliah\\Source\\Repos\\TheLordXII\\Simulator\\UnitTests\\obj\\",
+      "projectPath": "C:\\Users\\Ted\\Source\\Repos\\TheLordXII\\Simulator\\UnitTests\\UnitTests.csproj",
+      "packagesPath": "C:\\Users\\Ted\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Ted\\Source\\Repos\\TheLordXII\\Simulator\\UnitTests\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\eliah\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Ted\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -6224,8 +6224,8 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "C:\\Users\\eliah\\Source\\Repos\\TheLordXII\\Simulator\\Simulator\\Simulator.csproj": {
-              "projectPath": "C:\\Users\\eliah\\Source\\Repos\\TheLordXII\\Simulator\\Simulator\\Simulator.csproj"
+            "C:\\Users\\Ted\\Source\\Repos\\TheLordXII\\Simulator\\Simulator\\Simulator.csproj": {
+              "projectPath": "C:\\Users\\Ted\\Source\\Repos\\TheLordXII\\Simulator\\Simulator\\Simulator.csproj"
             }
           }
         }
@@ -6280,16 +6280,8 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "c:\\program files\\dotnet\\sdk\\5.0.103\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.103\\RuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problem beim Lesen der Cachedatei \"C:\\Users\\eliah\\Source\\Repos\\TheLordXII\\Simulator\\UnitTests\\obj\\project.nuget.cache\": Invalid property identifier character: <. Path 'version', line 3, position 0."
-    }
-  ]
+  }
 }

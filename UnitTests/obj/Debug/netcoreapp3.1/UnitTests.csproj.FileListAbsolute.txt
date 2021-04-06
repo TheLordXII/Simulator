@@ -95,12 +95,6 @@ C:\Users\Ted\source\repos\Simulator\UnitTests\obj\Debug\netcoreapp3.1\UnitTests.
 C:\Users\Ted\source\repos\Simulator\UnitTests\obj\Debug\netcoreapp3.1\UnitTests.dll
 C:\Users\Ted\source\repos\Simulator\UnitTests\obj\Debug\netcoreapp3.1\UnitTests.pdb
 C:\Users\Ted\source\repos\Simulator\UnitTests\obj\Debug\netcoreapp3.1\UnitTests.genruntimeconfig.cache
-C:\Users\Ted\Source\Repos\TheLordXII\Simulator\UnitTests\obj\Debug\netcoreapp3.1\UnitTests.csprojAssemblyReference.cache
-C:\Users\Ted\Source\Repos\TheLordXII\Simulator\UnitTests\obj\Debug\netcoreapp3.1\UnitTests.AssemblyInfoInputs.cache
-C:\Users\Ted\Source\Repos\TheLordXII\Simulator\UnitTests\obj\Debug\netcoreapp3.1\UnitTests.AssemblyInfo.cs
-C:\Users\Ted\Source\Repos\TheLordXII\Simulator\UnitTests\obj\Debug\netcoreapp3.1\UnitTests.csproj.CoreCompileInputs.cache
-C:\Users\Ted\Source\Repos\TheLordXII\Simulator\UnitTests\obj\Debug\netcoreapp3.1\UnitTests.dll
-C:\Users\Ted\Source\Repos\TheLordXII\Simulator\UnitTests\obj\Debug\netcoreapp3.1\UnitTests.pdb
 C:\Users\Ted\Source\Repos\TheLordXII\Simulator\UnitTests\bin\Debug\netcoreapp3.1\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
 C:\Users\Ted\Source\Repos\TheLordXII\Simulator\UnitTests\bin\Debug\netcoreapp3.1\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
 C:\Users\Ted\Source\Repos\TheLordXII\Simulator\UnitTests\bin\Debug\netcoreapp3.1\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
@@ -192,5 +186,11 @@ C:\Users\Ted\Source\Repos\TheLordXII\Simulator\UnitTests\bin\Debug\netcoreapp3.1
 C:\Users\Ted\Source\Repos\TheLordXII\Simulator\UnitTests\bin\Debug\netcoreapp3.1\Simulator.exe
 C:\Users\Ted\Source\Repos\TheLordXII\Simulator\UnitTests\bin\Debug\netcoreapp3.1\Simulator.pdb
 C:\Users\Ted\Source\Repos\TheLordXII\Simulator\UnitTests\bin\Debug\netcoreapp3.1\Simulator.exe.config
+C:\Users\Ted\Source\Repos\TheLordXII\Simulator\UnitTests\obj\Debug\netcoreapp3.1\UnitTests.csprojAssemblyReference.cache
+C:\Users\Ted\Source\Repos\TheLordXII\Simulator\UnitTests\obj\Debug\netcoreapp3.1\UnitTests.AssemblyInfoInputs.cache
+C:\Users\Ted\Source\Repos\TheLordXII\Simulator\UnitTests\obj\Debug\netcoreapp3.1\UnitTests.AssemblyInfo.cs
+C:\Users\Ted\Source\Repos\TheLordXII\Simulator\UnitTests\obj\Debug\netcoreapp3.1\UnitTests.csproj.CoreCompileInputs.cache
 C:\Users\Ted\Source\Repos\TheLordXII\Simulator\UnitTests\obj\Debug\netcoreapp3.1\UnitTests.csproj.CopyComplete
+C:\Users\Ted\Source\Repos\TheLordXII\Simulator\UnitTests\obj\Debug\netcoreapp3.1\UnitTests.dll
+C:\Users\Ted\Source\Repos\TheLordXII\Simulator\UnitTests\obj\Debug\netcoreapp3.1\UnitTests.pdb
 C:\Users\Ted\Source\Repos\TheLordXII\Simulator\UnitTests\obj\Debug\netcoreapp3.1\UnitTests.genruntimeconfig.cache
