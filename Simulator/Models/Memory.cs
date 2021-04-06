@@ -44,6 +44,30 @@ namespace Simulator.Models
         /// </summary>
         private short _programcounter;
 
+        /// <summary>
+        /// programmemory
+        /// </summary>
+        private short[] _programmemory = new short[1024];
+
+        public short GetFromProgramMemory(int index)
+        {
+            return _programmemory[index];
+        }
+
+        public void SaveToProgramMemory(int index, short value)
+        {
+            _programmemory[index] = value;
+            RaisePropertyChanged();
+        }
+
+        public void ClearProgramMemory()
+        {
+            for (int i = 0; i < _programmemory.Length; i++)
+            {
+                _programmemory[i] = 0;
+            }
+        }
+
         public short W
         {
             get

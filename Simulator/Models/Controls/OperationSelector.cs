@@ -8,7 +8,7 @@ using Simulator.Models.Commands;
 
 namespace Simulator.Models.Controls
 {
-    class OperationSelector
+    public class OperationSelector
     {
         private CommandSet _commandSet;
 
