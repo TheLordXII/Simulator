@@ -33,39 +33,5 @@ namespace Simulator.Models.Controls
                 index++;
             }
         }
-
-        public bool ExtractDestinationBit(short programMemory)
-        {
-            short res = (short)(programMemory & 0b00_0000_1000_0000);
-
-            if (res == 128)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-        public short ExtractFileRegister(short programMemory)
-        {
-            return (short)(programMemory & 0b00_0000_0111_1111);
-        }
-
-        public short ExtractBit(short programMemory)
-        {
-            return (short)(programMemory & 0b00_0011_1000_0000);
-        }
-
-        public short ExtractLiteral(short programMemory)
-        {
-            return (short)(programMemory & 0b00_0000_1111_1111);
-        }
-
-        public short ExtractTarget(short programMemory)
-        {
-            return (short)(programMemory & 0b00_0111_1111_1111);
-        }
     }
 }

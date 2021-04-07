@@ -59,8 +59,10 @@
     <Compile Include="Models\Commands\ByteCommands.cs" />
     <Compile Include="Models\Commands\CommandSet.cs" />
     <Compile Include="Models\Commands\LiteralCommands.cs" />
+    <Compile Include="Models\Controls\Interpreter.cs" />
     <Compile Include="Models\Controls\OperationSelector.cs" />
     <Compile Include="Models\Controls\Parser.cs" />
+    <Compile Include="Models\ControlUnit.cs" />
     <Compile Include="Models\GuiInfos.cs" />
     <Compile Include="Models\Management.cs" />
     <Compile Include="Models\Memory.cs" />
