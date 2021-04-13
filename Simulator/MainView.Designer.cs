@@ -247,33 +247,6 @@
             this.hilfeToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.hilfeToolStripMenuItem.Text = "Hilfe";
             // 
-            // aufgabenstellungToolStripMenuItem
-            // 
-            this.aufgabenstellungToolStripMenuItem.Name = "aufgabenstellungToolStripMenuItem";
-            this.aufgabenstellungToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
-            this.aufgabenstellungToolStripMenuItem.Text = "Aufgabenstellung";
-            this.aufgabenstellungToolStripMenuItem.Click += new System.EventHandler(this.aufgabenstellungToolStripMenuItem_Click);
-            // 
-            // bewertungsschemaToolStripMenuItem
-            // 
-            this.bewertungsschemaToolStripMenuItem.Name = "bewertungsschemaToolStripMenuItem";
-            this.bewertungsschemaToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
-            this.bewertungsschemaToolStripMenuItem.Text = "Bewertungsschema";
-            this.bewertungsschemaToolStripMenuItem.Click += new System.EventHandler(this.bewertungsschemaToolStripMenuItem_Click);
-            // 
-            // datenblattToolStripMenuItem
-            // 
-            this.datenblattToolStripMenuItem.Name = "datenblattToolStripMenuItem";
-            this.datenblattToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
-            this.datenblattToolStripMenuItem.Text = "Datenblatt";
-            this.datenblattToolStripMenuItem.Click += new System.EventHandler(this.datenblattToolStripMenuItem_Click);
-            // 
-            // dokuFazitToolStripMenuItem
-            // 
-            this.dokuFazitToolStripMenuItem.Name = "dokuFazitToolStripMenuItem";
-            this.dokuFazitToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
-            this.dokuFazitToolStripMenuItem.Text = "Doku / Fazit";
-            // 
             // gBLST
             // 
             this.gBLST.Controls.Add(this.lvAusgabe);
