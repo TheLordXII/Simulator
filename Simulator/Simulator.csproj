@@ -63,13 +63,9 @@
     <Compile Include="Models\Controls\OperationSelector.cs" />
     <Compile Include="Models\Controls\Parser.cs" />
     <Compile Include="Models\ControlUnit.cs" />
-    <Compile Include="Models\GuiInfos.cs" />
-    <Compile Include="Models\Management.cs" />
     <Compile Include="Models\Memory.cs" />
-    <Compile Include="Models\Operationen.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Models\Umwandlung.cs" />
     <Compile Include="ViewModels\IViewModelFactory.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\MainViewModelFactory.cs" />
