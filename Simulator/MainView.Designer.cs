@@ -41,8 +41,6 @@
             this.lvAusgabe = new System.Windows.Forms.ListView();
             this.Programm = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.gpBedienung = new System.Windows.Forms.GroupBox();
-            this.btnStopp = new System.Windows.Forms.Button();
-            this.btnStart = new System.Windows.Forms.Button();
             this.btnEinzelschritt = new System.Windows.Forms.Button();
             this.btnReset = new System.Windows.Forms.Button();
             this.gpRegister = new System.Windows.Forms.GroupBox();
@@ -183,11 +181,11 @@
             this.spalte8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.wbPDF = new System.Windows.Forms.WebBrowser();
             this.gbFileregBearbeiten = new System.Windows.Forms.GroupBox();
-            this.lblSpeicherstelle = new System.Windows.Forms.Label();
-            this.tbSpeicherstelle = new System.Windows.Forms.TextBox();
-            this.lblWert = new System.Windows.Forms.Label();
-            this.tbWert = new System.Windows.Forms.TextBox();
             this.btnUpdateFile = new System.Windows.Forms.Button();
+            this.tbWert = new System.Windows.Forms.TextBox();
+            this.lblWert = new System.Windows.Forms.Label();
+            this.tbSpeicherstelle = new System.Windows.Forms.TextBox();
+            this.lblSpeicherstelle = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.gBLST.SuspendLayout();
             this.gpBedienung.SuspendLayout();
@@ -247,6 +245,26 @@
             this.hilfeToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.hilfeToolStripMenuItem.Text = "Hilfe";
             // 
+            // aufgabenstellungToolStripMenuItem
+            // 
+            this.aufgabenstellungToolStripMenuItem.Name = "aufgabenstellungToolStripMenuItem";
+            this.aufgabenstellungToolStripMenuItem.Size = new System.Drawing.Size(67, 22);
+            // 
+            // bewertungsschemaToolStripMenuItem
+            // 
+            this.bewertungsschemaToolStripMenuItem.Name = "bewertungsschemaToolStripMenuItem";
+            this.bewertungsschemaToolStripMenuItem.Size = new System.Drawing.Size(67, 22);
+            // 
+            // datenblattToolStripMenuItem
+            // 
+            this.datenblattToolStripMenuItem.Name = "datenblattToolStripMenuItem";
+            this.datenblattToolStripMenuItem.Size = new System.Drawing.Size(67, 22);
+            // 
+            // dokuFazitToolStripMenuItem
+            // 
+            this.dokuFazitToolStripMenuItem.Name = "dokuFazitToolStripMenuItem";
+            this.dokuFazitToolStripMenuItem.Size = new System.Drawing.Size(67, 22);
+            // 
             // gBLST
             // 
             this.gBLST.Controls.Add(this.lvAusgabe);
@@ -280,8 +298,6 @@
             // 
             // gpBedienung
             // 
-            this.gpBedienung.Controls.Add(this.btnStopp);
-            this.gpBedienung.Controls.Add(this.btnStart);
             this.gpBedienung.Controls.Add(this.btnEinzelschritt);
             this.gpBedienung.Controls.Add(this.btnReset);
             this.gpBedienung.Location = new System.Drawing.Point(650, 54);
@@ -291,29 +307,9 @@
             this.gpBedienung.TabStop = false;
             this.gpBedienung.Text = "Bedienung";
             // 
-            // btnStopp
-            // 
-            this.btnStopp.Location = new System.Drawing.Point(24, 106);
-            this.btnStopp.Name = "btnStopp";
-            this.btnStopp.Size = new System.Drawing.Size(75, 23);
-            this.btnStopp.TabIndex = 3;
-            this.btnStopp.Text = "Stopp";
-            this.btnStopp.UseVisualStyleBackColor = true;
-            this.btnStopp.Click += new System.EventHandler(this.btnStopp_Click);
-            // 
-            // btnStart
-            // 
-            this.btnStart.Location = new System.Drawing.Point(24, 19);
-            this.btnStart.Name = "btnStart";
-            this.btnStart.Size = new System.Drawing.Size(75, 23);
-            this.btnStart.TabIndex = 2;
-            this.btnStart.Text = "Start";
-            this.btnStart.UseVisualStyleBackColor = true;
-            this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
-            // 
             // btnEinzelschritt
             // 
-            this.btnEinzelschritt.Location = new System.Drawing.Point(24, 77);
+            this.btnEinzelschritt.Location = new System.Drawing.Point(24, 20);
             this.btnEinzelschritt.Name = "btnEinzelschritt";
             this.btnEinzelschritt.Size = new System.Drawing.Size(75, 23);
             this.btnEinzelschritt.TabIndex = 1;
@@ -929,7 +925,6 @@
             this.gBTiming.TabIndex = 6;
             this.gBTiming.TabStop = false;
             this.gBTiming.Text = "Timing";
-            this.gBTiming.Enter += new System.EventHandler(this.gBTiming_Enter);
             // 
             // lblWatchdog
             // 
@@ -1732,21 +1727,21 @@
             this.gbFileregBearbeiten.TabStop = false;
             this.gbFileregBearbeiten.Text = "Fileregister bearbeiten";
             // 
-            // lblSpeicherstelle
+            // btnUpdateFile
             // 
-            this.lblSpeicherstelle.AutoSize = true;
-            this.lblSpeicherstelle.Location = new System.Drawing.Point(7, 23);
-            this.lblSpeicherstelle.Name = "lblSpeicherstelle";
-            this.lblSpeicherstelle.Size = new System.Drawing.Size(101, 13);
-            this.lblSpeicherstelle.TabIndex = 0;
-            this.lblSpeicherstelle.Text = "HEX Speicherstelle:";
+            this.btnUpdateFile.Location = new System.Drawing.Point(278, 16);
+            this.btnUpdateFile.Name = "btnUpdateFile";
+            this.btnUpdateFile.Size = new System.Drawing.Size(68, 23);
+            this.btnUpdateFile.TabIndex = 4;
+            this.btnUpdateFile.Text = "Speichern";
+            this.btnUpdateFile.UseVisualStyleBackColor = true;
             // 
-            // tbSpeicherstelle
+            // tbWert
             // 
-            this.tbSpeicherstelle.Location = new System.Drawing.Point(106, 20);
-            this.tbSpeicherstelle.Name = "tbSpeicherstelle";
-            this.tbSpeicherstelle.Size = new System.Drawing.Size(48, 20);
-            this.tbSpeicherstelle.TabIndex = 1;
+            this.tbWert.Location = new System.Drawing.Point(225, 19);
+            this.tbWert.Name = "tbWert";
+            this.tbWert.Size = new System.Drawing.Size(46, 20);
+            this.tbWert.TabIndex = 3;
             // 
             // lblWert
             // 
@@ -1757,24 +1752,23 @@
             this.lblWert.TabIndex = 2;
             this.lblWert.Text = "HEX Wert: ";
             // 
-            // tbWert
+            // tbSpeicherstelle
             // 
-            this.tbWert.Location = new System.Drawing.Point(225, 19);
-            this.tbWert.Name = "tbWert";
-            this.tbWert.Size = new System.Drawing.Size(46, 20);
-            this.tbWert.TabIndex = 3;
+            this.tbSpeicherstelle.Location = new System.Drawing.Point(106, 20);
+            this.tbSpeicherstelle.Name = "tbSpeicherstelle";
+            this.tbSpeicherstelle.Size = new System.Drawing.Size(48, 20);
+            this.tbSpeicherstelle.TabIndex = 1;
             // 
-            // btnUpdateFile
+            // lblSpeicherstelle
             // 
-            this.btnUpdateFile.Location = new System.Drawing.Point(278, 16);
-            this.btnUpdateFile.Name = "btnUpdateFile";
-            this.btnUpdateFile.Size = new System.Drawing.Size(68, 23);
-            this.btnUpdateFile.TabIndex = 4;
-            this.btnUpdateFile.Text = "Speichern";
-            this.btnUpdateFile.UseVisualStyleBackColor = true;
-            this.btnUpdateFile.Click += new System.EventHandler(this.btnUpdateFile_Click);
+            this.lblSpeicherstelle.AutoSize = true;
+            this.lblSpeicherstelle.Location = new System.Drawing.Point(7, 23);
+            this.lblSpeicherstelle.Name = "lblSpeicherstelle";
+            this.lblSpeicherstelle.Size = new System.Drawing.Size(101, 13);
+            this.lblSpeicherstelle.TabIndex = 0;
+            this.lblSpeicherstelle.Text = "HEX Speicherstelle:";
             // 
-            // Form1
+            // MainView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -1791,7 +1785,7 @@
             this.Controls.Add(this.gBLST);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Name = "Form1";
+            this.Name = "MainView";
             this.Text = "Simulator";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);
@@ -1830,8 +1824,6 @@
         private System.Windows.Forms.ToolStripMenuItem aufgabenstellungToolStripMenuItem;
         private System.Windows.Forms.GroupBox gpBedienung;
         private System.Windows.Forms.Button btnReset;
-        private System.Windows.Forms.Button btnStopp;
-        private System.Windows.Forms.Button btnStart;
         private System.Windows.Forms.Button btnEinzelschritt;
         private System.Windows.Forms.GroupBox gpRegister;
         private System.Windows.Forms.Label lblOption;

@@ -1,27 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Ted\\Source\\Repos\\TheLordXII\\Simulator\\UnitTests\\UnitTests.csproj": {}
+    "C:\\Users\\Ted\\source\\repos\\TheLordXII\\Simulator\\UnitTests\\UnitTests.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Ted\\Source\\Repos\\TheLordXII\\Simulator\\Simulator\\Simulator.csproj": {
+    "C:\\Users\\Ted\\source\\repos\\TheLordXII\\Simulator\\Simulator\\Simulator.csproj": {
       "restore": {
-        "projectUniqueName": "C:\\Users\\Ted\\Source\\Repos\\TheLordXII\\Simulator\\Simulator\\Simulator.csproj",
+        "projectUniqueName": "C:\\Users\\Ted\\source\\repos\\TheLordXII\\Simulator\\Simulator\\Simulator.csproj",
         "projectName": "Simulator",
-        "projectPath": "C:\\Users\\Ted\\Source\\Repos\\TheLordXII\\Simulator\\Simulator\\Simulator.csproj"
+        "projectPath": "C:\\Users\\Ted\\source\\repos\\TheLordXII\\Simulator\\Simulator\\Simulator.csproj"
       },
       "frameworks": {
         "net461": {}
       }
     },
-    "C:\\Users\\Ted\\Source\\Repos\\TheLordXII\\Simulator\\UnitTests\\UnitTests.csproj": {
+    "C:\\Users\\Ted\\source\\repos\\TheLordXII\\Simulator\\UnitTests\\UnitTests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Ted\\Source\\Repos\\TheLordXII\\Simulator\\UnitTests\\UnitTests.csproj",
+        "projectUniqueName": "C:\\Users\\Ted\\source\\repos\\TheLordXII\\Simulator\\UnitTests\\UnitTests.csproj",
         "projectName": "UnitTests",
-        "projectPath": "C:\\Users\\Ted\\Source\\Repos\\TheLordXII\\Simulator\\UnitTests\\UnitTests.csproj",
+        "projectPath": "C:\\Users\\Ted\\source\\repos\\TheLordXII\\Simulator\\UnitTests\\UnitTests.csproj",
         "packagesPath": "C:\\Users\\Ted\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Ted\\Source\\Repos\\TheLordXII\\Simulator\\UnitTests\\obj\\",
+        "outputPath": "C:\\Users\\Ted\\source\\repos\\TheLordXII\\Simulator\\UnitTests\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Ted\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -38,8 +38,8 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "C:\\Users\\Ted\\Source\\Repos\\TheLordXII\\Simulator\\Simulator\\Simulator.csproj": {
-                "projectPath": "C:\\Users\\Ted\\Source\\Repos\\TheLordXII\\Simulator\\Simulator\\Simulator.csproj"
+              "C:\\Users\\Ted\\source\\repos\\TheLordXII\\Simulator\\Simulator\\Simulator.csproj": {
+                "projectPath": "C:\\Users\\Ted\\source\\repos\\TheLordXII\\Simulator\\Simulator\\Simulator.csproj"
               }
             }
           }
