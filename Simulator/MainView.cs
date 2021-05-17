@@ -13,6 +13,7 @@ using System.Diagnostics;
 using System.Diagnostics.Eventing.Reader;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+using Simulator.ViewModels;
 
 namespace Simulator
 {
@@ -27,7 +28,7 @@ namespace Simulator
         {
             InitializeComponent();
             //Create the ViewModel with a factory
-
+            MainViewModelFactory factory = new MainViewModelFactory();
 
             //Map the bindings
 

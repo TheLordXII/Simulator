@@ -2,9 +2,7 @@
   "ExpandedNodes": [
     "",
     "\\Simulator",
-    "\\Simulator\\Models",
-    "\\Simulator\\Models\\Commands",
-    "\\Simulator\\Models\\Controls"
+    "\\UnitTests"
   ],
   "SelectedNode": "\\Simulator\\Simulator.sln",
   "PreviewInSolutionExplorer": false
