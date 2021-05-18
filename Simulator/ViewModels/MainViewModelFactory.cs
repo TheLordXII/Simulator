@@ -29,7 +29,7 @@ namespace Simulator.ViewModels
             var operationSelector = new OperationSelector(commandSet);
             var controlUnit = new ControlUnit(interpreter, operationSelector, memory);
 
-            return new MainViewModel(/* inject models for easier testing*/memory);
+            return new MainViewModel(/* inject models for easier testing*/memory, controlUnit, Parser);
         }
     }
 }

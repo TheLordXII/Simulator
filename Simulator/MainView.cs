@@ -19,17 +19,15 @@ namespace Simulator
 {
     public partial class MainView : Form
     {
-        double Laufzeit = 0;
+        private MainViewModel _viewModel;
+        int Laufzeit = 0;
 
-        //*****************************************************************************************
-        //GUI ZEUG
-        //*****************************************************************************************
         public MainView()
         {
             InitializeComponent();
             //Create the ViewModel with a factory
             MainViewModelFactory factory = new MainViewModelFactory();
-
+            ViewModelBase _viewModelBase = factory.Load();
             //Map the bindings
 
         }
@@ -62,7 +60,7 @@ namespace Simulator
                 {
                     //Get the path of specified file
                     filePath = openFileDialog.FileName;
-
+                    _viewModel.ParseData(filePath);
 
 
                 }

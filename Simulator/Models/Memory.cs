@@ -217,7 +217,7 @@ namespace Simulator.Models
         /// Changes the DC-Flag depending of the Operation-Type
         /// </summary>
         /// <param name="value">Result of the Operation</param>
-        /// <param name="Operator">Positive for Addition, Negative for Subtraction</param>
+        /// <param name="Operator">True for Addition, False for Subtraction</param>
         void ChangeDC(int value, bool Operator)
         {
             if (Operator)
