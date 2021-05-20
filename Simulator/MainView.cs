@@ -25,12 +25,18 @@ namespace Simulator
         public MainView()
         {
             InitializeComponent();
-            
+            this.InitialControlHandlers();
+
+        }
+
+        private void InitialControlHandlers()
+        {
             //Create the ViewModel with a factory
             MainViewModelFactory factory = new MainViewModelFactory();
             _viewModel = factory.Load();
             //Map the bindings
-
+            BindingSource binding = new BindingSource();
+            binding.DataSource = _viewModel.
         }
 
         private void Form1_Load(object sender, EventArgs e)

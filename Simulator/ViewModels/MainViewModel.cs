@@ -93,7 +93,8 @@ namespace Simulator.ViewModels
             _memory.W = 0;
             _memory.ClearProgramMemory();
             _memory.ClearFileRegister();
-
         }
+
+
     }
 }
