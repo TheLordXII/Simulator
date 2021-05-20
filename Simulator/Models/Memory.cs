@@ -68,6 +68,14 @@ namespace Simulator.Models
             }
         }
 
+        public void ClearFileRegister()
+        {
+            for (int i = 0; i < _fileRegister.Length; i++)
+            {
+                _fileRegister[i] = 0;
+            }
+        }
+
         public short W
         {
             get

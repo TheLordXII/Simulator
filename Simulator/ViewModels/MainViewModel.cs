@@ -25,6 +25,9 @@ namespace Simulator.ViewModels
             _parser = parser;
         }
 
+        /// <summary>
+        /// Takes a File from a File Dialog and parses the Important Information.
+        /// </summary>
         public void ParseData()
         {
             var fileContent = string.Empty;
@@ -46,6 +49,50 @@ namespace Simulator.ViewModels
 
                 }
             }
+
+            //Write the Operations into the GUI
+
+        }
+
+        /// <summary>
+        /// Single Step of the Operation with the ControlUnit
+        /// </summary>
+        public void OperationStep()
+        {
+            _controlUnit.OperationStep();
+
+            //GUI Aktualisieren
+
+        }
+
+        /// <summary>
+        /// Updates the GUI with Information from the Memory over DataBindings
+        /// </summary>
+        public void UpdateGUI()
+        {
+
+        }
+
+        /// <summary>
+        /// Initializes the GUI for use on load.
+        /// </summary>
+        public void InitializeGUI()
+        {
+
+        }
+
+        /// <summary>
+        /// If Reset Button is pressed set GUI to Init State and empty the Memory.
+        /// </summary>
+        public void resetGUI()
+        {
+            InitializeGUI();
+
+            //Clear Memory
+            _memory.W = 0;
+            _memory.ClearProgramMemory();
+            _memory.ClearFileRegister();
+
         }
     }
 }

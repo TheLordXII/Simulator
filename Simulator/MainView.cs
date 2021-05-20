@@ -35,9 +35,7 @@ namespace Simulator
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            UpdateSFR();
-            UpdateTris();
-            clearCheckBoxes();
+            _viewModel.InitializeGUI();
         }
 
         private void schließenToolStripMenuItem_Click(object sender, EventArgs e)
@@ -58,7 +56,7 @@ namespace Simulator
 
         private void btnEinzelschritt_Click(object sender, EventArgs e)
         {
-            Step();
+            _viewModel.OperationStep();
         }
 
         public void clearCheckBoxes()
