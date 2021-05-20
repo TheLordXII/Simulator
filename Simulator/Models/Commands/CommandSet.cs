@@ -10,45 +10,31 @@ namespace Simulator.Models
 {
     public class CommandSet : ObservableObject
     {
-        public BitCommands _bitCommands
+        private BitCommands _bitCommands;
+        private LiteralCommands _literalCommands;
+        private ByteCommands _byteCommands;
+
+        public BitCommands _BitCommands
         {
             get
             {
                 return _bitCommands;
             }
-
-            set
-            {
-                _bitCommands = value;
-                RaisePropertyChanged();
-            }
         }
 
-        public LiteralCommands _literalCommands
+        public LiteralCommands _LiteralCommands
         {
             get
             {
                 return _literalCommands;
             }
-
-            set
-            {
-                _literalCommands = value;
-                RaisePropertyChanged();
-            }
         }
 
-        public ByteCommands _byteCommands
+        public ByteCommands _ByteCommands
         {
             get
             {
                 return _byteCommands;
-            }
-
-            set
-            {
-                _byteCommands = value;
-                RaisePropertyChanged();
             }
         }
 

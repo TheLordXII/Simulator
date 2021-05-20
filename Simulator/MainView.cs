@@ -25,9 +25,10 @@ namespace Simulator
         public MainView()
         {
             InitializeComponent();
+            
             //Create the ViewModel with a factory
             MainViewModelFactory factory = new MainViewModelFactory();
-            ViewModelBase _viewModelBase = factory.Load();
+            _viewModel = factory.Load();
             //Map the bindings
 
         }
@@ -46,27 +47,7 @@ namespace Simulator
 
         private void ladenToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var fileContent = string.Empty;
-            var filePath = string.Empty;
-
-            using (OpenFileDialog openFileDialog = new OpenFileDialog())
-            {
-                openFileDialog.InitialDirectory = "c:\\";
-                openFileDialog.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
-                openFileDialog.FilterIndex = 2;
-                openFileDialog.RestoreDirectory = true;
-
-                if (openFileDialog.ShowDialog() == DialogResult.OK)
-                {
-                    //Get the path of specified file
-                    filePath = openFileDialog.FileName;
-                    _viewModel.ParseData(filePath);
-
-
-                }
-            }
-
-
+            _viewModel.ParseData();
         }
 
         private void btnReset_Click(object sender, EventArgs e) //Reset Button1

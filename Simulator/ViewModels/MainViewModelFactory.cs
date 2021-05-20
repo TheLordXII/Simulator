@@ -15,7 +15,7 @@ namespace Simulator.ViewModels
         /// Creates a MainViewModel and needed Models for it. 
         /// </summary>
         /// <returns></returns>
-        public ViewModelBase Load()
+        public MainViewModel Load()
         {
             // build models
             var memory = new Memory();

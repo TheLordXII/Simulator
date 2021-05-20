@@ -8,6 +8,6 @@ namespace Simulator.ViewModels
 {
     public interface IViewModelFactory
     {
-        ViewModelBase Load();
+        MainViewModel Load();
     }
 }

@@ -28,7 +28,7 @@ namespace Simulator.Models.Controls
 
             foreach (Match m in Regex.Matches(input, pattern, options))
             {
-                short value = Convert.ToInt16(m.Value, 16);
+                short value = Convert.ToInt16(m.Value.Substring(5), 16);
                 _memory.SaveToProgramMemory(index , value);
                 index++;
             }
