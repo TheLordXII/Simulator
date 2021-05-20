@@ -58,3 +58,13 @@ C:\Users\b28336\Source\Repos\TheLordXII\Simulator\Simulator\obj\Debug\Simulator.
 C:\Users\b28336\Source\Repos\TheLordXII\Simulator\Simulator\obj\Debug\Simulator.csproj.CoreCompileInputs.cache
 C:\Users\b28336\Source\Repos\TheLordXII\Simulator\Simulator\obj\Debug\Simulator.exe
 C:\Users\b28336\Source\Repos\TheLordXII\Simulator\Simulator\obj\Debug\Simulator.pdb
+C:\Users\Marce\Source\Repos\Simulator\Simulator\bin\Debug\Simulator.exe.config
+C:\Users\Marce\Source\Repos\Simulator\Simulator\bin\Debug\Simulator.exe
+C:\Users\Marce\Source\Repos\Simulator\Simulator\bin\Debug\Simulator.pdb
+C:\Users\Marce\Source\Repos\Simulator\Simulator\obj\Debug\Simulator.csprojAssemblyReference.cache
+C:\Users\Marce\Source\Repos\Simulator\Simulator\obj\Debug\Simulator.MainView.resources
+C:\Users\Marce\Source\Repos\Simulator\Simulator\obj\Debug\Simulator.Properties.Resources.resources
+C:\Users\Marce\Source\Repos\Simulator\Simulator\obj\Debug\Simulator.csproj.GenerateResource.cache
+C:\Users\Marce\Source\Repos\Simulator\Simulator\obj\Debug\Simulator.csproj.CoreCompileInputs.cache
+C:\Users\Marce\Source\Repos\Simulator\Simulator\obj\Debug\Simulator.exe
+C:\Users\Marce\Source\Repos\Simulator\Simulator\obj\Debug\Simulator.pdb

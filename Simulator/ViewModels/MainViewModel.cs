@@ -28,6 +28,7 @@ namespace Simulator.ViewModels
         /// <summary>
         /// Takes a File from a File Dialog and parses the Important Information.
         /// </summary>
+        /// ------------------TESTEN
         public void ParseData()
         {
             var fileContent = string.Empty;

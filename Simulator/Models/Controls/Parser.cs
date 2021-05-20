@@ -18,6 +18,7 @@ namespace Simulator.Models.Controls
             _memory = memory;
         }
 
+        /// ------------------TESTEN
         public void ReadFromPath(String Pfad)
         {
 
