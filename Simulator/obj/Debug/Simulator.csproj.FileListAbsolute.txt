@@ -1,70 +1,15 @@
-D:\OneDrive\Dokumente\DHBW\4. Semester\Systemnahes Programmieren\Simulator\Simulator\bin\Debug\Simulator.exe.config
-D:\OneDrive\Dokumente\DHBW\4. Semester\Systemnahes Programmieren\Simulator\Simulator\bin\Debug\Simulator.exe
-D:\OneDrive\Dokumente\DHBW\4. Semester\Systemnahes Programmieren\Simulator\Simulator\bin\Debug\Simulator.pdb
-D:\OneDrive\Dokumente\DHBW\4. Semester\Systemnahes Programmieren\Simulator\Simulator\obj\Debug\Simulator.csprojAssemblyReference.cache
-D:\OneDrive\Dokumente\DHBW\4. Semester\Systemnahes Programmieren\Simulator\Simulator\obj\Debug\Simulator.Form1.resources
-D:\OneDrive\Dokumente\DHBW\4. Semester\Systemnahes Programmieren\Simulator\Simulator\obj\Debug\Simulator.Properties.Resources.resources
-D:\OneDrive\Dokumente\DHBW\4. Semester\Systemnahes Programmieren\Simulator\Simulator\obj\Debug\Simulator.csproj.GenerateResource.cache
-D:\OneDrive\Dokumente\DHBW\4. Semester\Systemnahes Programmieren\Simulator\Simulator\obj\Debug\Simulator.csproj.CoreCompileInputs.cache
-D:\OneDrive\Dokumente\DHBW\4. Semester\Systemnahes Programmieren\Simulator\Simulator\obj\Debug\Simulator.exe
-D:\OneDrive\Dokumente\DHBW\4. Semester\Systemnahes Programmieren\Simulator\Simulator\obj\Debug\Simulator.pdb
-D:\OneDrive\Dokumente\DHBW\4. Semester\SystemnahesProgrammieren\Simulator\Simulator\bin\Debug\Simulator.exe.config
-D:\OneDrive\Dokumente\DHBW\4. Semester\SystemnahesProgrammieren\Simulator\Simulator\bin\Debug\Simulator.exe
-D:\OneDrive\Dokumente\DHBW\4. Semester\SystemnahesProgrammieren\Simulator\Simulator\bin\Debug\Simulator.pdb
-D:\OneDrive\Dokumente\DHBW\4. Semester\SystemnahesProgrammieren\Simulator\Simulator\obj\Debug\Simulator.csprojAssemblyReference.cache
-D:\OneDrive\Dokumente\DHBW\4. Semester\SystemnahesProgrammieren\Simulator\Simulator\obj\Debug\Simulator.Form1.resources
-D:\OneDrive\Dokumente\DHBW\4. Semester\SystemnahesProgrammieren\Simulator\Simulator\obj\Debug\Simulator.Properties.Resources.resources
-D:\OneDrive\Dokumente\DHBW\4. Semester\SystemnahesProgrammieren\Simulator\Simulator\obj\Debug\Simulator.csproj.GenerateResource.cache
-D:\OneDrive\Dokumente\DHBW\4. Semester\SystemnahesProgrammieren\Simulator\Simulator\obj\Debug\Simulator.exe
-D:\OneDrive\Dokumente\DHBW\4. Semester\SystemnahesProgrammieren\Simulator\Simulator\obj\Debug\Simulator.pdb
-D:\OneDrive\Dokumente\DHBW\4. Semester\SystemnahesProgrammieren\Simulator\Simulator\obj\Debug\Simulator.csproj.CoreCompileInputs.cache
-C:\Users\Ted\source\repos\Simulator\Simulator\bin\Debug\Simulator.exe.config
-C:\Users\Ted\source\repos\Simulator\Simulator\bin\Debug\Simulator.exe
-C:\Users\Ted\source\repos\Simulator\Simulator\bin\Debug\Simulator.pdb
-C:\Users\Ted\source\repos\Simulator\Simulator\obj\Debug\Simulator.Form1.resources
-C:\Users\Ted\source\repos\Simulator\Simulator\obj\Debug\Simulator.Properties.Resources.resources
-C:\Users\Ted\source\repos\Simulator\Simulator\obj\Debug\Simulator.csproj.GenerateResource.cache
-C:\Users\Ted\source\repos\Simulator\Simulator\obj\Debug\Simulator.csproj.CoreCompileInputs.cache
-C:\Users\Ted\source\repos\Simulator\Simulator\obj\Debug\Simulator.exe
-C:\Users\Ted\source\repos\Simulator\Simulator\obj\Debug\Simulator.pdb
-C:\Users\Ted\source\repos\Simulator\Simulator\obj\Debug\Simulator.csprojAssemblyReference.cache
-C:\Users\eliah\Source\Repos\TheLordXII\Simulator\Simulator\obj\Debug\Simulator.csprojAssemblyReference.cache
-C:\Users\eliah\Source\Repos\TheLordXII\Simulator\Simulator\obj\Debug\Simulator.MainView.resources
-C:\Users\eliah\Source\Repos\TheLordXII\Simulator\Simulator\obj\Debug\Simulator.Properties.Resources.resources
-C:\Users\eliah\Source\Repos\TheLordXII\Simulator\Simulator\obj\Debug\Simulator.csproj.GenerateResource.cache
-C:\Users\eliah\Source\Repos\TheLordXII\Simulator\Simulator\obj\Debug\Simulator.csproj.CoreCompileInputs.cache
-C:\Users\eliah\Source\Repos\TheLordXII\Simulator\Simulator\obj\Debug\Simulator.exe
-C:\Users\eliah\Source\Repos\TheLordXII\Simulator\Simulator\obj\Debug\Simulator.pdb
-C:\Users\eliah\Source\Repos\TheLordXII\Simulator\Simulator\bin\Debug\Simulator.exe.config
-C:\Users\eliah\Source\Repos\TheLordXII\Simulator\Simulator\bin\Debug\Simulator.exe
-C:\Users\eliah\Source\Repos\TheLordXII\Simulator\Simulator\bin\Debug\Simulator.pdb
-C:\Users\Ted\Source\Repos\TheLordXII\Simulator\Simulator\bin\Debug\Simulator.exe.config
-C:\Users\Ted\Source\Repos\TheLordXII\Simulator\Simulator\bin\Debug\Simulator.exe
-C:\Users\Ted\Source\Repos\TheLordXII\Simulator\Simulator\bin\Debug\Simulator.pdb
-C:\Users\Ted\Source\Repos\TheLordXII\Simulator\Simulator\obj\Debug\Simulator.MainView.resources
-C:\Users\Ted\Source\Repos\TheLordXII\Simulator\Simulator\obj\Debug\Simulator.Properties.Resources.resources
-C:\Users\Ted\Source\Repos\TheLordXII\Simulator\Simulator\obj\Debug\Simulator.csproj.GenerateResource.cache
-C:\Users\Ted\Source\Repos\TheLordXII\Simulator\Simulator\obj\Debug\Simulator.csproj.CoreCompileInputs.cache
-C:\Users\Ted\Source\Repos\TheLordXII\Simulator\Simulator\obj\Debug\Simulator.exe
-C:\Users\Ted\Source\Repos\TheLordXII\Simulator\Simulator\obj\Debug\Simulator.pdb
-C:\Users\Ted\Source\Repos\TheLordXII\Simulator\Simulator\obj\Debug\Simulator.csprojAssemblyReference.cache
-C:\Users\b28336\Source\Repos\TheLordXII\Simulator\Simulator\bin\Debug\Simulator.exe.config
-C:\Users\b28336\Source\Repos\TheLordXII\Simulator\Simulator\bin\Debug\Simulator.exe
-C:\Users\b28336\Source\Repos\TheLordXII\Simulator\Simulator\bin\Debug\Simulator.pdb
-C:\Users\b28336\Source\Repos\TheLordXII\Simulator\Simulator\obj\Debug\Simulator.csprojAssemblyReference.cache
-C:\Users\b28336\Source\Repos\TheLordXII\Simulator\Simulator\obj\Debug\Simulator.MainView.resources
-C:\Users\b28336\Source\Repos\TheLordXII\Simulator\Simulator\obj\Debug\Simulator.Properties.Resources.resources
-C:\Users\b28336\Source\Repos\TheLordXII\Simulator\Simulator\obj\Debug\Simulator.csproj.GenerateResource.cache
-C:\Users\b28336\Source\Repos\TheLordXII\Simulator\Simulator\obj\Debug\Simulator.csproj.CoreCompileInputs.cache
-C:\Users\b28336\Source\Repos\TheLordXII\Simulator\Simulator\obj\Debug\Simulator.exe
-C:\Users\b28336\Source\Repos\TheLordXII\Simulator\Simulator\obj\Debug\Simulator.pdb
-C:\Users\Marce\Source\Repos\Simulator\Simulator\bin\Debug\Simulator.exe.config
-C:\Users\Marce\Source\Repos\Simulator\Simulator\bin\Debug\Simulator.exe
-C:\Users\Marce\Source\Repos\Simulator\Simulator\bin\Debug\Simulator.pdb
-C:\Users\Marce\Source\Repos\Simulator\Simulator\obj\Debug\Simulator.csprojAssemblyReference.cache
-C:\Users\Marce\Source\Repos\Simulator\Simulator\obj\Debug\Simulator.MainView.resources
-C:\Users\Marce\Source\Repos\Simulator\Simulator\obj\Debug\Simulator.Properties.Resources.resources
-C:\Users\Marce\Source\Repos\Simulator\Simulator\obj\Debug\Simulator.csproj.GenerateResource.cache
-C:\Users\Marce\Source\Repos\Simulator\Simulator\obj\Debug\Simulator.csproj.CoreCompileInputs.cache
-C:\Users\Marce\Source\Repos\Simulator\Simulator\obj\Debug\Simulator.exe
-C:\Users\Marce\Source\Repos\Simulator\Simulator\obj\Debug\Simulator.pdb
+C:\Users\b28336\source\Simulator\obj\Debug\Simulator.csprojAssemblyReference.cache
+C:\Users\b28336\source\Simulator\obj\Debug\MainWindow.g.cs
+C:\Users\b28336\source\Simulator\obj\Debug\App.g.cs
+C:\Users\b28336\source\Simulator\obj\Debug\Simulator_MarkupCompile.cache
+C:\Users\b28336\source\Simulator\obj\Debug\Simulator_MarkupCompile.lref
+C:\Users\b28336\source\Simulator\bin\Debug\Simulator.exe.config
+C:\Users\b28336\source\Simulator\bin\Debug\Simulator.exe
+C:\Users\b28336\source\Simulator\bin\Debug\Simulator.pdb
+C:\Users\b28336\source\Simulator\obj\Debug\MainWindow.baml
+C:\Users\b28336\source\Simulator\obj\Debug\Simulator.g.resources
+C:\Users\b28336\source\Simulator\obj\Debug\Simulator.Properties.Resources.resources
+C:\Users\b28336\source\Simulator\obj\Debug\Simulator.csproj.GenerateResource.cache
+C:\Users\b28336\source\Simulator\obj\Debug\Simulator.csproj.CoreCompileInputs.cache
+C:\Users\b28336\source\Simulator\obj\Debug\Simulator.exe
+C:\Users\b28336\source\Simulator\obj\Debug\Simulator.pdb

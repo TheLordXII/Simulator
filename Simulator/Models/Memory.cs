@@ -127,7 +127,7 @@ namespace Simulator.Models
                 RaisePropertyChanged();
             }
         }
-        
+
         /// <summary>
         /// Changes Flags for Operations and stores Result into the W-Register
         /// </summary>
@@ -135,7 +135,7 @@ namespace Simulator.Models
         {
             result = ChangeC(result);
             ChangeZ(result);
-            
+
             W = (byte)result;
         }
 
@@ -230,7 +230,7 @@ namespace Simulator.Models
         {
             if (Operator)
             {
-                short helper = (short)(W&15 + value&15);
+                short helper = (short)(W & 15 + value & 15);
 
                 if (helper > 15)
                 {
@@ -425,3 +425,4 @@ namespace Simulator.Models
         }
     }
 }
+

@@ -20,7 +20,7 @@ namespace Simulator.ViewModels
         {
             // build models
             var memory = new Memory();
-            
+
             var interpreter = new Interpreter();
             var Parser = new Parser(memory);
             var bitCommands = new BitCommands(memory);

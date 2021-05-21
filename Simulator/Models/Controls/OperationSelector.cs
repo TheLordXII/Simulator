@@ -11,13 +11,13 @@ namespace Simulator.Models.Controls
     public class OperationSelector
     {
         private CommandSet _commandSet;
-        
+
         public OperationSelector(CommandSet commandSet)
         {
             _commandSet = commandSet;
         }
 
-        
+
 
         public void ChooseOperation(short operationCode, short register, bool destination, short bit, short target, short literal)
         {

@@ -1,0 +1,162 @@
+﻿<Window x:Class="Simulator.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Simulator"
+        mc:Ignorable="d"
+        Title="Simulator" Height="800" Width="1200">
+    <Grid>
+        <DockPanel Grid.ColumnSpan="1">
+            <Menu DockPanel.Dock="Top">
+                <MenuItem Header="Datei">
+                    <MenuItem Header="Laden" />
+                    <Separator />
+                    <MenuItem Header="Schließen" />
+                </MenuItem>
+            </Menu>
+        </DockPanel>
+        <GroupBox Header="Programm / LST-Datei" HorizontalAlignment="Left" Height="709" Margin="10,50,0,0" VerticalAlignment="Top" Width="426">
+            <ListBox HorizontalAlignment="Left" Height="675" Margin="0,10,-2,0" VerticalAlignment="Top" Width="416"/>
+        </GroupBox>
+        <Button Content="Einzelschritt" HorizontalAlignment="Left" Margin="132,10,0,0" VerticalAlignment="Top" Width="120" Height="35" Click="Button_Click"/>
+        <GroupBox Header="Registerinhalt" HorizontalAlignment="Left" Height="190" Margin="441,50,0,0" VerticalAlignment="Top" Width="283">
+            <Grid>
+                <Label Content="W-Register:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+                <Label Content="00" Name="WReg" HorizontalAlignment="Left" Margin="86,10,0,0" VerticalAlignment="Top"/>
+                <Label Content="PCL:" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.148,-0.341"/>
+                <Label Content="00" Name="PCL" HorizontalAlignment="Left" Margin="86,41,0,0" VerticalAlignment="Top"/>
+                <Label Content="PCLATCH:" HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top"/>
+                <Label Content="00" Name="PCLATCH" HorizontalAlignment="Left" Margin="86,72,0,0" VerticalAlignment="Top"/>
+                <Label Content="PC intern:" HorizontalAlignment="Left" Margin="10,98,0,0" VerticalAlignment="Top"/>
+                <Label Content="00" Name="PC" HorizontalAlignment="Left" Margin="86,98,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.897,0.541"/>
+                <Label Content="Laufzeit:" HorizontalAlignment="Left" Margin="10,124,0,0" VerticalAlignment="Top"/>
+                <Label Content="00"  Name="Laufzeit" HorizontalAlignment="Left" Margin="86,124,0,0" VerticalAlignment="Top"/>
+                <Label Content="Status:" HorizontalAlignment="Left" Margin="131,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.566,0.538"/>
+                <Label Content="00" Name="Status" HorizontalAlignment="Left" Margin="192,10,0,0" VerticalAlignment="Top"/>
+                <Label Content="FSR: " HorizontalAlignment="Left" Margin="131,41,0,0" VerticalAlignment="Top"/>
+                <Label Content="00" Name="FSR" HorizontalAlignment="Left" Margin="192,41,0,0" VerticalAlignment="Top"/>
+                <Label Content="Option:" HorizontalAlignment="Left" Margin="131,72,0,0" VerticalAlignment="Top"/>
+                <Label Content="00" Name="Option"  HorizontalAlignment="Left" Margin="192,72,0,0" VerticalAlignment="Top"/>
+                <Label Content="Vorteiler:" HorizontalAlignment="Left" Margin="131,98,0,0" VerticalAlignment="Top"/>
+                <Label Content="1:1" Name="Vorteiler"  HorizontalAlignment="Left" Margin="190,98,0,0" VerticalAlignment="Top"/>
+                <Label Content="Timer0:" HorizontalAlignment="Left" Margin="131,124,0,0" VerticalAlignment="Top"/>
+                <Label Content="00" Name="Timer0"  HorizontalAlignment="Left" Margin="192,124,0,0" VerticalAlignment="Top"/>
+            </Grid>
+        </GroupBox>
+        <GroupBox Header="SFR (Bit)" HorizontalAlignment="Left" Height="190" Margin="729,50,0,0" VerticalAlignment="Top" Width="309">
+            <Grid>
+                <Label Content="Status:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+                <Label Margin="58,11,0,0" Content="IRP" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
+                <Label Margin="62,31,0,0" Content="0" x:Name="IRP"  HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
+                <Label Content="RP1" HorizontalAlignment="Left" Margin="86,11,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
+                <Label Content="0" Name="RP1"  HorizontalAlignment="Left" Margin="90,31,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
+                <Label Content="RP0" HorizontalAlignment="Left" Margin="112,11,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
+                <Label Content="0" Name="RP0"  HorizontalAlignment="Left" Margin="116,31,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
+                <Label Content="T0" HorizontalAlignment="Left" Margin="142,11,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
+                <Label Content="0" Name="T0"  HorizontalAlignment="Left" Margin="146,31,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
+                <Label Content="PD" HorizontalAlignment="Left" Margin="174,12,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
+                <Label Content="0" Name="PD"  HorizontalAlignment="Left" Margin="178,32,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
+                <Label Content="Z" HorizontalAlignment="Left" Margin="204,12,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
+                <Label Content="0" Name="Z"  HorizontalAlignment="Left" Margin="204,32,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
+                <Label Content="DC" HorizontalAlignment="Left" Margin="225,12,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
+                <Label Content="0" Name="DC"  HorizontalAlignment="Left" Margin="229,32,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
+                <Label Content="C" HorizontalAlignment="Left" Margin="255,13,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
+                <Label Content="0"  Name="C"  HorizontalAlignment="Left" Margin="255,32,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
+                <Label Content="Option:" HorizontalAlignment="Left" Margin="10,58,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
+                <Label Content="RPu" HorizontalAlignment="Left" Margin="58,58,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
+                <Label Content="0" Name="RPu"  HorizontalAlignment="Left" Margin="62,78,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
+                <Label Content="IEg" HorizontalAlignment="Left" Margin="86,58,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
+                <Label Content="0" Name="IEg"  HorizontalAlignment="Left" Margin="90,78,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
+                <Label Content="T0CS" HorizontalAlignment="Left" Margin="108,58,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
+                <Label Content="0" Name="T0CS"  HorizontalAlignment="Left" Margin="116,78,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
+                <Label Content="T0SE" HorizontalAlignment="Left" Margin="138,58,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
+                <Label Content="0" Name="T0SE"  HorizontalAlignment="Left" Margin="146,78,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
+                <Label Content="PSA" HorizontalAlignment="Left" Margin="173,58,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
+                <Label Content="0" Name="PSA"  HorizontalAlignment="Left" Margin="178,78,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
+                <Label Content="PS2" HorizontalAlignment="Left" Margin="199,58,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
+                <Label Content="0" Name="PS2"  HorizontalAlignment="Left" Margin="204,78,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
+                <Label Content="PS1" HorizontalAlignment="Left" Margin="225,58,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
+                <Label Content="0" Name="PS1"  HorizontalAlignment="Left" Margin="229,78,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
+                <Label Content="PS0" HorizontalAlignment="Left" Margin="251,58,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
+                <Label Content="0" Name="PS0"  HorizontalAlignment="Left" Margin="255,78,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
+                <Label Content="INTCON" HorizontalAlignment="Left" Margin="10,109,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
+                <Label Content="GIE" HorizontalAlignment="Left" Margin="58,109,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
+                <Label Name="GIE" Content="0"   HorizontalAlignment="Left" Margin="62,129,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
+                <Label Content="EEIE" HorizontalAlignment="Left" Margin="83,109,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
+                <Label Name="EEIE" Content="0"   HorizontalAlignment="Left" Margin="90,129,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
+                <Label Content="T0IE" HorizontalAlignment="Left" Margin="108,109,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
+                <Label Name="T0IE" Content="0"   HorizontalAlignment="Left" Margin="116,129,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
+                <Label Content="INTIE" HorizontalAlignment="Left" Margin="138,109,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
+                <Label Name="INTIE" Content="0"   HorizontalAlignment="Left" Margin="145,129,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
+                <Label Content="RBIE" HorizontalAlignment="Left" Margin="170,109,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
+                <Label Name="RBIE" Content="0"   HorizontalAlignment="Left" Margin="178,129,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
+                <Label Content="T0IF" HorizontalAlignment="Left" Margin="197,109,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
+                <Label Name="T0IF" Content="0"   HorizontalAlignment="Left" Margin="204,129,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
+                <Label Content="INTF" HorizontalAlignment="Left" Margin="223,109,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
+                <Label Name="INTF" Content="0"   HorizontalAlignment="Left" Margin="229,129,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
+                <Label Content="RBIF" HorizontalAlignment="Left" Margin="251,109,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
+                <Label Name="RBIF" Content="0"   HorizontalAlignment="Left" Margin="255,129,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
+            </Grid>
+        </GroupBox>
+        <GroupBox Header="Stack" Margin="1043,50,82,529">
+            <Grid>
+                <Label Content="0001" Name="Stack1" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top"/>
+                <Label Content="0002" Name="Stack2" HorizontalAlignment="Left" Margin="10,15,0,0" VerticalAlignment="Top"/>
+                <Label Content="0003" Name="Stack3" HorizontalAlignment="Left" Margin="10,30,0,0" VerticalAlignment="Top"/>
+                <Label Content="0004" Name="Stack4" HorizontalAlignment="Left" Margin="10,45,0,0" VerticalAlignment="Top"/>
+                <Label Content="0005" Name="Stack5" HorizontalAlignment="Left" Margin="10,60,0,0" VerticalAlignment="Top"/>
+                <Label Content="0006" Name="Stack6" HorizontalAlignment="Left" Margin="10,75,0,0" VerticalAlignment="Top"/>
+                <Label Content="0007" Name="Stack7" HorizontalAlignment="Left" Margin="10,90,0,0" VerticalAlignment="Top"/>
+                <Label Content="0008" Name="Stack8" HorizontalAlignment="Left" Margin="10,105,0,0" VerticalAlignment="Top"/>
+            </Grid>
+        </GroupBox>
+        <GroupBox Header="FileRegister" Margin="441,431,36,10">
+            <DataGrid/>
+        </GroupBox>
+        <GroupBox Header="PortA und Port B" Margin="441,245,36,343">
+            <Grid>
+
+                <Label Content="Tris A" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>             
+                <CheckBox Content="7" Name="TrisA7" HorizontalAlignment="Left" Margin="50,16,0,0" VerticalAlignment="Top"/>                
+                <CheckBox Content="6" Name="TrisA6" HorizontalAlignment="Left" Margin="125,16,0,0" VerticalAlignment="Top"/>
+                <CheckBox Content="5" Name="TrisA5" HorizontalAlignment="Left" Margin="200,16,0,0" VerticalAlignment="Top"/>
+                <CheckBox Content="4" Name="TrisA4" HorizontalAlignment="Left" Margin="275,16,0,0" VerticalAlignment="Top"/>
+                <CheckBox Content="3" Name="TrisA3" HorizontalAlignment="Left" Margin="350,16,0,0" VerticalAlignment="Top"/>                
+                <CheckBox Content="2" Name="TrisA2" HorizontalAlignment="Left" Margin="425,16,0,0" VerticalAlignment="Top"/>
+                <CheckBox Content="1" Name="TrisA1" HorizontalAlignment="Left" Margin="500,16,0,0" VerticalAlignment="Top"/>
+                <CheckBox Content="0" Name="TrisA0" HorizontalAlignment="Left" Margin="575,16,0,0" VerticalAlignment="Top"/>
+                
+                <Label Content="Pin A" HorizontalAlignment="Left" Margin="10,42,0,0" VerticalAlignment="Top"/>                   
+                <CheckBox Content="4" Name="PinA4" HorizontalAlignment="Left" Margin="275,48,0,0" VerticalAlignment="Top"/>
+                <CheckBox Content="3" Name="PinA3" HorizontalAlignment="Left" Margin="350,48,0,0" VerticalAlignment="Top"/>
+                <CheckBox Content="2" Name="PinA2" HorizontalAlignment="Left" Margin="425,48,0,0" VerticalAlignment="Top"/>
+                <CheckBox Content="1" Name="PinA1" HorizontalAlignment="Left" Margin="500,48,0,0" VerticalAlignment="Top"/>
+                <CheckBox Content="0" Name="PinA0" HorizontalAlignment="Left" Margin="575,48,0,0" VerticalAlignment="Top"/>
+                
+                <Label Content="Tris B" HorizontalAlignment="Left" Margin="10,74,0,0" VerticalAlignment="Top"/>
+                <CheckBox Content="7" Name="TrisB7" HorizontalAlignment="Left" Margin="50,80,0,0" VerticalAlignment="Top"/>
+                <CheckBox Content="6" Name="TrisB6" HorizontalAlignment="Left" Margin="125,80,0,0" VerticalAlignment="Top"/>
+                <CheckBox Content="5" Name="TrisB5" HorizontalAlignment="Left" Margin="200,80,0,0" VerticalAlignment="Top"/>
+                <CheckBox Content="4" Name="TrisB4" HorizontalAlignment="Left" Margin="275,80,0,0" VerticalAlignment="Top"/>
+                <CheckBox Content="3" Name="TrisB3" HorizontalAlignment="Left" Margin="350,80,0,0" VerticalAlignment="Top"/>
+                <CheckBox Content="2" Name="TrisB2" HorizontalAlignment="Left" Margin="425,80,0,0" VerticalAlignment="Top"/>
+                <CheckBox Content="1" Name="TrisB1" HorizontalAlignment="Left" Margin="500,80,0,0" VerticalAlignment="Top"/>
+                <CheckBox Content="0" Name="TrisB0" HorizontalAlignment="Left" Margin="575,80,0,0" VerticalAlignment="Top"/>
+
+                <Label Content="Pin B" HorizontalAlignment="Left" Margin="10,106,0,0" VerticalAlignment="Top"/>
+                <CheckBox Content="7" Name="PinB7" HorizontalAlignment="Left" Margin="50,112,0,0" VerticalAlignment="Top"/>
+                <CheckBox Content="6" Name="PinB6" HorizontalAlignment="Left" Margin="125,112,0,0" VerticalAlignment="Top"/>
+                <CheckBox Content="5" Name="PinB5" HorizontalAlignment="Left" Margin="200,112,0,0" VerticalAlignment="Top"/>
+                <CheckBox Content="4" Name="PinB4" HorizontalAlignment="Left" Margin="275,112,0,0" VerticalAlignment="Top"/>
+                <CheckBox Content="3" Name="PinB3" HorizontalAlignment="Left" Margin="350,112,0,0" VerticalAlignment="Top"/>
+                <CheckBox Content="2" Name="PinB2" HorizontalAlignment="Left" Margin="425,112,0,0" VerticalAlignment="Top"/>
+                <CheckBox Content="1" Name="PinB1" HorizontalAlignment="Left" Margin="500,112,0,0" VerticalAlignment="Top"/>
+                <CheckBox Content="0" Name="PinB0" HorizontalAlignment="Left" Margin="575,112,0,0" VerticalAlignment="Top"/>
+
+            </Grid>
+        </GroupBox>
+
+
+    </Grid>
+</Window>

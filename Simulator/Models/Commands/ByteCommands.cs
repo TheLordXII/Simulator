@@ -15,7 +15,7 @@ namespace Simulator.Models.Commands
             _memory = memory;
         }
 
-        public void ADDWF(short register , bool destination)
+        public void ADDWF(short register, bool destination)
         {
             short result = (short)(_memory.W + _memory.GetRegisterContent(register));
 
@@ -165,7 +165,7 @@ namespace Simulator.Models.Commands
 
         public void MOVWF(short register)
         {
-            _memory.WriteToMemory(_memory.W , register);
+            _memory.WriteToMemory(_memory.W, register);
         }
 
         public void NOP()
