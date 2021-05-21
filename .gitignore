@@ -11,9 +11,17 @@
 # User-specific files
 *.rsuser
 *.suo
+*.sqlite
 *.user
 *.userosscache
 *.sln.docstates
+*.txt
+*.nuget.dgspec.json
+*.nuget.g.props
+*.nuget.cache
+*.assets.json
+*.cache
+
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
