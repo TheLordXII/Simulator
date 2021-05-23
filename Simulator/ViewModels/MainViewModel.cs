@@ -40,7 +40,7 @@ namespace Simulator.ViewModels
 
         public void OnSingleStep()
         {
-            W = 100;
+            _controlUnit.OperationStep();
         }
     }
 }
