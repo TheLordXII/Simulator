@@ -12,7 +12,7 @@ namespace Simulator.Models
     /// <summary>
     /// Represents all memories and register of the PIC16F84
     /// </summary>
-    public class Memory : ObservableObject
+    public class Memory : ObservableObject, IMemory
     {
         /// <summary>
         /// W-Register
@@ -178,7 +178,7 @@ namespace Simulator.Models
         /// Changes C-Flag in the FileRegister depending of the Result of the Operation
         /// </summary>
         /// <param name="value">Result of the Operation</param>
-        int ChangeC(int value)
+        private int ChangeC(int value)
         {
             if (value > 255)
             {
@@ -207,7 +207,7 @@ namespace Simulator.Models
         /// Sets Z-Flag in the FileRegister if the Result of the Operation is 0, deletes if not
         /// </summary>
         /// <param name="value">Result of the Operation</param>
-        void ChangeZ(int value)
+        private void ChangeZ(int value)
         {
             if (value == 0)
             {
@@ -226,7 +226,7 @@ namespace Simulator.Models
         /// </summary>
         /// <param name="value">Result of the Operation</param>
         /// <param name="Operator">True for Addition, False for Subtraction</param>
-        void ChangeDC(int value, bool Operator)
+        private void ChangeDC(int value, bool Operator)
         {
             if (Operator)
             {
