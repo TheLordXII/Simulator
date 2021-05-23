@@ -10,7 +10,7 @@
         <DockPanel Grid.ColumnSpan="1">
             <Menu DockPanel.Dock="Top">
                 <MenuItem Header="Datei">
-                    <MenuItem Header="Laden" />
+                    <MenuItem Header="Laden" Click="MenuItem_Click" />
                     <Separator />
                     <MenuItem Header="Schließen" />
                 </MenuItem>
@@ -25,90 +25,90 @@
                 <Label Content="W-Register:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
                 <Label Content="{Binding Path=W}" Name="WReg" HorizontalAlignment="Left" Margin="86,10,0,0" VerticalAlignment="Top"/>
                 <Label Content="PCL:" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.148,-0.341"/>
-                <Label Content="00" Name="PCL" HorizontalAlignment="Left" Margin="86,41,0,0" VerticalAlignment="Top"/>
+                <Label Content="{Binding Path = PCL}" Name="PCL" HorizontalAlignment="Left" Margin="86,41,0,0" VerticalAlignment="Top"/>
                 <Label Content="PCLATCH:" HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top"/>
-                <Label Content="00" Name="PCLATCH" HorizontalAlignment="Left" Margin="86,72,0,0" VerticalAlignment="Top"/>
+                <Label Content="{Binding Path = PCLATCH}" Name="PCLATCH" HorizontalAlignment="Left" Margin="86,72,0,0" VerticalAlignment="Top"/>
                 <Label Content="PC intern:" HorizontalAlignment="Left" Margin="10,98,0,0" VerticalAlignment="Top"/>
-                <Label Content="00" Name="PC" HorizontalAlignment="Left" Margin="86,98,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.897,0.541"/>
+                <Label Content="{Binding Path = PCint}" Name="PC" HorizontalAlignment="Left" Margin="86,98,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.897,0.541"/>
                 <Label Content="Laufzeit:" HorizontalAlignment="Left" Margin="10,124,0,0" VerticalAlignment="Top"/>
-                <Label Content="00"  Name="Laufzeit" HorizontalAlignment="Left" Margin="86,124,0,0" VerticalAlignment="Top"/>
+                <Label Content="{Binding Path = Laufzeit}"  Name="Laufzeit" HorizontalAlignment="Left" Margin="86,124,0,0" VerticalAlignment="Top"/>
                 <Label Content="Status:" HorizontalAlignment="Left" Margin="131,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.566,0.538"/>
-                <Label Content="00" Name="Status" HorizontalAlignment="Left" Margin="192,10,0,0" VerticalAlignment="Top"/>
+                <Label Content="{Binding Path = Status}" Name="Status" HorizontalAlignment="Left" Margin="192,10,0,0" VerticalAlignment="Top"/>
                 <Label Content="FSR: " HorizontalAlignment="Left" Margin="131,41,0,0" VerticalAlignment="Top"/>
-                <Label Content="00" Name="FSR" HorizontalAlignment="Left" Margin="192,41,0,0" VerticalAlignment="Top"/>
+                <Label Content="{Binding Path = FSR}" Name="FSR" HorizontalAlignment="Left" Margin="192,41,0,0" VerticalAlignment="Top"/>
                 <Label Content="Option:" HorizontalAlignment="Left" Margin="131,72,0,0" VerticalAlignment="Top"/>
-                <Label Content="00" Name="Option"  HorizontalAlignment="Left" Margin="192,72,0,0" VerticalAlignment="Top"/>
+                <Label Content="{Binding Path = Option}" Name="Option"  HorizontalAlignment="Left" Margin="192,72,0,0" VerticalAlignment="Top"/>
                 <Label Content="Vorteiler:" HorizontalAlignment="Left" Margin="131,98,0,0" VerticalAlignment="Top"/>
-                <Label Content="1:1" Name="Vorteiler"  HorizontalAlignment="Left" Margin="190,98,0,0" VerticalAlignment="Top"/>
+                <Label Content="{Binding Path = Vorteiler}" Name="Vorteiler"  HorizontalAlignment="Left" Margin="190,98,0,0" VerticalAlignment="Top"/>
                 <Label Content="Timer0:" HorizontalAlignment="Left" Margin="131,124,0,0" VerticalAlignment="Top"/>
-                <Label Content="00" Name="Timer0"  HorizontalAlignment="Left" Margin="192,124,0,0" VerticalAlignment="Top"/>
+                <Label Content="{Binding Path = Timer0}" Name="Timer0"  HorizontalAlignment="Left" Margin="192,124,0,0" VerticalAlignment="Top"/>
             </Grid>
         </GroupBox>
         <GroupBox Header="SFR (Bit)" HorizontalAlignment="Left" Height="190" Margin="729,50,0,0" VerticalAlignment="Top" Width="309">
             <Grid>
                 <Label Content="Status:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
                 <Label Margin="58,11,0,0" Content="IRP" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
-                <Label Margin="62,31,0,0" Content="0" x:Name="IRP"  HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
+                <Label Margin="62,31,0,0" Content="{Binding Path = IRP}" x:Name="IRP"  HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
                 <Label Content="RP1" HorizontalAlignment="Left" Margin="86,11,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
-                <Label Content="0" Name="RP1"  HorizontalAlignment="Left" Margin="90,31,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
+                <Label Content="{Binding Path = RP1}" Name="RP1"  HorizontalAlignment="Left" Margin="90,31,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
                 <Label Content="RP0" HorizontalAlignment="Left" Margin="112,11,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
-                <Label Content="0" Name="RP0"  HorizontalAlignment="Left" Margin="116,31,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
+                <Label Content="{Binding Path = RP0}"  HorizontalAlignment="Left" Margin="116,31,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
                 <Label Content="T0" HorizontalAlignment="Left" Margin="142,11,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
-                <Label Content="0" Name="T0"  HorizontalAlignment="Left" Margin="146,31,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
+                <Label Content="{Binding Path = T0}" Name="T0"  HorizontalAlignment="Left" Margin="146,31,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
                 <Label Content="PD" HorizontalAlignment="Left" Margin="174,12,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
-                <Label Content="0" Name="PD"  HorizontalAlignment="Left" Margin="178,32,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
+                <Label Content="{Binding Path = PD}" Name="PD" HorizontalAlignment="Left" Margin="178,32,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
                 <Label Content="Z" HorizontalAlignment="Left" Margin="204,12,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
-                <Label Content="0" Name="Z"  HorizontalAlignment="Left" Margin="204,32,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
+                <Label Content="{Binding Path = Z}" Name="Z"  HorizontalAlignment="Left" Margin="204,32,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
                 <Label Content="DC" HorizontalAlignment="Left" Margin="225,12,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
-                <Label Content="0" Name="DC"  HorizontalAlignment="Left" Margin="229,32,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
+                <Label Content="{Binding Path = DC}" Name="DC"  HorizontalAlignment="Left" Margin="229,32,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
                 <Label Content="C" HorizontalAlignment="Left" Margin="255,13,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
-                <Label Content="0"  Name="C"  HorizontalAlignment="Left" Margin="255,32,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
+                <Label Content="{Binding Path = C}"  Name="C"  HorizontalAlignment="Left" Margin="255,32,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
                 <Label Content="Option:" HorizontalAlignment="Left" Margin="10,58,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
                 <Label Content="RPu" HorizontalAlignment="Left" Margin="58,58,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
-                <Label Content="0" Name="RPu"  HorizontalAlignment="Left" Margin="62,78,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
+                <Label Content="{Binding Path = RPu}" Name="RPu"  HorizontalAlignment="Left" Margin="62,78,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
                 <Label Content="IEg" HorizontalAlignment="Left" Margin="86,58,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
-                <Label Content="0" Name="IEg"  HorizontalAlignment="Left" Margin="90,78,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
+                <Label Content="{Binding Path = IEg}" Name="IEg"  HorizontalAlignment="Left" Margin="90,78,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
                 <Label Content="T0CS" HorizontalAlignment="Left" Margin="108,58,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
-                <Label Content="0" Name="T0CS"  HorizontalAlignment="Left" Margin="116,78,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
+                <Label Content="{Binding Path = T0CS}" Name="T0CS"  HorizontalAlignment="Left" Margin="116,78,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
                 <Label Content="T0SE" HorizontalAlignment="Left" Margin="138,58,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
-                <Label Content="0" Name="T0SE"  HorizontalAlignment="Left" Margin="146,78,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
+                <Label Content="{Binding Path = T0SE}" Name="T0SE"  HorizontalAlignment="Left" Margin="146,78,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
                 <Label Content="PSA" HorizontalAlignment="Left" Margin="173,58,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
-                <Label Content="0" Name="PSA"  HorizontalAlignment="Left" Margin="178,78,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
+                <Label Content="{Binding Path = PSA}" Name="PSA"  HorizontalAlignment="Left" Margin="178,78,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
                 <Label Content="PS2" HorizontalAlignment="Left" Margin="199,58,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
-                <Label Content="0" Name="PS2"  HorizontalAlignment="Left" Margin="204,78,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
+                <Label Content="{Binding Path = PS2}" Name="PS2"  HorizontalAlignment="Left" Margin="204,78,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
                 <Label Content="PS1" HorizontalAlignment="Left" Margin="225,58,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
-                <Label Content="0" Name="PS1"  HorizontalAlignment="Left" Margin="229,78,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
+                <Label Content="{Binding Path = PS1}" Name="PS1"  HorizontalAlignment="Left" Margin="229,78,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
                 <Label Content="PS0" HorizontalAlignment="Left" Margin="251,58,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
-                <Label Content="0" Name="PS0"  HorizontalAlignment="Left" Margin="255,78,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
+                <Label Content="{Binding Path = PS0}" Name="PS0"  HorizontalAlignment="Left" Margin="255,78,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
                 <Label Content="INTCON" HorizontalAlignment="Left" Margin="10,109,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
                 <Label Content="GIE" HorizontalAlignment="Left" Margin="58,109,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
-                <Label Name="GIE" Content="0"   HorizontalAlignment="Left" Margin="62,129,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
+                <Label Name="GIE" Content="{Binding Path = GIE}"   HorizontalAlignment="Left" Margin="62,129,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
                 <Label Content="EEIE" HorizontalAlignment="Left" Margin="83,109,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
-                <Label Name="EEIE" Content="0"   HorizontalAlignment="Left" Margin="90,129,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
+                <Label Name="EEIE" Content="{Binding Path = EEIE}"   HorizontalAlignment="Left" Margin="90,129,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
                 <Label Content="T0IE" HorizontalAlignment="Left" Margin="108,109,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
-                <Label Name="T0IE" Content="0"   HorizontalAlignment="Left" Margin="116,129,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
+                <Label Name="T0IE" Content="{Binding Path = T0IE}"   HorizontalAlignment="Left" Margin="116,129,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
                 <Label Content="INTIE" HorizontalAlignment="Left" Margin="138,109,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
-                <Label Name="INTIE" Content="0"   HorizontalAlignment="Left" Margin="145,129,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
+                <Label Name="INTIE" Content="{Binding Path = INTIE}"   HorizontalAlignment="Left" Margin="145,129,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
                 <Label Content="RBIE" HorizontalAlignment="Left" Margin="170,109,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
-                <Label Name="RBIE" Content="0"   HorizontalAlignment="Left" Margin="178,129,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
+                <Label Name="RBIE" Content="{Binding Path = RBIE}"   HorizontalAlignment="Left" Margin="178,129,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
                 <Label Content="T0IF" HorizontalAlignment="Left" Margin="197,109,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
-                <Label Name="T0IF" Content="0"   HorizontalAlignment="Left" Margin="204,129,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
+                <Label Name="T0IF" Content="{Binding Path = T0IF}"   HorizontalAlignment="Left" Margin="204,129,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
                 <Label Content="INTF" HorizontalAlignment="Left" Margin="223,109,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
-                <Label Name="INTF" Content="0"   HorizontalAlignment="Left" Margin="229,129,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
+                <Label Name="INTF" Content="{Binding Path = INTF}"   HorizontalAlignment="Left" Margin="229,129,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
                 <Label Content="RBIF" HorizontalAlignment="Left" Margin="251,109,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
-                <Label Name="RBIF" Content="0"   HorizontalAlignment="Left" Margin="255,129,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
+                <Label Name="RBIF" Content="{Binding Path = RBIF}"   HorizontalAlignment="Left" Margin="255,129,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.628,-0.302"/>
             </Grid>
         </GroupBox>
         <GroupBox Header="Stack" Margin="1043,50,82,529">
             <Grid>
-                <Label Content="0001" Name="Stack1" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top"/>
-                <Label Content="0002" Name="Stack2" HorizontalAlignment="Left" Margin="10,15,0,0" VerticalAlignment="Top"/>
-                <Label Content="0003" Name="Stack3" HorizontalAlignment="Left" Margin="10,30,0,0" VerticalAlignment="Top"/>
-                <Label Content="0004" Name="Stack4" HorizontalAlignment="Left" Margin="10,45,0,0" VerticalAlignment="Top"/>
-                <Label Content="0005" Name="Stack5" HorizontalAlignment="Left" Margin="10,60,0,0" VerticalAlignment="Top"/>
-                <Label Content="0006" Name="Stack6" HorizontalAlignment="Left" Margin="10,75,0,0" VerticalAlignment="Top"/>
-                <Label Content="0007" Name="Stack7" HorizontalAlignment="Left" Margin="10,90,0,0" VerticalAlignment="Top"/>
-                <Label Content="0008" Name="Stack8" HorizontalAlignment="Left" Margin="10,105,0,0" VerticalAlignment="Top"/>
+                <Label Content="{Binding Path = Stack1}" Name="Stack1" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top"/>
+                <Label Content="{Binding Path = Stack2}" Name="Stack2" HorizontalAlignment="Left" Margin="10,15,0,0" VerticalAlignment="Top"/>
+                <Label Content="{Binding Path = Stack3}" Name="Stack3" HorizontalAlignment="Left" Margin="10,30,0,0" VerticalAlignment="Top"/>
+                <Label Content="{Binding Path = Stack4}" Name="Stack4" HorizontalAlignment="Left" Margin="10,45,0,0" VerticalAlignment="Top"/>
+                <Label Content="{Binding Path = Stack5}" Name="Stack5" HorizontalAlignment="Left" Margin="10,60,0,0" VerticalAlignment="Top"/>
+                <Label Content="{Binding Path = Stack6}" Name="Stack6" HorizontalAlignment="Left" Margin="10,75,0,0" VerticalAlignment="Top"/>
+                <Label Content="{Binding Path = Stack7}" Name="Stack7" HorizontalAlignment="Left" Margin="10,90,0,0" VerticalAlignment="Top"/>
+                <Label Content="{Binding Path = Stack8}" Name="Stack8" HorizontalAlignment="Left" Margin="10,105,0,0" VerticalAlignment="Top"/>
             </Grid>
         </GroupBox>
         <GroupBox Header="FileRegister" Margin="441,431,36,10">
@@ -135,24 +135,24 @@
                 <CheckBox Content="0" Name="PinA0" HorizontalAlignment="Left" Margin="575,48,0,0" VerticalAlignment="Top"/>
                 
                 <Label Content="Tris B" HorizontalAlignment="Left" Margin="10,74,0,0" VerticalAlignment="Top"/>
-                <CheckBox Content="7" Name="TrisB7" HorizontalAlignment="Left" Margin="50,80,0,0" VerticalAlignment="Top"/>
-                <CheckBox Content="6" Name="TrisB6" HorizontalAlignment="Left" Margin="125,80,0,0" VerticalAlignment="Top"/>
-                <CheckBox Content="5" Name="TrisB5" HorizontalAlignment="Left" Margin="200,80,0,0" VerticalAlignment="Top"/>
-                <CheckBox Content="4" Name="TrisB4" HorizontalAlignment="Left" Margin="275,80,0,0" VerticalAlignment="Top"/>
-                <CheckBox Content="3" Name="TrisB3" HorizontalAlignment="Left" Margin="350,80,0,0" VerticalAlignment="Top"/>
-                <CheckBox Content="2" Name="TrisB2" HorizontalAlignment="Left" Margin="425,80,0,0" VerticalAlignment="Top"/>
-                <CheckBox Content="1" Name="TrisB1" HorizontalAlignment="Left" Margin="500,80,0,0" VerticalAlignment="Top"/>
-                <CheckBox Content="0" Name="TrisB0" HorizontalAlignment="Left" Margin="575,80,0,0" VerticalAlignment="Top"/>
+                <CheckBox IsChecked="{Binding Path = TrisB7}" Content="7" Name="TrisB7" HorizontalAlignment="Left" Margin="50,80,0,0" VerticalAlignment="Top"/>
+                <CheckBox IsChecked="{Binding Path = TrisB6}" Content="6" Name="TrisB6" HorizontalAlignment="Left" Margin="125,80,0,0" VerticalAlignment="Top"/>
+                <CheckBox IsChecked="{Binding Path = TrisB5}" Content="5" Name="TrisB5" HorizontalAlignment="Left" Margin="200,80,0,0" VerticalAlignment="Top"/>
+                <CheckBox IsChecked="{Binding Path = TrisB4}" Content="4" Name="TrisB4" HorizontalAlignment="Left" Margin="275,80,0,0" VerticalAlignment="Top"/>
+                <CheckBox IsChecked="{Binding Path = TrisB3}" Content="3" Name="TrisB3" HorizontalAlignment="Left" Margin="350,80,0,0" VerticalAlignment="Top"/>
+                <CheckBox IsChecked="{Binding Path = TrisB2}" Content="2" Name="TrisB2" HorizontalAlignment="Left" Margin="425,80,0,0" VerticalAlignment="Top"/>
+                <CheckBox IsChecked="{Binding Path = TrisB1}" Content="1" Name="TrisB1" HorizontalAlignment="Left" Margin="500,80,0,0" VerticalAlignment="Top"/>
+                <CheckBox IsChecked="{Binding Path = TrisB0}" Content="0" Name="TrisB0" HorizontalAlignment="Left" Margin="575,80,0,0" VerticalAlignment="Top"/>
 
                 <Label Content="Pin B" HorizontalAlignment="Left" Margin="10,106,0,0" VerticalAlignment="Top"/>
-                <CheckBox Content="7" Name="PinB7" HorizontalAlignment="Left" Margin="50,112,0,0" VerticalAlignment="Top"/>
-                <CheckBox Content="6" Name="PinB6" HorizontalAlignment="Left" Margin="125,112,0,0" VerticalAlignment="Top"/>
-                <CheckBox Content="5" Name="PinB5" HorizontalAlignment="Left" Margin="200,112,0,0" VerticalAlignment="Top"/>
-                <CheckBox Content="4" Name="PinB4" HorizontalAlignment="Left" Margin="275,112,0,0" VerticalAlignment="Top"/>
-                <CheckBox Content="3" Name="PinB3" HorizontalAlignment="Left" Margin="350,112,0,0" VerticalAlignment="Top"/>
-                <CheckBox Content="2" Name="PinB2" HorizontalAlignment="Left" Margin="425,112,0,0" VerticalAlignment="Top"/>
-                <CheckBox Content="1" Name="PinB1" HorizontalAlignment="Left" Margin="500,112,0,0" VerticalAlignment="Top"/>
-                <CheckBox Content="0" Name="PinB0" HorizontalAlignment="Left" Margin="575,112,0,0" VerticalAlignment="Top"/>
+                <CheckBox IsChecked="{Binding Path = TrisA7}" Content="7" Name="PinB7" HorizontalAlignment="Left" Margin="50,112,0,0" VerticalAlignment="Top"/>
+                <CheckBox IsChecked="{Binding Path = TrisA6}" Content="6" Name="PinB6" HorizontalAlignment="Left" Margin="125,112,0,0" VerticalAlignment="Top"/>
+                <CheckBox IsChecked="{Binding Path = TrisA5}" Content="5" Name="PinB5" HorizontalAlignment="Left" Margin="200,112,0,0" VerticalAlignment="Top"/>
+                <CheckBox IsChecked="{Binding Path = TrisA4}" Content="4" Name="PinB4" HorizontalAlignment="Left" Margin="275,112,0,0" VerticalAlignment="Top"/>
+                <CheckBox IsChecked="{Binding Path = TrisA3}" Content="3" Name="PinB3" HorizontalAlignment="Left" Margin="350,112,0,0" VerticalAlignment="Top"/>
+                <CheckBox IsChecked="{Binding Path = TrisA2}" Content="2" Name="PinB2" HorizontalAlignment="Left" Margin="425,112,0,0" VerticalAlignment="Top"/>
+                <CheckBox IsChecked="{Binding Path = TrisA1}" Content="1" Name="PinB1" HorizontalAlignment="Left" Margin="500,112,0,0" VerticalAlignment="Top"/>
+                <CheckBox IsChecked="{Binding Path = TrisA0}" Content="0" Name="PinB0" HorizontalAlignment="Left" Margin="575,112,0,0" VerticalAlignment="Top"/>
 
             </Grid>
         </GroupBox>

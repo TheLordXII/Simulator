@@ -37,5 +37,10 @@ namespace Simulator
         {
             await Task.Run(() => { _viewModel.OnSingleStep(); });
         }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
