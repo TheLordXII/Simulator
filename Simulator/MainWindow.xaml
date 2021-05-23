@@ -19,11 +19,11 @@
         <GroupBox Header="Programm / LST-Datei" HorizontalAlignment="Left" Height="709" Margin="10,50,0,0" VerticalAlignment="Top" Width="426">
             <ListBox HorizontalAlignment="Left" Height="675" Margin="0,10,-2,0" VerticalAlignment="Top" Width="416"/>
         </GroupBox>
-        <Button Content="Einzelschritt" HorizontalAlignment="Left" Margin="132,10,0,0" VerticalAlignment="Top" Width="120" Height="35" Click="Button_Click"/>
+        <Button Content="Einzelschritt" HorizontalAlignment="Left" Margin="132,10,0,0" VerticalAlignment="Top" Width="120" Height="35" Click="Button_Click" Command="{Binding Path=SingleStep}"/>
         <GroupBox Header="Registerinhalt" HorizontalAlignment="Left" Height="190" Margin="441,50,0,0" VerticalAlignment="Top" Width="283">
             <Grid>
                 <Label Content="W-Register:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-                <Label Content="00" Name="WReg" HorizontalAlignment="Left" Margin="86,10,0,0" VerticalAlignment="Top"/>
+                <Label Content="{Binding Path=W}" Name="WReg" HorizontalAlignment="Left" Margin="86,10,0,0" VerticalAlignment="Top"/>
                 <Label Content="PCL:" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.148,-0.341"/>
                 <Label Content="00" Name="PCL" HorizontalAlignment="Left" Margin="86,41,0,0" VerticalAlignment="Top"/>
                 <Label Content="PCLATCH:" HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top"/>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Simulator.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,14 +21,21 @@ namespace Simulator
     /// </summary>
     public partial class MainWindow : Window
     {
+        MainViewModel _viewModel;
         public MainWindow()
         {
+            MainViewModelFactory factory = new MainViewModelFactory();
+            
+            _viewModel = factory.Load();
+
+            DataContext = _viewModel;
+
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private async void Button_Click(object sender, RoutedEventArgs e)
         {
-
+            await Task.Run(() => { _viewModel.OnSingleStep(); });
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Simulator.Models;
 using Simulator.Models.Controls;
 
@@ -17,6 +18,19 @@ namespace Simulator.ViewModels
         private ControlUnit _controlUnit;
         private Parser _parser;
 
+        public short W 
+        {
+            get
+            {
+                return _memory.W;
+            }
+            set
+            {
+                _memory.W = value;
+                RaisePropertyChanged();
+            } 
+        }
+        
         public MainViewModel(Memory memory, ControlUnit controlUnit, Parser parser)
         {
             _memory = memory;
@@ -24,24 +38,9 @@ namespace Simulator.ViewModels
             _parser = parser;
         }
 
-        /// <summary>
-        /// Takes a File from a File Dialog and parses the Important Information.
-        /// </summary>
-        /// ------------------TESTEN
-        public void ParseData()
+        public void OnSingleStep()
         {
-            //OpenFile Dialog
-        }
-
-        /// <summary>
-        /// Single Step of the Operation with the ControlUnit
-        /// </summary>
-        public void OperationStep()
-        {
-            _controlUnit.OperationStep();
-
-            //GUI Aktualisieren
-
+            W = 100;
         }
     }
 }
