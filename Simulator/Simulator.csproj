@@ -55,6 +55,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Models\Controls\ProgramLine.cs" />
     <Compile Include="Models\IMemory.cs" />
     <Compile Include="ViewModels\IViewModelFactory.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />

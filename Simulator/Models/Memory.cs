@@ -7,6 +7,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using Simulator.Helpers;
+using Simulator.Models.Controls;
 
 namespace Simulator.Models
 {
@@ -48,17 +49,13 @@ namespace Simulator.Models
         /// <summary>
         /// programmemory
         /// </summary>
-        private ObservableCollection<short> _programmemory = new ObservableCollection<short>();
-        public ObservableCollection<short> Programmemory { get; set; }
+        private ObservableCollection<ProgramLine> _programmemory = new ObservableCollection<ProgramLine>();
+        public ObservableCollection<ProgramLine> Programmemory { get => _programmemory; }
 
-        public ObservableCollection<short> GetFromProgramMemory()
-        {
-            return _programmemory;
-        }
 
         public short GetFromProgramMemory(int index)
         {
-            return _programmemory[index];
+            return _programmemory[index].Command;
         }
 
         public int GetProgramMemoryLength()
@@ -66,10 +63,12 @@ namespace Simulator.Models
             return _programmemory.Count;
         }
 
-        public void SaveToProgramMemory(int index, short value)
+        public void SaveToProgramMemory(short value, string text)
         {
-            _programmemory.Add(value);
+            _programmemory.Add(new ProgramLine() { Text = text, Command = value}) ;
+
             RaisePropertyChanged("Programmemory");
+
         }
 
         public short W

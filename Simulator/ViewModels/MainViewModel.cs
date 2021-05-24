@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,8 +22,10 @@ namespace Simulator.ViewModels
         private Memory _memory;
         private ControlUnit _controlUnit;
         private Parser _parser;
-        private List<short> _listviewListe;
-        public List<short> ListviewListe { get; }
+        public ObservableCollection<ProgramLine> ListviewListe
+        {
+            get => _memory.Programmemory;
+        }
 
         public short W 
         {
@@ -36,6 +39,7 @@ namespace Simulator.ViewModels
                 RaisePropertyChanged();
             } 
         }
+
 
         public int PCL
         {
@@ -308,6 +312,8 @@ namespace Simulator.ViewModels
             _controlUnit = controlUnit;
             _parser = parser;
             _memory.PropertyChanged += _memory_PropertyChanged;
+            _memory.Programmemory.CollectionChanged += (o, a) => { RaisePropertyChanged(nameof(ListviewListe)); };
+
 
 
         }
@@ -327,14 +333,5 @@ namespace Simulator.ViewModels
             _parser.OpenFileDialog();
         }
 
-
-        public void UpdateListView()
-        {
-            for (int i = 0; i <= _memory.GetProgramMemoryLength(); i++)
-            {
-                _listviewListe[i] = _memory.GetFromProgramMemory(i);
-
-            }
-        }
     }
 }

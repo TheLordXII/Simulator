@@ -15,7 +15,7 @@ namespace Simulator.Models
         short Programcounter { get; set; }
 
         short GetFromProgramMemory(int index);
-        void SaveToProgramMemory(int index, short value);
+        void SaveToProgramMemory(short value, string text);
         void WriteToMemory(int result);
         void WriteToMemory(int result, int FileRegisterPosition);
         void WriteToMemory(int result, bool Operator);
