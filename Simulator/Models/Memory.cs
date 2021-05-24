@@ -49,10 +49,21 @@ namespace Simulator.Models
         /// programmemory
         /// </summary>
         private ObservableCollection<short> _programmemory = new ObservableCollection<short>();
+        public ObservableCollection<short> Programmemory { get; set; }
+
+        public ObservableCollection<short> GetFromProgramMemory()
+        {
+            return _programmemory;
+        }
 
         public short GetFromProgramMemory(int index)
         {
             return _programmemory[index];
+        }
+
+        public int GetProgramMemoryLength()
+        {
+            return _programmemory.Count;
         }
 
         public void SaveToProgramMemory(int index, short value)

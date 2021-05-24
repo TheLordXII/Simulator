@@ -22,6 +22,7 @@ namespace Simulator
     public partial class MainWindow : Window
     {
         MainViewModel _viewModel;
+        
         public MainWindow()
         {
             MainViewModelFactory factory = new MainViewModelFactory();
@@ -39,6 +40,7 @@ namespace Simulator
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
            _viewModel.ParseData();
+           _viewModel.UpdateListView();
         }
     }
 }

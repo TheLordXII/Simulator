@@ -17,10 +17,10 @@
             </Menu>
         </DockPanel>
         <GroupBox Header="Programm / LST-Datei" HorizontalAlignment="Left" Height="709" Margin="10,50,0,0" VerticalAlignment="Top" Width="426">
-            <ListView>
+            <ListView ItemsSource="{Binding Path=ListviewListe}">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn/>
+                        <GridViewColumn Header="Programmbefehl" DisplayMemberBinding="{Binding value}"/>
                     </GridView>
                 </ListView.View>
             </ListView>

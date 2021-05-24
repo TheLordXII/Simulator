@@ -21,6 +21,8 @@ namespace Simulator.ViewModels
         private Memory _memory;
         private ControlUnit _controlUnit;
         private Parser _parser;
+        private List<short> _listviewListe;
+        public List<short> ListviewListe { get; }
 
         public short W 
         {
@@ -325,9 +327,14 @@ namespace Simulator.ViewModels
             _parser.OpenFileDialog();
         }
 
+
         public void UpdateListView()
         {
-            
+            for (int i = 0; i <= _memory.GetProgramMemoryLength(); i++)
+            {
+                _listviewListe[i] = _memory.GetFromProgramMemory(i);
+
+            }
         }
     }
 }
