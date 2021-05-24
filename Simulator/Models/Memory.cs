@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -47,7 +48,7 @@ namespace Simulator.Models
         /// <summary>
         /// programmemory
         /// </summary>
-        private short[] _programmemory = new short[1024];
+        private ObservableCollection<short> _programmemory = new ObservableCollection<short>();
 
         public short GetFromProgramMemory(int index)
         {
@@ -56,24 +57,8 @@ namespace Simulator.Models
 
         public void SaveToProgramMemory(int index, short value)
         {
-            _programmemory[index] = value;
-            RaisePropertyChanged();
-        }
-
-        public void ClearProgramMemory()
-        {
-            for (int i = 0; i < _programmemory.Length; i++)
-            {
-                _programmemory[i] = 0;
-            }
-        }
-
-        public void ClearFileRegister()
-        {
-            for (int i = 0; i < _fileRegister.Length; i++)
-            {
-                _fileRegister[i] = 0;
-            }
+            _programmemory.Add(value);
+            RaisePropertyChanged("Programmemory");
         }
 
         public short W
@@ -85,7 +70,7 @@ namespace Simulator.Models
             set
             {
                 _w = value;
-                RaisePropertyChanged();
+                RaisePropertyChanged("W");
             }
         }
 
@@ -98,7 +83,20 @@ namespace Simulator.Models
             set
             {
                 _programcounter = value;
-                RaisePropertyChanged();
+                RaisePropertyChanged("Programcounter");
+            }
+        }
+
+        public short PCL
+        {
+            get
+            {
+                return (short)(_programcounter & 0b1111_1111);
+            }
+            set
+            {
+                PCL = value;
+                RaisePropertyChanged("Programcounter");
             }
         }
 
@@ -111,7 +109,7 @@ namespace Simulator.Models
             set
             {
                 _watchdog = value;
-                RaisePropertyChanged();
+                RaisePropertyChanged("Watchdog");
             }
         }
 
@@ -124,7 +122,7 @@ namespace Simulator.Models
             set
             {
                 _prescaler = value;
-                RaisePropertyChanged();
+                RaisePropertyChanged("Prescaler");
             }
         }
 
@@ -148,6 +146,7 @@ namespace Simulator.Models
             ChangeZ(result);
 
             _fileRegister[FileRegisterPosition] = (short)result;
+            RaisePropertyChanged("Fileregister");
         }
 
         /// <summary>
@@ -172,6 +171,7 @@ namespace Simulator.Models
             ChangeDC(result, Operator);
 
             _fileRegister[FileRegisterPosition] = (short)result;
+            RaisePropertyChanged("Fileregister");
         }
 
         /// <summary>
@@ -267,6 +267,7 @@ namespace Simulator.Models
         public void PushToStack(short value)
         {
             _stack.Push(value);
+            RaisePropertyChanged("Stack");
         }
 
         /// <summary>
@@ -275,6 +276,7 @@ namespace Simulator.Models
         /// <returns></returns>
         public short PopFromStack()
         {
+            RaisePropertyChanged("Stack");
             return _stack.Pop();
         }
 

@@ -4,8 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Microsoft.Win32;
+using System.IO;
+using System.Windows;
 using Simulator.Models;
 using Simulator.Models.Controls;
+using System.Windows.Controls;
 
 namespace Simulator.ViewModels
 {
@@ -18,15 +22,6 @@ namespace Simulator.ViewModels
         private ControlUnit _controlUnit;
         private Parser _parser;
 
-        public int Prescaler
-        {
-            get => _memory.Prescaler;
-            set
-            {
-                _memory.Prescaler = value;
-                RaisePropertyChanged();
-            }
-        }
         public short W 
         {
             get
@@ -40,13 +35,267 @@ namespace Simulator.ViewModels
             } 
         }
 
-        public short Programmcounter
+        public int PCL
         {
-            get => _memory.Programcounter;
-            set
+            get
             {
-                _memory.Programcounter = value;
-                RaisePropertyChanged();
+                return 0;
+            }
+        }
+
+        public int PCLATCH
+        {
+            get
+            {
+                return 0;
+            }
+        }
+
+        public short PCint
+        {
+            get
+            {
+                return _memory.Programcounter;
+            }
+        }
+
+        public int Laufzeit
+        {
+            get
+            {
+                return 0;
+            }
+        }
+
+        public int Status
+        {
+            get
+            {
+                return _memory.GetRegisterContent(3);
+            }
+        }
+
+        public int FSR
+        {
+            get
+            {
+                return _memory.GetRegisterContent(4);
+            }
+        }
+
+        public int Option
+        {
+            get
+            {
+                return _memory.GetRegisterContent(0);
+            }
+        }
+
+        public int Vorteiler
+        {
+            get
+            {
+                return 0;
+            }
+        }
+
+        public int Timer0
+        {
+            get
+            {
+                return 0;
+            }
+        }
+
+        public int IRP
+        {
+            get
+            {
+                return 0;
+            }
+        }
+
+        public int RP1
+        {
+            get
+            {
+                return 0;
+            }
+        }
+
+        public int RP0
+        {
+            get
+            {
+                return 0;
+            }
+        }
+
+        public int T0
+        {
+            get
+            {
+                return 0;
+            }
+        }
+
+        public int PD
+        {
+            get
+            {
+                return 0;
+            }
+        }
+
+        public int Z
+        {
+            get
+            {
+                return 0;
+            }
+        }
+
+        public int DC
+        {
+            get
+            {
+                return 0;
+            }
+        }
+
+        public int C
+        {
+            get
+            {
+                return 0;
+            }
+        }
+
+        public int RPu
+        {
+            get
+            {
+                return 0;
+            }
+        }
+
+        public int IEg
+        {
+            get
+            {
+                return 0;
+            }
+        }
+
+        public int T0CS
+        {
+            get
+            {
+                return 0;
+            }
+        }
+
+        public int T0SE
+        {
+            get
+            {
+                return 0;
+            }
+        }
+
+        public int PSA
+        {
+            get
+            {
+                return 0;
+            }
+        }
+
+        public int PS2
+        {
+            get
+            {
+                return 0;
+            }
+        }
+
+        public int PS1
+        {
+            get
+            {
+                return 0;
+            }
+        }
+
+        public int PS0
+        {
+            get
+            {
+                return 0;
+            }
+        }
+
+        public int GIE
+        {
+            get
+            {
+                return 0;
+            }
+        }
+
+        public int EEIE
+        {
+            get
+            {
+                return 0;
+            }
+        }
+
+        public int T0IE
+        {
+            get
+            {
+                return 0;
+            }
+        }
+
+        public int INTIE
+        {
+            get
+            {
+                return 0;
+            }
+        }
+
+        public int RBIE
+        {
+            get
+            {
+                return 0;
+            }
+        }
+
+        public int T0IF
+        {
+            get
+            {
+                return 0;
+            }
+        }
+
+        public int INTF
+        {
+            get
+            {
+                return 0;
+            }
+        }
+
+        public int RBIF
+        {
+            get
+            {
+                return 0;
             }
         }
 
@@ -56,26 +305,29 @@ namespace Simulator.ViewModels
             _memory = memory;
             _controlUnit = controlUnit;
             _parser = parser;
-            _memory.PropertyChanged += (o, a) => { RaisePropertyChanged(); };
+            _memory.PropertyChanged += _memory_PropertyChanged;
 
 
         }
 
         private void _memory_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if(nameof(Memory.Prescaler)==e.PropertyName)
-            {
-                Prescaler = _memory.Prescaler;
-            }
-            else if (nameof(Memory.Programcounter) == e.PropertyName)
-            {
-                Programmcounter = _memory.Programcounter;
-            }
+            RaisePropertyChanged(e.PropertyName);
         }
 
         public void OnSingleStep()
         {
             _controlUnit.OperationStep();
+        }
+
+        public void ParseData()
+        {
+            _parser.OpenFileDialog();
+        }
+
+        public void UpdateListView()
+        {
+            
         }
     }
 }

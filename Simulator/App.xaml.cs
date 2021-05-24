@@ -17,13 +17,9 @@ namespace Simulator
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
-            //Simulator.MainWindow window = new MainWindow();
             MainViewModelFactory factory = new MainViewModelFactory();
             MainViewModel _viewModel;
             _viewModel = factory.Load();
-            
-            //window.DataContext = _viewModel;
-            //window.Show();
         }
     }
 }

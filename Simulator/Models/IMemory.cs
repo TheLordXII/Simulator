@@ -16,8 +16,6 @@ namespace Simulator.Models
 
         short GetFromProgramMemory(int index);
         void SaveToProgramMemory(int index, short value);
-        void ClearProgramMemory();
-        void ClearFileRegister();
         void WriteToMemory(int result);
         void WriteToMemory(int result, int FileRegisterPosition);
         void WriteToMemory(int result, bool Operator);

@@ -25,22 +25,20 @@ namespace Simulator
         public MainWindow()
         {
             MainViewModelFactory factory = new MainViewModelFactory();
-            
             _viewModel = factory.Load();
-
             DataContext = _viewModel;
 
             InitializeComponent();
         }
 
-        private async void Button_Click(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-            await Task.Run(() => { _viewModel.OnSingleStep(); });
+            _viewModel.OnSingleStep();
         }
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
-
+           _viewModel.ParseData();
         }
     }
 }
