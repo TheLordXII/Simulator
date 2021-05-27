@@ -17,8 +17,6 @@ namespace Simulator.Models.Controls
             _commandSet = commandSet;
         }
 
-
-
         public void ChooseOperation(short operationCode, short register, bool destination, short bit, short target, short literal)
         {
             switch (operationCode)

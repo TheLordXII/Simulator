@@ -44,7 +44,7 @@ namespace Simulator.Models
         /// <summary>
         /// programcounter
         /// </summary>
-        private short _programcounter = -1;
+        private short _programcounter;
 
         /// <summary>
         /// programmemory
@@ -61,6 +61,18 @@ namespace Simulator.Models
         public int GetProgramMemoryLength()
         {
             return _programmemory.Count;
+        }
+
+        public short GetFromFileRegister(int position)
+        {
+            if (-1 < position && position < 257)
+            {
+                return _fileRegister[position];
+            }
+            else
+            {
+                return 0;
+            }
         }
 
         public void SaveToProgramMemory(short value, string text)
@@ -147,7 +159,7 @@ namespace Simulator.Models
         }
 
         /// <summary>
-        /// Changes Flags for Operations and stores Result into the File Register
+        /// Changes Flags for Operations and stores Result into the W Register
         /// </summary>
         public void WriteToMemory(int result, bool Operator)
         {
@@ -175,7 +187,7 @@ namespace Simulator.Models
         /// Changes C-Flag in the FileRegister depending of the Result of the Operation
         /// </summary>
         /// <param name="value">Result of the Operation</param>
-        private int ChangeC(int value)
+        public int ChangeC(int value)
         {
             if (value > 255)
             {
@@ -207,7 +219,7 @@ namespace Simulator.Models
         /// Sets Z-Flag in the FileRegister if the Result of the Operation is 0, deletes if not
         /// </summary>
         /// <param name="value">Result of the Operation</param>
-        private void ChangeZ(int value)
+        public void ChangeZ(int value)
         {
             if (value == 0)
             {
@@ -228,7 +240,7 @@ namespace Simulator.Models
         /// </summary>
         /// <param name="value">Result of the Operation</param>
         /// <param name="Operator">True for Addition, False for Subtraction</param>
-        private void ChangeDC(int value, bool Operator)
+        public void ChangeDC(int value, bool Operator)
         {
             if (Operator)
             {
@@ -236,8 +248,8 @@ namespace Simulator.Models
 
                 if (helper > 15)
                 {
-                    _fileRegister[3] |= 0b0000_0010;
-                    _fileRegister[131] |= 0b0000_0010;
+                    _fileRegister[3] = (short)(_fileRegister[3] | 0b0000_0010);
+                    _fileRegister[131] = (short)(_fileRegister[131] | 0b0000_0010);
                     RaisePropertyChanged("DC");
                 }
                 else

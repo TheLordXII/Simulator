@@ -27,7 +27,10 @@ namespace Simulator.Models
 
         public void OperationStep()
         {
-            _memory.Programcounter++;
+            if (!(_memory.Programcounter == 0))
+            {
+                _memory.Programcounter++;
+            }
 
             _register = _interpreter.InterpretFileRegister(_memory.GetFromProgramMemory(_memory.Programcounter));
             _destination = _interpreter.InterpretDestinationBit(_memory.GetFromProgramMemory(_memory.Programcounter));

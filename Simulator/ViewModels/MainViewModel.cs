@@ -22,8 +22,6 @@ namespace Simulator.ViewModels
         private Memory _memory;
         private ControlUnit _controlUnit;
         private Parser _parser;
-        private ObservableCollection<short> _listviewListe = new ObservableCollection<short>();
-        public ObservableCollection<short> ListviewListe { get; }
 
         public short W 
         {
@@ -309,6 +307,7 @@ namespace Simulator.ViewModels
             _controlUnit = controlUnit;
             _parser = parser;
             _memory.PropertyChanged += _memory_PropertyChanged;
+            
         }
 
         private void _memory_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -324,12 +323,6 @@ namespace Simulator.ViewModels
         public void ParseData()
         {
             _parser.OpenFileDialog();
-        }
-
-
-        public void UpdateListView()
-        {   
-            _listviewListe = _memory.GetFromProgramMemory();
         }
     }
 }
