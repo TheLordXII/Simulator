@@ -31,14 +31,10 @@
             <Grid>
                 <Label Content="W-Register:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
                 <Label Content="{Binding Path=W}" Name="WReg" HorizontalAlignment="Left" Margin="86,10,0,0" VerticalAlignment="Top"/>
-                <Label Content="PCL:" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.148,-0.341"/>
-                <Label Content="{Binding Path = PCL}" Name="PCL" HorizontalAlignment="Left" Margin="86,41,0,0" VerticalAlignment="Top"/>
-                <Label Content="PCLATCH:" HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top"/>
-                <Label Content="{Binding Path = PCLATCH}" Name="PCLATCH" HorizontalAlignment="Left" Margin="86,72,0,0" VerticalAlignment="Top"/>
-                <Label Content="PC intern:" HorizontalAlignment="Left" Margin="10,98,0,0" VerticalAlignment="Top"/>
-                <Label Content="{Binding Path = PCint}" Name="PC" HorizontalAlignment="Left" Margin="86,98,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.897,0.541"/>
-                <Label Content="Laufzeit:" HorizontalAlignment="Left" Margin="10,124,0,0" VerticalAlignment="Top"/>
-                <Label Content="{Binding Path = Laufzeit}"  Name="Laufzeit" HorizontalAlignment="Left" Margin="86,124,0,0" VerticalAlignment="Top"/>
+                <Label Content="PC intern:" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top"/>
+                <Label Content="{Binding Path = PCint}" Name="PC" HorizontalAlignment="Left" Margin="86,41,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.897,0.541"/>
+                <Label Content="Laufzeit:" HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top"/>
+                <Label Content="{Binding Path = Laufzeit}"  Name="Laufzeit" HorizontalAlignment="Left" Margin="86,72,0,0" VerticalAlignment="Top"/>
                 <Label Content="Status:" HorizontalAlignment="Left" Margin="131,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.566,0.538"/>
                 <Label Content="{Binding Path = Status}" Name="Status" HorizontalAlignment="Left" Margin="192,10,0,0" VerticalAlignment="Top"/>
                 <Label Content="FSR: " HorizontalAlignment="Left" Margin="131,41,0,0" VerticalAlignment="Top"/>

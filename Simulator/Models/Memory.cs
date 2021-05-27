@@ -44,7 +44,7 @@ namespace Simulator.Models
         /// <summary>
         /// programcounter
         /// </summary>
-        private short _programcounter;
+        private short _programcounter = -1;
 
         /// <summary>
         /// programmemory
@@ -93,20 +93,7 @@ namespace Simulator.Models
             set
             {
                 _programcounter = value;
-                RaisePropertyChanged("Programcounter");
-            }
-        }
-
-        public short PCL
-        {
-            get
-            {
-                return (short)(_programcounter & 0b1111_1111);
-            }
-            set
-            {
-                PCL = value;
-                RaisePropertyChanged("Programcounter");
+                RaisePropertyChanged("PCint");
             }
         }
 
@@ -194,21 +181,24 @@ namespace Simulator.Models
             {
                 _fileRegister[3] |= 0b0000_0001;
                 _fileRegister[131] |= 0b0000_0001;
-
                 value = value - 256;
+
+                RaisePropertyChanged("C");
                 return value;
             }
             if (value < 0)
             {
                 _fileRegister[3] |= 0b0000_0001;
                 _fileRegister[131] |= 0b0000_0001;
-
                 value = value + 256;
+
+                RaisePropertyChanged("C");
                 return value;
             }
 
             _fileRegister[3] &= 0b1111_1110;
             _fileRegister[131] &= 0b1111_1110;
+            RaisePropertyChanged("C");
 
             return value;
         }
@@ -223,11 +213,13 @@ namespace Simulator.Models
             {
                 _fileRegister[3] |= 0b0000_0100;
                 _fileRegister[131] |= 0b0000_0100;
+                RaisePropertyChanged("Z");
             }
             else
             {
                 _fileRegister[3] &= 0b1111_1011;
                 _fileRegister[131] &= 0b1111_1011;
+                RaisePropertyChanged("Z");
             }
         }
 
@@ -246,11 +238,13 @@ namespace Simulator.Models
                 {
                     _fileRegister[3] |= 0b0000_0010;
                     _fileRegister[131] |= 0b0000_0010;
+                    RaisePropertyChanged("DC");
                 }
                 else
                 {
                     _fileRegister[3] &= 0b1111_1101;
                     _fileRegister[131] &= 0b1111_1101;
+                    RaisePropertyChanged("DC");
                 }
             }
             else
@@ -261,11 +255,13 @@ namespace Simulator.Models
                 {
                     _fileRegister[3] |= 0b0000_0010;
                     _fileRegister[131] |= 0b0000_0010;
+                    RaisePropertyChanged("DC");
                 }
                 else
                 {
                     _fileRegister[3] &= 0b1111_1101;
                     _fileRegister[131] &= 0b1111_1101;
+                    RaisePropertyChanged("DC");
                 }
             }
         }

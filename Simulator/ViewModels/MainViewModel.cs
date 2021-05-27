@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +10,7 @@ using System.Windows;
 using Simulator.Models;
 using Simulator.Models.Controls;
 using System.Windows.Controls;
+using System.Collections.ObjectModel;
 
 namespace Simulator.ViewModels
 {
@@ -22,10 +22,8 @@ namespace Simulator.ViewModels
         private Memory _memory;
         private ControlUnit _controlUnit;
         private Parser _parser;
-        public ObservableCollection<ProgramLine> ListviewListe
-        {
-            get => _memory.Programmemory;
-        }
+        private ObservableCollection<short> _listviewListe = new ObservableCollection<short>();
+        public ObservableCollection<short> ListviewListe { get; }
 
         public short W 
         {
@@ -39,7 +37,6 @@ namespace Simulator.ViewModels
                 RaisePropertyChanged();
             } 
         }
-
 
         public int PCL
         {
@@ -97,11 +94,11 @@ namespace Simulator.ViewModels
             }
         }
 
-        public int Vorteiler
+        public string Vorteiler
         {
             get
             {
-                return 0;
+                return "1:1";
             }
         }
 
@@ -312,10 +309,6 @@ namespace Simulator.ViewModels
             _controlUnit = controlUnit;
             _parser = parser;
             _memory.PropertyChanged += _memory_PropertyChanged;
-            _memory.Programmemory.CollectionChanged += (o, a) => { RaisePropertyChanged(nameof(ListviewListe)); };
-
-
-
         }
 
         private void _memory_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -333,5 +326,10 @@ namespace Simulator.ViewModels
             _parser.OpenFileDialog();
         }
 
+
+        public void UpdateListView()
+        {   
+            _listviewListe = _memory.GetFromProgramMemory();
+        }
     }
 }
