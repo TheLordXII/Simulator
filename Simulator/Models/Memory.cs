@@ -383,49 +383,49 @@ namespace Simulator.Models
             switch (bit)
             {
                 case 0:
-                    if ((_fileRegister[position] & 0b1111_1110) == 1)
+                    if ((_fileRegister[position] & 0b0000_0001) == 1)
                     {
                         return true;
                     }
                     break;
                 case 1:
-                    if ((_fileRegister[position] & 0b1111_1101) == 2)
+                    if ((_fileRegister[position] & 0b0000_0010) == 2)
                     {
                         return true;
                     }
                     break;
                 case 2:
-                    if ((_fileRegister[position] & 0b1111_1011) == 4)
+                    if ((_fileRegister[position] & 0b0000_0100) == 4)
                     {
                         return true;
                     }
                     break;
                 case 3:
-                    if ((_fileRegister[position] & 0b1111_0111) == 8)
+                    if ((_fileRegister[position] & 0b0000_1000) == 8)
                     {
                         return true;
                     }
                     break;
                 case 4:
-                    if ((_fileRegister[position] & 0b1110_1111) == 16)
+                    if ((_fileRegister[position] & 0b0001_0000) == 16)
                     {
                         return true;
                     }
                     break;
                 case 5:
-                    if ((_fileRegister[position] & 0b1101_1111) == 32)
+                    if ((_fileRegister[position] & 0b0010_0000) == 32)
                     {
                         return true;
                     }
                     break;
                 case 6:
-                    if ((_fileRegister[position] & 0b1011_1111) == 64)
+                    if ((_fileRegister[position] & 0b0100_0000) == 64)
                     {
                         return true;
                     }
                     break;
                 case 7:
-                    if ((_fileRegister[position] & 0b0111_1111) == 128)
+                    if ((_fileRegister[position] & 0b1000_0000) == 128)
                     {
                         return true;
                     }

@@ -43,3 +43,5 @@ C:\Users\Marce\Source\Repos\Simulator\Simulator\obj\Debug\Simulator.g.resources
 C:\Users\Marce\Source\Repos\Simulator\Simulator\obj\Debug\Simulator.Properties.Resources.resources
 C:\Users\Marce\Source\Repos\Simulator\Simulator\obj\Debug\Simulator.csproj.GenerateResource.cache
 C:\Users\Marce\Source\Repos\Simulator\Simulator\obj\Debug\Simulator.csproj.CoreCompileInputs.cache
+C:\Users\b28336\Source\Repos\Simulator\Simulator\bin\Debug\Microsoft.VisualStudio.CodeCoverage.Shim.dll
+C:\Users\b28336\Source\Repos\Simulator\Simulator\obj\Debug\Simulator.csproj.CopyComplete
