@@ -8,9 +8,9 @@ namespace Simulator.Models.Commands
 {
     public class ByteCommands
     {
-        private Memory _memory;
+        private protected IMemoryByte _memory;
 
-        public ByteCommands(Memory memory)
+        public ByteCommands(IMemoryByte memory)
         {
             _memory = memory;
         }

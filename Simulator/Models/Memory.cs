@@ -14,7 +14,7 @@ namespace Simulator.Models
     /// <summary>
     /// Represents all memories and register of the PIC16F84
     /// </summary>
-    public class Memory : ObservableObject, IMemory
+    public class Memory : ObservableObject
     {
         /// <summary>
         /// W-Register

@@ -8,9 +8,9 @@ namespace Simulator.Models.Commands
 {
     public class BitCommands
     {
-        private Memory _memory;
+        private protected IMemoryBit _memory;
 
-        public BitCommands(Memory memory)
+        public BitCommands(IMemoryBit memory)
         {
             _memory = memory;
         }

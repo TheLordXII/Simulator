@@ -9,9 +9,9 @@ namespace Simulator.Models.Commands
 {
     public class LiteralCommands
     {
-        private Memory _memory;
+        private protected IMemoryLiteral _memory;
 
-        public LiteralCommands(Memory memory)
+        public LiteralCommands(IMemoryLiteral memory)
         {
             _memory = memory;
         }
